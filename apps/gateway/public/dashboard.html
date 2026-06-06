@@ -3,64 +3,146 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Gennode — Dashboard</title>
+    <title>Gennode — Private Health AI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <style>
       :root { color-scheme: dark; }
       * { box-sizing: border-box; }
       body {
-        margin: 0; min-height: 100vh; background: #06070a; color: #e8edf2;
-        font-family: Inter, system-ui, -apple-system, sans-serif;
-        background-image: radial-gradient(900px 500px at 50% -10%, rgba(56,189,248,0.12), transparent 60%);
+        margin: 0; min-height: 100vh; color: #e8edf2;
+        font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        background-color: #06070a;
+        background-image:
+          radial-gradient(1000px 520px at 50% -12%, rgba(56,189,248,0.13), transparent 60%),
+          radial-gradient(800px 460px at 90% 8%, rgba(129,140,248,0.08), transparent 60%),
+          linear-gradient(rgba(255,255,255,0.022) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255,255,255,0.022) 1px, transparent 1px);
+        background-size: auto, auto, 42px 42px, 42px 42px;
+        -webkit-font-smoothing: antialiased;
       }
-      .wrap { max-width: 720px; margin: 0 auto; padding: 40px 20px 80px; }
-      h1 { font-size: 28px; margin: 0 0 4px; }
-      .sub { color: #8aa0ad; margin: 0 0 28px; }
       .accent { color: #22d3ee; }
-      .card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 18px; margin-bottom: 16px; }
-      .row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
-      button { border: 0; border-radius: 999px; padding: 11px 18px; font-weight: 600; cursor: pointer; background: linear-gradient(135deg,#22d3ee,#38bdf8); color: #04212b; }
-      button.ghost { background: rgba(255,255,255,0.05); color: #e8edf2; border: 1px solid rgba(255,255,255,0.14); }
-      input, textarea { width: 100%; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.12); border-radius: 12px; padding: 12px; color: #e8edf2; font: inherit; }
-      textarea { min-height: 70px; resize: vertical; }
-      .pill { font-size: 12px; color: #9fb3c0; border: 1px solid rgba(255,255,255,0.14); border-radius: 999px; padding: 4px 10px; }
-      .key { font-family: ui-monospace, monospace; font-size: 12px; word-break: break-all; color: #9fb3c0; }
-      .msg { white-space: pre-wrap; line-height: 1.5; }
-      .me { background: rgba(34,211,238,0.12); border-radius: 14px 14px 14px 4px; padding: 10px 14px; margin: 8px 0; }
-      .ai { background: rgba(255,255,255,0.04); border-radius: 14px 14px 4px 14px; padding: 12px 14px; margin: 8px 0; }
+      .chalk { font-family: 'Caveat', cursive; }
+      .glow { text-shadow: 0 0 26px rgba(56,189,248,0.45); }
+      a { color: #38bdf8; text-decoration: none; }
+
+      header {
+        position: sticky; top: 0; z-index: 5; backdrop-filter: blur(10px);
+        background: rgba(6,7,10,0.7); border-bottom: 1px solid rgba(255,255,255,0.06);
+      }
+      .nav { max-width: 860px; margin: 0 auto; padding: 14px 20px; display: flex; align-items: center; gap: 12px; }
+      .brand { display: flex; align-items: center; gap: 8px; font-weight: 700; letter-spacing: .04em; }
+      .brand svg { width: 24px; height: 24px; }
+      .spacer { flex: 1; }
+      .pill { font-size: 12px; border: 1px solid rgba(255,255,255,0.14); border-radius: 999px; padding: 5px 11px; color: #c7d4dd; display: inline-flex; gap: 7px; align-items: center; }
+      .dot { width: 8px; height: 8px; border-radius: 50%; background: #22d3ee; box-shadow: 0 0 10px #22d3ee; }
+
+      .wrap { max-width: 860px; margin: 0 auto; padding: 36px 20px 80px; }
+      h1 { font-size: 40px; line-height: 1.05; margin: 0 0 10px; font-weight: 800; }
+      .sub { color: #8aa0ad; margin: 0 0 26px; max-width: 540px; }
+      .grid2 { display: grid; gap: 18px; grid-template-columns: 1fr; }
+      @media (min-width: 780px) { .grid2 { grid-template-columns: 1.3fr 1fr; } }
+
+      .card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 18px; padding: 18px; }
+      .card h3 { margin: 0 0 12px; font-size: 14px; text-transform: uppercase; letter-spacing: .12em; color: #8aa0ad; font-weight: 600; }
+
+      button { border: 0; border-radius: 999px; padding: 11px 18px; font-weight: 600; cursor: pointer;
+        background: linear-gradient(135deg,#22d3ee,#38bdf8); color: #04212b; font-family: inherit; }
+      button.ghost { background: rgba(255,255,255,0.05); color: #e8edf2; border: 1px solid rgba(255,255,255,0.16); }
+      button:hover { filter: brightness(1.06); }
+      textarea { width: 100%; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.12);
+        border-radius: 14px; padding: 12px 14px; color: #e8edf2; font: inherit; min-height: 64px; resize: vertical; }
+      textarea:focus { outline: none; border-color: rgba(34,211,238,0.5); }
+
+      /* terminal card */
+      .term { background: #080b10; border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; overflow: hidden; }
+      .termbar { background: rgba(255,255,255,0.04); padding: 9px 12px; font-size: 12px; color: #6b8190; display: flex; align-items: center; gap: 7px; }
+      .termbar i { width: 11px; height: 11px; border-radius: 50%; display: inline-block; }
+      .term pre { margin: 0; padding: 14px 16px; font-family: ui-monospace, 'SF Mono', monospace; font-size: 13px; color: #d4ecf6; overflow-x: auto; }
+      .term .p { color: #22d3ee; }
+      .copy { font-size: 11px; padding: 5px 10px; }
+
+      /* chat */
+      #log { display: flex; flex-direction: column; gap: 10px; min-height: 60px; margin-bottom: 12px; }
+      .msg { white-space: pre-wrap; line-height: 1.55; font-size: 14px; max-width: 90%; }
+      .me { align-self: flex-end; background: rgba(34,211,238,0.14); border: 1px solid rgba(34,211,238,0.2); border-radius: 16px 16px 4px 16px; padding: 10px 14px; }
+      .ai { align-self: flex-start; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07); border-radius: 16px 16px 16px 4px; padding: 12px 14px; }
       .small { font-size: 12px; color: #6b8190; }
+      .keybox { font-family: ui-monospace, monospace; font-size: 12px; color: #9fb3c0; word-break: break-all; }
+      .stat { display: flex; gap: 18px; }
+      .stat b { font-family: 'Caveat', cursive; font-size: 26px; color: #22d3ee; display: block; line-height: 1; }
       .hide { display: none; }
+      footer { border-top: 1px solid rgba(255,255,255,0.06); margin-top: 40px; }
+      .foot { max-width: 860px; margin: 0 auto; padding: 22px 20px; color: #59707e; font-size: 12px; line-height: 1.6; }
     </style>
   </head>
   <body>
-    <div class="wrap">
-      <h1>🧬 Gennode <span class="accent">Dashboard</span></h1>
-      <p class="sub">Private AI, powered by Venice. Get free credits, chat, and run it from your terminal.</p>
-
-      <div class="card" id="authCard">
-        <div class="row" style="justify-content: space-between;">
-          <div>
-            <div id="creditLine">Not signed in.</div>
-            <div class="key hide" id="keyLine"></div>
-          </div>
-          <div class="row">
-            <button id="signupBtn">Get free credits</button>
-            <button class="ghost hide" id="refreshBtn">Refresh</button>
-          </div>
-        </div>
-        <p class="small" id="cliHint" style="margin: 12px 0 0;"></p>
+    <header>
+      <div class="nav">
+        <span class="brand">
+          <svg viewBox="0 0 32 32" fill="none" stroke="#22d3ee" stroke-width="2" stroke-linecap="round"><path d="M10 4c0 6 12 6 12 12s-12 6-12 12"/><path d="M22 4c0 6-12 6-12 12s12 6 12 12"/><path d="M11 8h10M11 24h10M9 16h14"/></svg>
+          GENNODE
+        </span>
+        <span class="spacer"></span>
+        <span class="pill"><span class="dot"></span>AI: Live (beta)</span>
+        <span class="pill" id="creditPill">— credits</span>
       </div>
+    </header>
 
-      <div class="card hide" id="chatCard">
-        <div id="log"></div>
-        <div class="row" style="margin-top: 10px;">
-          <textarea id="input" placeholder="Ask a health question… (not medical advice)"></textarea>
+    <div class="wrap">
+      <div id="linkBanner"></div>
+
+      <h1>Your health questions,<br /><span class="chalk accent glow" style="font-size:46px">kept private.</span></h1>
+      <p class="sub">A private health AI you can use right here, or run in your terminal — powered by Venice. No logging, no profiling.</p>
+
+      <div class="grid2">
+        <!-- chat -->
+        <div class="card">
+          <h3>Ask Gennode</h3>
+          <div id="log">
+            <div class="ai msg small">Hi, I'm Gennode. Ask me about a symptom, a lab result, or what to ask your doctor. I'm not a doctor and I won't diagnose — but I'll help you understand. 🧬</div>
+          </div>
+          <textarea id="input" placeholder="e.g. mild headache and low fever for 2 days — should I worry?"></textarea>
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-top:10px;">
+            <span class="small">Information &amp; wellness only — not a diagnosis.</span>
+            <button id="sendBtn">Send</button>
+          </div>
         </div>
-        <div class="row" style="margin-top: 10px; justify-content: space-between;">
-          <span class="small">Information &amp; wellness only — not a diagnosis.</span>
-          <button id="sendBtn">Send</button>
+
+        <!-- terminal + account -->
+        <div style="display:flex; flex-direction:column; gap:18px;">
+          <div class="card">
+            <h3>Run it in your terminal</h3>
+            <p class="small" style="margin:0 0 10px">Claude-style, on macOS / Windows / Linux.</p>
+            <div class="term">
+              <div class="termbar"><i style="background:#ff5f56"></i><i style="background:#ffbd2e"></i><i style="background:#27c93f"></i>&nbsp; gennode</div>
+              <pre><span class="p">$</span> npx @gennode/node setup</pre>
+            </div>
+            <button class="ghost copy" style="margin-top:10px" data-copy="npx @gennode/node setup">Copy command</button>
+          </div>
+
+          <div class="card" id="accountCard">
+            <h3>Your account</h3>
+            <div class="stat">
+              <div><b id="cCredits">—</b><span class="small">credits</span></div>
+              <div><b id="cUsed">—</b><span class="small">used</span></div>
+            </div>
+            <p class="small" style="margin:14px 0 6px">Connect this account to your terminal:</p>
+            <div class="term"><pre id="connectCmd" style="font-size:11px"><span class="p">$</span> npx @gennode/node connect …</pre></div>
+            <button class="ghost copy" style="margin-top:10px" id="copyConnect">Copy connect command</button>
+            <p class="keybox" id="keyLine" style="margin-top:10px"></p>
+          </div>
         </div>
       </div>
     </div>
+
+    <footer>
+      <div class="foot">
+        <strong style="color:#7d909c">Beta.</strong> Gennode provides general health information and wellness support only — it is not a medical device and does not diagnose, treat or prescribe. Always consult a clinician; the final decision rests with you and your doctor. In an emergency, contact local emergency services.
+        <br />$GENNODE is a utility token; nothing here is financial advice. · <a href="https://x.com/gennode" target="_blank" rel="noreferrer">@gennode</a>
+      </div>
+    </footer>
 
     <script>
       const API = location.origin
@@ -68,66 +150,28 @@
         "You are Gennode, a private health-information assistant. Help people understand symptoms, lab results and what to ask their doctor, in plain language. You are NOT a doctor: never diagnose, treat, or prescribe; always remind the user to consult a clinician and that the final decision is theirs. Flag emergency red-flag symptoms and tell them to seek urgent care. Be private, warm and concise."
       let key = localStorage.getItem('gennode_key') || ''
       const $ = (id) => document.getElementById(id)
+      const esc = (s) => s.replace(/[&<>]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]))
+      const mask = (k) => (k ? k.slice(0, 6) + '…' + k.slice(-4) : '')
 
-      function setCli() {
-        $('cliHint').textContent = key
-          ? 'Use it in your terminal:  npx @gennode/node connect ' + API + ' ' + key
-          : ''
+      function setAccount(d) {
+        if (d && d.credits != null) {
+          $('creditPill').innerHTML = '<span class="dot"></span>' + d.credits + ' credits'
+          $('cCredits').textContent = d.credits
+          if (d.used != null) $('cUsed').textContent = d.used
+        }
+        if (key) {
+          $('connectCmd').innerHTML = '<span class="p">$</span> npx @gennode/node connect ' + API + ' ' + key
+          $('keyLine').textContent = 'key: ' + mask(key)
+        }
       }
       async function refresh() {
         if (!key) return
         try {
           const r = await fetch(API + '/v1/me', { headers: { authorization: 'Bearer ' + key } })
           const j = await r.json()
-          if (j.credits != null) {
-            $('creditLine').innerHTML = 'Credits: <b class="accent">' + j.credits + '</b> &nbsp;·&nbsp; used: ' + j.used
-            $('keyLine').textContent = 'key: ' + key
-            $('keyLine').classList.remove('hide')
-            $('refreshBtn').classList.remove('hide')
-            $('signupBtn').classList.add('hide')
-            $('chatCard').classList.remove('hide')
-            setCli()
-          }
+          if (j.credits != null) setAccount(j)
         } catch {}
       }
-      $('signupBtn').onclick = async () => {
-        const r = await fetch(API + '/v1/signup', { method: 'POST', headers: { 'content-type': 'application/json' }, body: '{}' })
-        const j = await r.json()
-        if (j.apiKey) {
-          key = j.apiKey
-          localStorage.setItem('gennode_key', key)
-          refresh()
-        }
-      }
-      $('refreshBtn').onclick = refresh
-      $('sendBtn').onclick = async () => {
-        const text = $('input').value.trim()
-        if (!text) return
-        $('input').value = ''
-        const log = $('log')
-        log.innerHTML += '<div class="me msg">' + escapeHtml(text) + '</div>'
-        const thinking = document.createElement('div')
-        thinking.className = 'ai msg small'
-        thinking.textContent = '…'
-        log.appendChild(thinking)
-        try {
-          const r = await fetch(API + '/v1/chat/completions', {
-            method: 'POST',
-            headers: { 'content-type': 'application/json', authorization: 'Bearer ' + key },
-            body: JSON.stringify({ messages: [{ role: 'system', content: HEALTH_SYSTEM }, { role: 'user', content: text }] }),
-          })
-          const j = await r.json()
-          thinking.classList.remove('small')
-          thinking.textContent = j.content || ('Error: ' + (j.error || 'unknown'))
-          if (j.credits != null) $('creditLine').innerHTML = 'Credits: <b class="accent">' + j.credits + '</b>'
-        } catch (e) {
-          thinking.textContent = 'Network error.'
-        }
-      }
-      function escapeHtml(s) {
-        return s.replace(/[&<>]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]))
-      }
-      const deviceCode = new URLSearchParams(location.search).get('code')
       async function ensureKey() {
         if (key) return key
         const r = await fetch(API + '/v1/signup', { method: 'POST', headers: { 'content-type': 'application/json' }, body: '{}' })
@@ -135,9 +179,56 @@
         if (j.apiKey) {
           key = j.apiKey
           localStorage.setItem('gennode_key', key)
+          setAccount({ credits: j.credits, used: 0 })
         }
         return key
       }
+
+      $('sendBtn').onclick = async () => {
+        const text = $('input').value.trim()
+        if (!text) return
+        $('input').value = ''
+        const log = $('log')
+        const me = document.createElement('div')
+        me.className = 'me msg'
+        me.textContent = text
+        log.appendChild(me)
+        const ai = document.createElement('div')
+        ai.className = 'ai msg small'
+        ai.textContent = '…'
+        log.appendChild(ai)
+        ai.scrollIntoView({ behavior: 'smooth' })
+        try {
+          await ensureKey()
+          const r = await fetch(API + '/v1/chat/completions', {
+            method: 'POST',
+            headers: { 'content-type': 'application/json', authorization: 'Bearer ' + key },
+            body: JSON.stringify({ messages: [{ role: 'system', content: HEALTH_SYSTEM }, { role: 'user', content: text }] }),
+          })
+          const j = await r.json()
+          ai.classList.remove('small')
+          ai.textContent = j.content || 'Error: ' + (j.error || 'unknown')
+          if (j.credits != null) setAccount({ credits: j.credits })
+        } catch {
+          ai.textContent = 'Network error.'
+        }
+      }
+      $('input').addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) $('sendBtn').click()
+      })
+
+      document.querySelectorAll('.copy').forEach((b) => {
+        b.onclick = () => {
+          const t = b.id === 'copyConnect' ? 'npx @gennode/node connect ' + API + ' ' + key : b.dataset.copy
+          navigator.clipboard?.writeText(t)
+          const o = b.textContent
+          b.textContent = 'Copied ✓'
+          setTimeout(() => (b.textContent = o), 1200)
+        }
+      })
+
+      // device-auth: terminal opened this page with ?code → auto-link
+      const deviceCode = new URLSearchParams(location.search).get('code')
       async function init() {
         if (deviceCode) {
           await ensureKey()
@@ -146,14 +237,11 @@
             headers: { 'content-type': 'application/json' },
             body: JSON.stringify({ code: deviceCode, apiKey: key }),
           })
-          const banner = document.createElement('div')
-          banner.className = 'card'
-          banner.style.borderColor = 'rgba(34,211,238,0.5)'
-          banner.innerHTML = '✓ <b class="accent">Terminal linked.</b> You can return to your terminal — it is ready to chat.'
-          document.querySelector('.wrap').insertBefore(banner, document.getElementById('authCard'))
+          $('linkBanner').innerHTML =
+            '<div class="card" style="border-color:rgba(34,211,238,0.5); margin-bottom:18px">✓ <b class="accent">Terminal linked.</b> Return to your terminal — it\'s ready to chat.</div>'
         }
         refresh()
-        setCli()
+        setAccount({})
       }
       init()
     </script>
