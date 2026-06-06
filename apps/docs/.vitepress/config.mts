@@ -14,6 +14,7 @@ export default defineConfig({
       { text: 'Introduction', link: '/' },
       { text: 'Health AI', link: '/health-ai' },
       { text: 'Token', link: '/token' },
+      { text: 'Whitepaper', link: '/whitepaper' },
       { text: 'Website', link: 'https://gennode.xyz' },
     ],
     sidebar: [
@@ -42,6 +43,7 @@ export default defineConfig({
       {
         text: 'More',
         items: [
+          { text: 'Whitepaper', link: '/whitepaper' },
           { text: 'FAQ', link: '/faq' },
           { text: 'Disclaimers', link: '/disclaimers' },
         ],
