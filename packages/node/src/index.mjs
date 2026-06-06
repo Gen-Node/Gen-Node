@@ -178,7 +178,13 @@ async function setupCloud(args) {
         c.gatewayKey = p.apiKey
         c.backend = 'gateway'
         saveConfig(c)
-        console.log('\n\n✓ Linked! Run "gennode" to chat. Your usage & credits are on the dashboard.')
+        let me = {}
+        try {
+          me = await (await fetch(gateway + '/v1/me', { headers: { Authorization: 'Bearer ' + p.apiKey } })).json()
+        } catch {}
+        console.log('\n')
+        if (me.wallet) console.log('✓ Wallet connected: ' + me.wallet.slice(0, 6) + '…' + me.wallet.slice(-4))
+        console.log('✓ Linked! Credits: ' + (me.credits ?? '—') + ' — run "gennode" to chat.')
         return
       }
     } catch {

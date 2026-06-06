@@ -124,6 +124,10 @@
 
           <div class="card" id="accountCard">
             <h3>Your account</h3>
+            <div id="walletRow" style="margin-bottom:14px; display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+              <button id="connectWallet">Connect wallet</button>
+              <span class="small" id="walletState"></span>
+            </div>
             <div class="stat">
               <div><b id="cCredits">—</b><span class="small">credits</span></div>
               <div><b id="cUsed">—</b><span class="small">used</span></div>
@@ -159,6 +163,7 @@
           $('cCredits').textContent = d.credits
           if (d.used != null) $('cUsed').textContent = d.used
         }
+        if (d && d.wallet) $('walletState').innerHTML = '✓ ' + d.wallet.slice(0, 6) + '…' + d.wallet.slice(-4)
         if (key) {
           $('connectCmd').innerHTML = '<span class="p">$</span> npx @gennode/node connect ' + API + ' ' + key
           $('keyLine').textContent = 'key: ' + mask(key)
@@ -227,20 +232,50 @@
         }
       })
 
-      // device-auth: terminal opened this page with ?code → auto-link
+      // device-auth: terminal opened this page with ?code
       const deviceCode = new URLSearchParams(location.search).get('code')
+
+      async function connectWallet() {
+        let address
+        if (window.ethereum) {
+          try {
+            const accts = await window.ethereum.request({ method: 'eth_requestAccounts' })
+            address = accts && accts[0]
+          } catch {
+            return
+          }
+        }
+        if (!address) {
+          alert('No browser wallet found. Privy email/social login is coming — add your Privy App ID to enable it.')
+          return
+        }
+        await ensureKey()
+        const body = { address }
+        if (deviceCode) body.code = deviceCode
+        const r = await fetch(API + '/v1/wallet/link', {
+          method: 'POST',
+          headers: { 'content-type': 'application/json', authorization: 'Bearer ' + key },
+          body: JSON.stringify(body),
+        })
+        const j = await r.json()
+        if (j.ok) {
+          $('walletState').innerHTML = '✓ ' + address.slice(0, 6) + '…' + address.slice(-4)
+          if (j.credits != null) setAccount({ credits: j.credits })
+          if (deviceCode)
+            $('linkBanner').innerHTML =
+              '<div class="card" style="border-color:rgba(34,211,238,0.5); margin-bottom:18px">✓ <b class="accent">Wallet connected &amp; terminal linked.</b> Return to your terminal.</div>'
+        } else {
+          $('walletState').textContent = 'Error: ' + (j.error || 'failed')
+        }
+      }
+      $('connectWallet').onclick = connectWallet
+
       async function init() {
         if (deviceCode) {
-          await ensureKey()
-          await fetch(API + '/v1/device/approve', {
-            method: 'POST',
-            headers: { 'content-type': 'application/json' },
-            body: JSON.stringify({ code: deviceCode, apiKey: key }),
-          })
           $('linkBanner').innerHTML =
-            '<div class="card" style="border-color:rgba(34,211,238,0.5); margin-bottom:18px">✓ <b class="accent">Terminal linked.</b> Return to your terminal — it\'s ready to chat.</div>'
+            '<div class="card" style="border-color:rgba(129,140,248,0.5); margin-bottom:18px">🔗 A terminal wants to link. <b class="accent">Connect your wallet</b> to link it and unlock your credits.</div>'
         }
-        refresh()
+        await refresh()
         setAccount({})
       }
       init()

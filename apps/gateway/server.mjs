@@ -8,6 +8,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 const PORT = Number(process.env.PORT || 8787)
 const FREE_CREDITS = Number(process.env.FREE_CREDITS || 25)
+const WALLET_BONUS = Number(process.env.WALLET_BONUS || 25)
 const DATA_FILE = path.join(__dirname, 'data.json')
 
 // ---- inference providers (OpenAI-compatible upstreams) ----
@@ -121,7 +122,7 @@ const server = http.createServer(async (req, res) => {
   if (req.method === 'GET' && pathname === '/v1/device/poll') {
     const d = devices[url.searchParams.get('code')]
     if (!d) return sendJson(res, 404, { error: 'unknown code' })
-    return sendJson(res, 200, d.apiKey ? { apiKey: d.apiKey } : { pending: true })
+    return sendJson(res, 200, d.apiKey ? { apiKey: d.apiKey, wallet: db.users[d.apiKey]?.wallet || null } : { pending: true })
   }
   if (req.method === 'POST' && pathname === '/v1/device/approve') {
     const b = await readBody(req)
@@ -143,7 +144,24 @@ const server = http.createServer(async (req, res) => {
   if (req.method === 'GET' && pathname === '/v1/me') {
     if (!key) return sendJson(res, 401, { error: 'unauthorized' })
     const u = db.users[key]
-    return sendJson(res, 200, { name: u.name, credits: u.credits, used: u.used })
+    return sendJson(res, 200, { name: u.name, credits: u.credits, used: u.used, wallet: u.wallet || null })
+  }
+
+  // link a wallet (Privy / injected) to this account → bonus credits; optionally approve a device code
+  if (req.method === 'POST' && pathname === '/v1/wallet/link') {
+    if (!key) return sendJson(res, 401, { error: 'unauthorized' })
+    const b = await readBody(req)
+    const address = String(b.address || '').toLowerCase()
+    if (!/^0x[0-9a-f]{40}$/.test(address)) return sendJson(res, 400, { error: 'invalid address' })
+    const u = db.users[key]
+    u.wallet = address
+    if (!u.walletBonus) {
+      u.credits += WALLET_BONUS
+      u.walletBonus = true
+    }
+    if (b.code && devices[b.code]) devices[b.code].apiKey = key
+    save()
+    return sendJson(res, 200, { ok: true, wallet: address, credits: u.credits })
   }
 
   // metered, OpenAI-compatible chat → proxied to Venice
