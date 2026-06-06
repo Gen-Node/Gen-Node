@@ -1,0 +1,19 @@
+# dependencies
+node_modules/
+**/node_modules/
+
+# builds
+dist/
+**/dist/
+**/.vitepress/dist/
+**/.vitepress/cache/
+
+# env / local
+.env
+.env.*
+*.local
+
+# editor / os
+.DS_Store
+Thumbs.db
+.vscode/
