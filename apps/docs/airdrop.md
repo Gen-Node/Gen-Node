@@ -15,4 +15,4 @@ When the node network launches, you earn points for the **GPU compute** your nod
 Points are protected against farming via device fingerprinting, behavior analysis and staged verification. Rewards go to **real contributors**.
 
 ## How to qualify
-Join the waitlist on the [website](https://gennode.xyz) and stay active. The snapshot and distribution details will be published **before** launch through official channels.
+Join the waitlist on the [website](https://gennode.org) and stay active. The snapshot and distribution details will be published **before** launch through official channels.

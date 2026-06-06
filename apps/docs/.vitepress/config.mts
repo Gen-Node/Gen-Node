@@ -15,7 +15,7 @@ export default defineConfig({
       { text: 'Health AI', link: '/health-ai' },
       { text: 'Token', link: '/token' },
       { text: 'Whitepaper', link: '/whitepaper' },
-      { text: 'Website', link: 'https://gennode.xyz' },
+      { text: 'Website', link: 'https://gennode.org' },
     ],
     sidebar: [
       {
