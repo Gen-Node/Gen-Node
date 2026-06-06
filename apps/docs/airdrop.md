@@ -1,6 +1,6 @@
 # Airdrop & points
 
-Early supporters and contributors earn **points** that convert to `$GENE`.
+Early supporters and contributors earn **points** that convert to `$GENNODE`.
 
 ## Phase 1 — participation points
 Earn by genuinely contributing:

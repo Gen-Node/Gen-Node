@@ -8,7 +8,7 @@ The long-term vision: the AI runs on a **decentralized network of community GPU 
 ```bash
 npx gennode        # install & start
 ```
-Your machine registers with the coordinator, runs sealed model containers on your GPU, and earns `$GENE` for verified compute.
+Your machine registers with the coordinator, runs sealed model containers on your GPU, and earns `$GENNODE` for verified compute.
 
 ## Privacy by design
 - **Self-host mode** — run your own node for a 100% local, private assistant.

@@ -6,7 +6,7 @@ No. It provides general health information and wellness support only. It does no
 ### Is it really private?
 Yes — no logging, no profiling, no data selling. Today it runs on Venice's private infrastructure; the future node network adds self-hosting and confidential computing.
 
-### What is $GENE?
+### What is $GENNODE?
 A utility token on Base that fuels access, governance and rewards. See [Token](/token).
 
 ### Can I run a node now?

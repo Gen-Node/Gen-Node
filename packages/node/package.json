@@ -1,0 +1,16 @@
+{
+  "name": "@gennode/node",
+  "version": "0.1.0",
+  "description": "Run a private Gennode health AI locally (macOS & Windows) — powered by the Venice API or a local Ollama model.",
+  "type": "module",
+  "bin": {
+    "gennode": "src/index.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "MIT",
+  "scripts": {
+    "start": "node src/index.mjs"
+  }
+}

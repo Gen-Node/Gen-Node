@@ -1,6 +1,6 @@
-# $GENE token
+# $GENNODE token
 
-`$GENE` is the utility token that fuels the Gennode network.
+`$GENNODE` is the utility token that fuels the Gennode network.
 
 - **Chain:** Base
 - **Launch:** fair launch via Bankr (Clanker v4)
@@ -23,5 +23,5 @@ The network is designed to be **self-funded**. Trading fees (from the token's li
 A **100% fair launch**: no team allocation, no pre-mine, no insider buy — every token hits the open market. Treasury, the airdrop and node rewards are funded **entirely by trading fees**, not by a token allocation.
 
 ::: tip Not financial advice
-`$GENE` is a utility token for use within the network. Nothing here is financial advice or an offer of securities. Always verify the official contract address — beware of fakes.
+`$GENNODE` is a utility token for use within the network. Nothing here is financial advice or an offer of securities. Always verify the official contract address — beware of fakes.
 :::

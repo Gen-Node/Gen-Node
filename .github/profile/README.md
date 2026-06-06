@@ -14,9 +14,9 @@ Powered today by Venice; tomorrow by a community GPU node network.
 ---
 
 - 🧬 **Private health AI** (beta) — understand symptoms & lab results; never a diagnosis
-- ⛓ **$GENE** on Base — a 100% fair launch; fees fund the network (no team, no pre-mine)
+- ⛓ **$GENNODE** on Base — a 100% fair launch; fees fund the network (no team, no pre-mine)
 - 🖥 **Node network** *(coming)* — run a node, earn for real compute: DNA, protein folding, genomics
 
 🌐 Website (soon) · 📄 Docs (soon) · 𝕏 [@gennode](https://x.com/gennode)
 
-> Beta. Information & wellness only — not medical advice. $GENE is a utility token; nothing here is financial advice.
+> Beta. Information & wellness only — not medical advice. $GENNODE is a utility token; nothing here is financial advice.

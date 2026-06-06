@@ -105,7 +105,7 @@ const steps = [
 const roadmap = [
   { p: 'Phase 1', t: 'Health AI beta', d: 'Private, Venice-powered health assistant + this site.', state: 'now' },
   { p: 'Phase 2', t: 'Community & points', d: 'Grow users, doctor mode, earn participation points.', state: 'next' },
-  { p: 'Phase 3', t: 'Token launch', d: '$GENE on Base via Bankr. Airdrop to early supporters.', state: 'next' },
+  { p: 'Phase 3', t: 'Token launch', d: '$GENNODE on Base via Bankr. Airdrop to early supporters.', state: 'next' },
   { p: 'Phase 4', t: 'Node network', d: 'Run a node, decentralized inference, compute rewards.', state: 'coming' },
   { p: 'Phase 5', t: 'Bio-compute', d: 'DNA, protein folding & genomics jobs on the network.', state: 'coming' },
 ]
@@ -368,7 +368,7 @@ function Token() {
       <div className="grid items-start gap-10 md:grid-cols-2">
         <div>
           <h2 className="text-3xl font-bold md:text-4xl">
-            <span className="font-chalk text-bluex">$GENE</span> — the fuel of the network
+            <span className="font-chalk text-bluex">$GENNODE</span> — the fuel of the network
           </h2>
           <p className="mt-4 text-white/70">
             Launching on <strong className="text-white">Base</strong> via Bankr as a{' '}
@@ -387,7 +387,7 @@ function Token() {
             </div>
           </div>
           <p className="mt-6 text-xs text-white/40">
-            $GENE is a utility token. Nothing here is financial advice or an offer of securities.
+            $GENNODE is a utility token. Nothing here is financial advice or an offer of securities.
           </p>
         </div>
 
@@ -504,7 +504,7 @@ function Waitlist() {
       <div className="rounded-3xl border border-bluex/20 bg-gradient-to-b from-bluex/10 to-transparent p-10 text-center">
         <h2 className="text-3xl font-bold md:text-4xl">Get early access + airdrop</h2>
         <p className="mx-auto mt-3 max-w-xl text-white/65">
-          Be first to try the private health AI and earn participation points toward the $GENE airdrop.
+          Be first to try the private health AI and earn participation points toward the $GENNODE airdrop.
         </p>
 
         {done ? (
@@ -566,7 +566,7 @@ function Footer() {
             contact local emergency services.
           </p>
           <p>
-            $GENE is a utility token intended for use within the network. Nothing on this site is financial, investment
+            $GENNODE is a utility token intended for use within the network. Nothing on this site is financial, investment
             or legal advice, nor an offer or solicitation to buy any asset.
           </p>
           <p className="pt-2 text-white/30">© {new Date().getFullYear()} Gennode. All rights reserved.</p>

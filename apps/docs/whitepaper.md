@@ -1,7 +1,7 @@
 # Whitepaper
 
 **Private health AI, built for one vertical: bio.**
-*Version 0.1 (draft) · Chain: Base · Token: $GENE · Status: pre-launch*
+*Version 0.1 (draft) · Chain: Base · Token: $GENNODE · Status: pre-launch*
 
 > Informational and a work in progress. Not financial, investment, legal or medical advice, nor an offer of any asset. See [Disclaimers](/disclaimers).
 
@@ -24,7 +24,7 @@ A **vertical** product + network for bio: a private health assistant now, a bio-
 ## 5. Architecture
 ```
 User → Coordinator → [P1: Venice] / [P2: Node agent on community GPU] → answer
-On-chain (Base): $GENE · fee router · Treasury · RewardDistributor
+On-chain (Base): $GENNODE · fee router · Treasury · RewardDistributor
 ```
 
 ## 6. Privacy & Security
@@ -35,9 +35,9 @@ On-chain (Base): $GENE · fee router · Treasury · RewardDistributor
 Health data is treated as a regulated special category (GDPR/HIPAA-aware): minimized, not sold, consent-based.
 
 ## 7. Node Network — Phase 2+ (coming)
-Community operators run `npx gennode`, contribute GPU power, and earn `$GENE` for **verified compute** (`compute × difficulty × uptime`, protected by redundancy and canary jobs). Beyond inference, the network runs bio-compute: DNA analysis, protein folding, molecule docking and genomics.
+Community operators run `npx gennode`, contribute GPU power, and earn `$GENNODE` for **verified compute** (`compute × difficulty × uptime`, protected by redundancy and canary jobs). Beyond inference, the network runs bio-compute: DNA analysis, protein folding, molecule docking and genomics.
 
-## 8. Token — $GENE
+## 8. Token — $GENNODE
 Base · ERC-20 via Clanker v4 (Bankr) · **100,000,000,000 fixed, non-mintable.** Utility: premium access, governance, and (Phase 2) the fuel for node-operator rewards.
 
 ## 9. Tokenomics — 100% Fair Launch
@@ -60,13 +60,13 @@ Self-funded by trading fees. Each swap charges 1.2%; the creator share (~57%) is
 **The flywheel:** real usage → swaps → fees → treasury + rewards + buyback → growth → more usage. Trade-off: with no pre-mine, the treasury is volume-dependent and builds slowly — so **grants** and organic growth fund early development.
 
 ## 10. Rewards & Airdrop
-No tokens are pre-allocated. Accrued fees **buy $GENE on the market** and distribute via a Merkle claim.
+No tokens are pre-allocated. Accrued fees **buy $GENNODE on the market** and distribute via a Merkle claim.
 - **Phase 1 points:** early use, referrals, feedback, tasks.
 - **Phase 2 points:** verified GPU compute.
 - **Anti-sybil:** device fingerprinting, behavior analysis, staged verification.
 
 ## 11. Governance
-$GENE holders vote on parameters (fees, reward weights), supported models and treasury use. Governance decentralizes progressively alongside the network.
+$GENNODE holders vote on parameters (fees, reward weights), supported models and treasury use. Governance decentralizes progressively alongside the network.
 
 ## 12. Roadmap
 See the [Roadmap](/roadmap).
@@ -74,5 +74,5 @@ See the [Roadmap](/roadmap).
 ## 13. Risks & Disclaimers
 - **Demand** is the primary risk; the model is volume-dependent.
 - **Medical:** information and wellness support only; not a medical device; does not diagnose, treat or prescribe.
-- **Financial:** $GENE is a utility token; nothing herein is financial advice or an offer of securities.
+- **Financial:** $GENNODE is a utility token; nothing herein is financial advice or an offer of securities.
 - **Legal:** token, reward and health-data structures are reviewed with qualified counsel before launch.

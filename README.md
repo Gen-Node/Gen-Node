@@ -20,7 +20,7 @@ Ask your health questions privately — **no logging, no profiling, no data sell
 ## What is Gennode?
 
 - **Now — Health AI (beta):** a private, judgment-free assistant that helps you understand symptoms and lab results, and what to ask your doctor. It **never diagnoses**.
-- **Coming — Node network:** run a node, contribute GPU power, and earn `$GENE` for verified compute.
+- **Coming — Node network:** run a node, contribute GPU power, and earn `$GENNODE` for verified compute.
 
 **Progressive decentralization:** ship a real, working product first; decentralize the compute as the community and token grow.
 
@@ -38,17 +38,20 @@ gennode/
 └─ 3D-PROMPTS.md      # 3D asset prompts
 ```
 
-## Quickstart
+## Run Gennode locally (health AI node)
+
+Run a private health AI on your own machine — **macOS & Windows** — via the Venice API or a fully offline Ollama model. See [`packages/node`](./packages/node).
 
 ```bash
-# landing page
-cd apps/web && npm install && npm run dev     # http://localhost:5174
+# with a Venice API key (https://venice.ai)
+npx @gennode/node login
+npx @gennode/node
 
-# docs
-cd apps/docs && npm install && npm run dev    # http://localhost:5175
+# or fully offline with Ollama
+npx @gennode/node --ollama
 ```
 
-## Token — `$GENE`
+## Token — `$GENNODE`
 
 Base · ERC-20 (Clanker v4 / Bankr) · **100,000,000,000 fixed** · **100% fair launch** — no team allocation, no pre-mine, no dev buy. Treasury, rewards and the airdrop are funded **entirely by trading fees**. See the [Whitepaper](./WHITEPAPER.md) and [tokenomics](./apps/docs/token.md).
 
@@ -58,7 +61,7 @@ Base · ERC-20 (Clanker v4 / Bankr) · **100,000,000,000 fixed** · **100% fair 
 
 ## Disclaimers
 
-Beta software. Provides general health **information and wellness support only** — it is **not a medical device** and does not diagnose, treat or prescribe. Always consult a clinician; the final decision rests with you and your doctor. `$GENE` is a utility token; nothing here is financial advice or an offer of securities.
+Beta software. Provides general health **information and wellness support only** — it is **not a medical device** and does not diagnose, treat or prescribe. Always consult a clinician; the final decision rests with you and your doctor. `$GENNODE` is a utility token; nothing here is financial advice or an offer of securities.
 
 ## License
 

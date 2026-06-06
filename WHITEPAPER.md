@@ -1,7 +1,7 @@
 # Gennode — Whitepaper
 
 **Private health AI, built for one vertical: bio.**
-*Version 0.1 (draft) · Chain: Base · Token: $GENE · Status: pre-launch*
+*Version 0.1 (draft) · Chain: Base · Token: $GENNODE · Status: pre-launch*
 
 > Disclaimer: This document is informational and a work in progress. It is not financial, investment, legal or medical advice, nor an offer or solicitation to buy any asset. See §13.
 
@@ -28,7 +28,7 @@ A **vertical** product + network for bio: a private health assistant now, a bio-
 ## 5. Architecture
 ```
 User → Coordinator → [P1: Venice] / [P2: Node agent on community GPU] → answer
-On-chain (Base): $GENE · fee router · Treasury · RewardDistributor
+On-chain (Base): $GENNODE · fee router · Treasury · RewardDistributor
 ```
 - **Coordinator** routes requests, verifies work, tracks contribution.
 - **Node agent** (Phase 2, `npx gennode`) runs sealed model containers on operators' GPUs.
@@ -43,9 +43,9 @@ The central challenge of "private AI on someone else's GPU" is solved in phases:
 Health data is treated as a regulated special category (GDPR/HIPAA-aware): minimized, not sold, consent-based.
 
 ## 7. The Node Network — Phase 2+ (coming)
-Community operators run `npx gennode`, contribute GPU power, and earn $GENE for **verified compute** (`compute × difficulty × uptime`, protected by redundancy and canary jobs). Beyond inference, the network runs bio-compute: DNA analysis, protein folding, molecule docking and genomics.
+Community operators run `npx gennode`, contribute GPU power, and earn $GENNODE for **verified compute** (`compute × difficulty × uptime`, protected by redundancy and canary jobs). Beyond inference, the network runs bio-compute: DNA analysis, protein folding, molecule docking and genomics.
 
-## 8. Token — $GENE
+## 8. Token — $GENNODE
 - **Chain:** Base · **Standard:** ERC-20 via Clanker v4 (Bankr) · **Supply:** 100,000,000,000 fixed, non-mintable.
 - **Utility:** premium access, governance, and (Phase 2) the fuel for node-operator rewards.
 
@@ -69,13 +69,13 @@ The network is **self-funded by trading fees**. Each swap charges 1.2%; the crea
 **The flywheel:** real usage → swaps → fees → treasury + rewards + buyback → growth → more usage. Honest trade-off: with no pre-mine, the treasury is volume-dependent and builds slowly — so **grants** (DeSci/Base/Gitcoin) and organic growth fund early development.
 
 ## 10. Rewards & Airdrop
-No tokens are pre-allocated for the airdrop. Instead, accrued fees **buy $GENE on the market** and distribute it to contributors via a Merkle claim.
+No tokens are pre-allocated for the airdrop. Instead, accrued fees **buy $GENNODE on the market** and distribute it to contributors via a Merkle claim.
 - **Phase 1 points:** early use, referrals, feedback, tasks.
 - **Phase 2 points:** verified GPU compute.
 - **Anti-sybil:** device fingerprinting, behavior analysis, staged verification. Rewards go to real contributors.
 
 ## 11. Governance
-$GENE holders vote on parameters (fees, reward weights), supported models and treasury use. Governance decentralizes progressively alongside the network.
+$GENNODE holders vote on parameters (fees, reward weights), supported models and treasury use. Governance decentralizes progressively alongside the network.
 
 ## 12. Roadmap
 | Phase | Focus | Token | Node |
@@ -84,13 +84,13 @@ $GENE holders vote on parameters (fees, reward weights), supported models and tr
 | 1 Beta | site, beta AI, points, waitlist | – | – |
 | 2 Community | growth, doctor mode, RAG | – | – |
 | 3 Demand | paying usage, first revenue | – | – |
-| 4 TGE | $GENE fair launch (Bankr), airdrop | ✅ | – |
+| 4 TGE | $GENNODE fair launch (Bankr), airdrop | ✅ | – |
 | 5 Network | node client, TEE, compute rewards, bio-compute | ✅ | ✅ |
 
 ## 13. Risks & Disclaimers
 - **Demand** is the primary risk; the model is volume-dependent.
 - **Medical:** Gennode provides health information and wellness support only. It is **not a medical device** and does not diagnose, treat or prescribe. Always consult a clinician; the final decision rests with the user and their doctor.
-- **Financial:** $GENE is a utility token. Nothing herein is financial advice or an offer of securities. Crypto is volatile and risky; verify official contract addresses.
+- **Financial:** $GENNODE is a utility token. Nothing herein is financial advice or an offer of securities. Crypto is volatile and risky; verify official contract addresses.
 - **Legal:** token, reward and health-data structures are reviewed with qualified counsel before launch.
 
 ---

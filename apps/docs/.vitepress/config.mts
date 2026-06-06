@@ -36,7 +36,7 @@ export default defineConfig({
       {
         text: 'Token',
         items: [
-          { text: '$GENE token', link: '/token' },
+          { text: '$GENNODE token', link: '/token' },
           { text: 'Airdrop & points', link: '/airdrop' },
         ],
       },
@@ -53,7 +53,7 @@ export default defineConfig({
     search: { provider: 'local' },
     footer: {
       message:
-        'Beta. Information & wellness only — not medical advice. $GENE is a utility token; nothing here is financial advice.',
+        'Beta. Information & wellness only — not medical advice. $GENNODE is a utility token; nothing here is financial advice.',
       copyright: '© 2026 Gennode',
     },
   },

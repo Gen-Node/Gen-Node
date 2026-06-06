@@ -17,7 +17,7 @@ features:
   - title: 🩺 Built for health
     details: Understand symptoms, lab results and what to ask your doctor — never a diagnosis.
   - title: ⛓ Self-funded network
-    details: $GENE on Base. Fees and revenue flow back to the community and, soon, node operators.
+    details: $GENNODE on Base. Fees and revenue flow back to the community and, soon, node operators.
 ---
 
 > **Beta.** Gennode provides general health information and wellness support only — it is not a medical device and does not diagnose or treat. Always consult a clinician. See [Disclaimers](/disclaimers).

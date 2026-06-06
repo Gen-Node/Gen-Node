@@ -7,7 +7,7 @@ Gennode is **beta** software providing general health **information and wellness
 Health information is sensitive. Gennode minimizes data collection and does not sell your data. Do not share information you are not comfortable processing. Your local health-data rules may apply (e.g., GDPR, HIPAA).
 
 ## Token & financial
-`$GENE` is a utility token intended for use within the network. Nothing in this documentation or on the website is financial, investment or legal advice, nor an offer or solicitation to buy any asset. Crypto assets are volatile and risky. Always verify official contract addresses; beware of scams and impersonators.
+`$GENNODE` is a utility token intended for use within the network. Nothing in this documentation or on the website is financial, investment or legal advice, nor an offer or solicitation to buy any asset. Crypto assets are volatile and risky. Always verify official contract addresses; beware of scams and impersonators.
 
 ## Beta
 Features, tokenomics and timelines described here are **subject to change** as the product develops.
