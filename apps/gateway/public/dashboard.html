@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Gennode — Dashboard</title>
+    <style>
+      :root { color-scheme: dark; }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0; min-height: 100vh; background: #06070a; color: #e8edf2;
+        font-family: Inter, system-ui, -apple-system, sans-serif;
+        background-image: radial-gradient(900px 500px at 50% -10%, rgba(56,189,248,0.12), transparent 60%);
+      }
+      .wrap { max-width: 720px; margin: 0 auto; padding: 40px 20px 80px; }
+      h1 { font-size: 28px; margin: 0 0 4px; }
+      .sub { color: #8aa0ad; margin: 0 0 28px; }
+      .accent { color: #22d3ee; }
+      .card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 18px; margin-bottom: 16px; }
+      .row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+      button { border: 0; border-radius: 999px; padding: 11px 18px; font-weight: 600; cursor: pointer; background: linear-gradient(135deg,#22d3ee,#38bdf8); color: #04212b; }
+      button.ghost { background: rgba(255,255,255,0.05); color: #e8edf2; border: 1px solid rgba(255,255,255,0.14); }
+      input, textarea { width: 100%; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.12); border-radius: 12px; padding: 12px; color: #e8edf2; font: inherit; }
+      textarea { min-height: 70px; resize: vertical; }
+      .pill { font-size: 12px; color: #9fb3c0; border: 1px solid rgba(255,255,255,0.14); border-radius: 999px; padding: 4px 10px; }
+      .key { font-family: ui-monospace, monospace; font-size: 12px; word-break: break-all; color: #9fb3c0; }
+      .msg { white-space: pre-wrap; line-height: 1.5; }
+      .me { background: rgba(34,211,238,0.12); border-radius: 14px 14px 14px 4px; padding: 10px 14px; margin: 8px 0; }
+      .ai { background: rgba(255,255,255,0.04); border-radius: 14px 14px 4px 14px; padding: 12px 14px; margin: 8px 0; }
+      .small { font-size: 12px; color: #6b8190; }
+      .hide { display: none; }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <h1>🧬 Gennode <span class="accent">Dashboard</span></h1>
+      <p class="sub">Private AI, powered by Venice. Get free credits, chat, and run it from your terminal.</p>
+
+      <div class="card" id="authCard">
+        <div class="row" style="justify-content: space-between;">
+          <div>
+            <div id="creditLine">Not signed in.</div>
+            <div class="key hide" id="keyLine"></div>
+          </div>
+          <div class="row">
+            <button id="signupBtn">Get free credits</button>
+            <button class="ghost hide" id="refreshBtn">Refresh</button>
+          </div>
+        </div>
+        <p class="small" id="cliHint" style="margin: 12px 0 0;"></p>
+      </div>
+
+      <div class="card hide" id="chatCard">
+        <div id="log"></div>
+        <div class="row" style="margin-top: 10px;">
+          <textarea id="input" placeholder="Ask a health question… (not medical advice)"></textarea>
+        </div>
+        <div class="row" style="margin-top: 10px; justify-content: space-between;">
+          <span class="small">Information &amp; wellness only — not a diagnosis.</span>
+          <button id="sendBtn">Send</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const API = location.origin
+      const HEALTH_SYSTEM =
+        "You are Gennode, a private health-information assistant. Help people understand symptoms, lab results and what to ask their doctor, in plain language. You are NOT a doctor: never diagnose, treat, or prescribe; always remind the user to consult a clinician and that the final decision is theirs. Flag emergency red-flag symptoms and tell them to seek urgent care. Be private, warm and concise."
+      let key = localStorage.getItem('gennode_key') || ''
+      const $ = (id) => document.getElementById(id)
+
+      function setCli() {
+        $('cliHint').textContent = key
+          ? 'Use it in your terminal:  npx @gennode/node connect ' + API + ' ' + key
+          : ''
+      }
+      async function refresh() {
+        if (!key) return
+        try {
+          const r = await fetch(API + '/v1/me', { headers: { authorization: 'Bearer ' + key } })
+          const j = await r.json()
+          if (j.credits != null) {
+            $('creditLine').innerHTML = 'Credits: <b class="accent">' + j.credits + '</b> &nbsp;·&nbsp; used: ' + j.used
+            $('keyLine').textContent = 'key: ' + key
+            $('keyLine').classList.remove('hide')
+            $('refreshBtn').classList.remove('hide')
+            $('signupBtn').classList.add('hide')
+            $('chatCard').classList.remove('hide')
+            setCli()
+          }
+        } catch {}
+      }
+      $('signupBtn').onclick = async () => {
+        const r = await fetch(API + '/v1/signup', { method: 'POST', headers: { 'content-type': 'application/json' }, body: '{}' })
+        const j = await r.json()
+        if (j.apiKey) {
+          key = j.apiKey
+          localStorage.setItem('gennode_key', key)
+          refresh()
+        }
+      }
+      $('refreshBtn').onclick = refresh
+      $('sendBtn').onclick = async () => {
+        const text = $('input').value.trim()
+        if (!text) return
+        $('input').value = ''
+        const log = $('log')
+        log.innerHTML += '<div class="me msg">' + escapeHtml(text) + '</div>'
+        const thinking = document.createElement('div')
+        thinking.className = 'ai msg small'
+        thinking.textContent = '…'
+        log.appendChild(thinking)
+        try {
+          const r = await fetch(API + '/v1/chat/completions', {
+            method: 'POST',
+            headers: { 'content-type': 'application/json', authorization: 'Bearer ' + key },
+            body: JSON.stringify({ messages: [{ role: 'system', content: HEALTH_SYSTEM }, { role: 'user', content: text }] }),
+          })
+          const j = await r.json()
+          thinking.classList.remove('small')
+          thinking.textContent = j.content || ('Error: ' + (j.error || 'unknown'))
+          if (j.credits != null) $('creditLine').innerHTML = 'Credits: <b class="accent">' + j.credits + '</b>'
+        } catch (e) {
+          thinking.textContent = 'Network error.'
+        }
+      }
+      function escapeHtml(s) {
+        return s.replace(/[&<>]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]))
+      }
+      refresh()
+      setCli()
+    </script>
+  </body>
+</html>

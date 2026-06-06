@@ -1,0 +1,13 @@
+{
+  "name": "@gennode/gateway",
+  "version": "0.1.0",
+  "description": "Metered Venice proxy + credits + dashboard for Gennode. OpenAI-compatible. Runs on Node or Bun.",
+  "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "MIT",
+  "scripts": {
+    "start": "node server.mjs"
+  }
+}

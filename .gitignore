@@ -13,6 +13,9 @@ dist/
 .env.*
 *.local
 
+# gateway credit store (do not commit)
+**/data.json
+
 # editor / os
 .DS_Store
 Thumbs.db

@@ -58,6 +58,17 @@ async function callOllama(messages, { model }) {
   return data.message?.content?.trim() ?? '(no response)'
 }
 
+async function callGateway(messages, { url, key, model }) {
+  const res = await fetch(url + '/v1/chat/completions', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${key}` },
+    body: JSON.stringify({ messages, model }),
+  })
+  const data = await res.json().catch(() => ({}))
+  if (!res.ok) throw new Error(`Gateway ${res.status}: ${data.error || JSON.stringify(data).slice(0, 200)}`)
+  return (data.content ?? '(no response)').trim()
+}
+
 function parseArgs(argv) {
   const out = { _: [], flags: {} }
   for (let i = 2; i < argv.length; i++) {
@@ -79,15 +90,21 @@ function resolveBackend(args) {
   if (args.flags.ollama) {
     return { kind: 'ollama', model: args.flags.model || cfg.ollamaModel || 'llama3.2' }
   }
+  // gateway (credits) — used by default once connected, unless --venice/--key forces direct
+  if (!args.flags.venice && !args.flags.key && cfg.gatewayUrl && cfg.gatewayKey) {
+    return { kind: 'gateway', url: cfg.gatewayUrl.replace(/\/+$/, ''), key: cfg.gatewayKey, model: args.flags.model || cfg.model }
+  }
   const apiKey = args.flags.key || process.env.VENICE_API_KEY || cfg.veniceApiKey
   if (!apiKey) {
-    throw new Error("No Venice API key. Run 'gennode login', set VENICE_API_KEY, or use --ollama.")
+    throw new Error("No backend. Run 'gennode login' (Venice), 'gennode connect <url> <key>' (gateway), or use --ollama.")
   }
   return { kind: 'venice', apiKey, model: args.flags.model || cfg.model || 'llama-3.3-70b' }
 }
 
 async function answer(messages, backend) {
-  return backend.kind === 'ollama' ? callOllama(messages, backend) : callVenice(messages, backend)
+  if (backend.kind === 'ollama') return callOllama(messages, backend)
+  if (backend.kind === 'gateway') return callGateway(messages, backend)
+  return callVenice(messages, backend)
 }
 
 const HELP = `
@@ -96,7 +113,8 @@ const HELP = `
 Usage:
   gennode                       Start an interactive chat
   gennode ask "your question"   One-shot question
-  gennode login                 Save your Venice API key
+  gennode login                 Save your Venice API key (private, BYO-key mode)
+  gennode connect <url> <key>   Connect to a Gennode gateway (free credits)
   gennode help                  Show this help
 
 Options:
@@ -120,6 +138,17 @@ async function main() {
   if (cmd === 'help' || args.flags.help) {
     console.log(HELP)
     return
+  }
+
+  if (cmd === 'connect') {
+    const url = args._[1]
+    const gkey = args._[2]
+    if (!url || !gkey) return console.log('Usage: gennode connect <gateway-url> <gk_key>')
+    const cfg = loadConfig()
+    cfg.gatewayUrl = url
+    cfg.gatewayKey = gkey
+    saveConfig(cfg)
+    return console.log(`✓ Connected to ${url} (credits mode). Run 'gennode' to chat.`)
   }
 
   if (cmd === 'login') {
