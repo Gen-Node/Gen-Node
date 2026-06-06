@@ -7,11 +7,33 @@ import { fileURLToPath } from 'node:url'
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 const PORT = Number(process.env.PORT || 8787)
-const VENICE_API_KEY = process.env.VENICE_API_KEY || ''
-const VENICE_URL = 'https://api.venice.ai/api/v1/chat/completions'
-const MODEL = process.env.GATEWAY_MODEL || 'llama-3.3-70b'
 const FREE_CREDITS = Number(process.env.FREE_CREDITS || 25)
 const DATA_FILE = path.join(__dirname, 'data.json')
+
+// ---- inference providers (OpenAI-compatible upstreams) ----
+// venice = private tier (default, for health) · surplus = cheap tier (general/budget)
+const PROVIDERS = {
+  venice: {
+    url: 'https://api.venice.ai/api/v1/chat/completions',
+    key: process.env.VENICE_API_KEY || '',
+    model: process.env.VENICE_MODEL || 'llama-3.3-70b',
+    private: true,
+    credits: Number(process.env.VENICE_CREDITS || 2),
+  },
+  surplus: {
+    url: 'https://www.surplusintelligence.ai/api/inference/v1/chat/completions',
+    key: process.env.SURPLUS_API_KEY || '',
+    model: process.env.SURPLUS_MODEL || 'claude-opus-4.8',
+    private: false,
+    credits: Number(process.env.SURPLUS_CREDITS || 1),
+  },
+}
+const DEFAULT_PROVIDER = PROVIDERS[process.env.DEFAULT_PROVIDER] ? process.env.DEFAULT_PROVIDER : 'venice'
+const TIER_MAP = { private: 'venice', cheap: 'surplus' }
+function pickProvider(b) {
+  const name = (PROVIDERS[b.provider] && b.provider) || TIER_MAP[b.tier] || DEFAULT_PROVIDER
+  return { name, ...PROVIDERS[name] }
+}
 
 // ---- tiny JSON store (single-process MVP; swap for SQLite later) ----
 function load() {
@@ -76,7 +98,8 @@ const server = http.createServer(async (req, res) => {
     }
   }
 
-  if (pathname === '/health') return sendJson(res, 200, { ok: true, model: MODEL, configured: !!VENICE_API_KEY })
+  if (pathname === '/health')
+    return sendJson(res, 200, { ok: true, default: DEFAULT_PROVIDER, providers: { venice: !!PROVIDERS.venice.key, surplus: !!PROVIDERS.surplus.key } })
 
   // signup → free credits + a Gennode key
   if (req.method === 'POST' && pathname === '/v1/signup') {
@@ -100,27 +123,32 @@ const server = http.createServer(async (req, res) => {
   if (req.method === 'POST' && pathname === '/v1/chat/completions') {
     if (!key) return sendJson(res, 401, { error: 'unauthorized — sign up for a key' })
     const u = db.users[key]
-    if (u.credits <= 0) return sendJson(res, 402, { error: 'out of credits' })
-    if (!VENICE_API_KEY) return sendJson(res, 500, { error: 'gateway not configured (set VENICE_API_KEY)' })
 
     const b = await readBody(req)
     const messages = Array.isArray(b.messages) ? b.messages : []
     if (!messages.length) return sendJson(res, 400, { error: 'messages required' })
 
+    const prov = pickProvider(b)
+    if (!prov.key) return sendJson(res, 500, { error: `provider '${prov.name}' not configured` })
+    const cost = prov.credits
+    if (u.credits < cost) return sendJson(res, 402, { error: 'out of credits' })
+
     try {
-      const vr = await fetch(VENICE_URL, {
+      const vr = await fetch(prov.url, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${VENICE_API_KEY}` },
-        body: JSON.stringify({ model: b.model || MODEL, messages, temperature: b.temperature ?? 0.4 }),
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${prov.key}` },
+        body: JSON.stringify({ model: b.model || prov.model, messages, temperature: b.temperature ?? 0.4 }),
       })
       const data = await vr.json()
-      if (!vr.ok) return sendJson(res, 502, { error: 'venice_error', detail: data })
-      u.credits -= 1
+      if (!vr.ok) return sendJson(res, 502, { error: 'provider_error', provider: prov.name, detail: data })
+      u.credits -= cost
       u.used += 1
       save()
       return sendJson(res, 200, {
         content: data.choices?.[0]?.message?.content ?? '',
         credits: u.credits,
+        provider: prov.name,
+        private: prov.private,
       })
     } catch (e) {
       return sendJson(res, 502, { error: 'upstream', detail: String(e) })
@@ -131,5 +159,7 @@ const server = http.createServer(async (req, res) => {
 })
 
 server.listen(PORT, () => {
-  console.log(`🧬 Gennode gateway on http://localhost:${PORT}  (model: ${MODEL}, free credits: ${FREE_CREDITS}, venice: ${VENICE_API_KEY ? 'set' : 'MISSING'})`)
+  console.log(
+    `🧬 Gennode gateway on http://localhost:${PORT}  (default: ${DEFAULT_PROVIDER}, free credits: ${FREE_CREDITS}, venice: ${PROVIDERS.venice.key ? 'set' : '-'}, surplus: ${PROVIDERS.surplus.key ? 'set' : '-'})`,
+  )
 })

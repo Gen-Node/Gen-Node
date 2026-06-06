@@ -58,11 +58,11 @@ async function callOllama(messages, { model }) {
   return data.message?.content?.trim() ?? '(no response)'
 }
 
-async function callGateway(messages, { url, key, model }) {
+async function callGateway(messages, { url, key, model, tier, provider }) {
   const res = await fetch(url + '/v1/chat/completions', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${key}` },
-    body: JSON.stringify({ messages, model }),
+    body: JSON.stringify({ messages, model, tier, provider }),
   })
   const data = await res.json().catch(() => ({}))
   if (!res.ok) throw new Error(`Gateway ${res.status}: ${data.error || JSON.stringify(data).slice(0, 200)}`)
@@ -92,7 +92,14 @@ function resolveBackend(args) {
   }
   // gateway (credits) — used by default once connected, unless --venice/--key forces direct
   if (!args.flags.venice && !args.flags.key && cfg.gatewayUrl && cfg.gatewayKey) {
-    return { kind: 'gateway', url: cfg.gatewayUrl.replace(/\/+$/, ''), key: cfg.gatewayKey, model: args.flags.model || cfg.model }
+    return {
+      kind: 'gateway',
+      url: cfg.gatewayUrl.replace(/\/+$/, ''),
+      key: cfg.gatewayKey,
+      model: args.flags.model || cfg.model,
+      tier: args.flags.cheap ? 'cheap' : args.flags.private ? 'private' : undefined,
+      provider: typeof args.flags.provider === 'string' ? args.flags.provider : undefined,
+    }
   }
   const apiKey = args.flags.key || process.env.VENICE_API_KEY || cfg.veniceApiKey
   if (!apiKey) {
@@ -119,6 +126,7 @@ Usage:
 
 Options:
   --ollama                      Use a local Ollama model (fully offline) instead of Venice
+  --cheap / --private           (gateway) pick the cheap (Surplus) or private (Venice) tier
   --model <name>                Model (default: Venice 'llama-3.3-70b' / Ollama 'llama3.2')
   --key <key>                   Venice API key (overrides saved key / env)
 
