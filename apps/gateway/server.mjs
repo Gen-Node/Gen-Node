@@ -47,6 +47,7 @@ function save() {
   fs.writeFileSync(DATA_FILE, JSON.stringify(db, null, 2))
 }
 const db = load()
+const devices = {} // device-auth: code -> { apiKey, createdAt }
 
 // ---- helpers ----
 const CORS = {
@@ -108,6 +109,32 @@ const server = http.createServer(async (req, res) => {
     db.users[apiKey] = { name: (b.name || 'anon').slice(0, 40), credits: FREE_CREDITS, used: 0, createdAt: Date.now() }
     save()
     return sendJson(res, 200, { apiKey, credits: FREE_CREDITS })
+  }
+
+  // ---- device auth (terminal opens the dashboard, gets linked automatically) ----
+  if (req.method === 'POST' && pathname === '/v1/device/start') {
+    const code = crypto.randomBytes(6).toString('hex')
+    devices[code] = { apiKey: null, createdAt: Date.now() }
+    const base = (process.env.PUBLIC_URL || `http://localhost:${PORT}`).replace(/\/+$/, '')
+    return sendJson(res, 200, { code, verifyUrl: `${base}/?code=${code}` })
+  }
+  if (req.method === 'GET' && pathname === '/v1/device/poll') {
+    const d = devices[url.searchParams.get('code')]
+    if (!d) return sendJson(res, 404, { error: 'unknown code' })
+    return sendJson(res, 200, d.apiKey ? { apiKey: d.apiKey } : { pending: true })
+  }
+  if (req.method === 'POST' && pathname === '/v1/device/approve') {
+    const b = await readBody(req)
+    const d = devices[b.code]
+    if (!d) return sendJson(res, 404, { error: 'unknown code' })
+    let apiKey = b.apiKey
+    if (!apiKey || !db.users[apiKey]) {
+      apiKey = 'gk_' + crypto.randomBytes(16).toString('hex')
+      db.users[apiKey] = { name: 'device', credits: FREE_CREDITS, used: 0, createdAt: Date.now() }
+      save()
+    }
+    d.apiKey = apiKey
+    return sendJson(res, 200, { ok: true })
   }
 
   const key = authUser(req)

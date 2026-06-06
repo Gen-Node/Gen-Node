@@ -127,8 +127,35 @@
       function escapeHtml(s) {
         return s.replace(/[&<>]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]))
       }
-      refresh()
-      setCli()
+      const deviceCode = new URLSearchParams(location.search).get('code')
+      async function ensureKey() {
+        if (key) return key
+        const r = await fetch(API + '/v1/signup', { method: 'POST', headers: { 'content-type': 'application/json' }, body: '{}' })
+        const j = await r.json()
+        if (j.apiKey) {
+          key = j.apiKey
+          localStorage.setItem('gennode_key', key)
+        }
+        return key
+      }
+      async function init() {
+        if (deviceCode) {
+          await ensureKey()
+          await fetch(API + '/v1/device/approve', {
+            method: 'POST',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify({ code: deviceCode, apiKey: key }),
+          })
+          const banner = document.createElement('div')
+          banner.className = 'card'
+          banner.style.borderColor = 'rgba(34,211,238,0.5)'
+          banner.innerHTML = '✓ <b class="accent">Terminal linked.</b> You can return to your terminal — it is ready to chat.'
+          document.querySelector('.wrap').insertBefore(banner, document.getElementById('authCard'))
+        }
+        refresh()
+        setCli()
+      }
+      init()
     </script>
   </body>
 </html>

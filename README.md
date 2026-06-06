@@ -43,12 +43,8 @@ gennode/
 Run a private health AI on your own machine — **macOS & Windows** — via the Venice API or a fully offline Ollama model. See [`packages/node`](./packages/node).
 
 ```bash
-# with a Venice API key (https://venice.ai)
-npx @gennode/node login
-npx @gennode/node
-
-# or fully offline with Ollama
-npx @gennode/node --ollama
+npx @gennode/node setup     # cloud credits (auto-opens dashboard) · local model · Venice key
+npx @gennode/node           # chat
 ```
 
 ## Token — `$GENNODE`

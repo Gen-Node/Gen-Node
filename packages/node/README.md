@@ -7,18 +7,16 @@ A **private health AI** you run on your own machine (**macOS & Windows**). Power
 ## Requirements
 - **Node.js 18+** — macOS: `brew install node` · Windows: [nodejs.org](https://nodejs.org)
 
-## Quick start (Venice)
+## Quick start
 ```bash
-# 1) get a key at https://venice.ai, then:
-npx @gennode/node login      # paste your Venice API key
-npx @gennode/node            # start chatting
+npx @gennode/node setup     # choose: cloud credits / local model / Venice key
+npx @gennode/node           # start chatting
 ```
-Or install globally:
-```bash
-npm i -g @gennode/node
-gennode login
-gennode
-```
+- **Cloud credits** — opens your dashboard in the browser, links the terminal **automatically**, and shows your usage.
+- **Local model** — fully private, runs on your machine via **Ollama** (HuggingFace GGUF models work too).
+- **Venice key** — bring your own key (private).
+
+Install globally instead: `npm i -g @gennode/node` then `gennode setup`.
 
 ## Fully offline (Ollama)
 ```bash

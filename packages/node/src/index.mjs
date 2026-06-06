@@ -3,12 +3,14 @@ import fs from 'node:fs'
 import path from 'node:path'
 import os from 'node:os'
 import readline from 'node:readline'
+import { spawn } from 'node:child_process'
 import { GENNODE_SYSTEM_PROMPT } from './prompt.mjs'
 
 const CONFIG_DIR = path.join(os.homedir(), '.gennode')
 const CONFIG_FILE = path.join(CONFIG_DIR, 'config.json')
 const VENICE_URL = 'https://api.venice.ai/api/v1/chat/completions'
 const OLLAMA_URL = 'http://localhost:11434/api/chat'
+const DEFAULT_GATEWAY = (process.env.GENNODE_GATEWAY || 'http://localhost:8787').replace(/\/+$/, '')
 
 const DISCLAIMER =
   'Gennode provides health information & wellness support only — not a medical device, not a diagnosis. Always consult a clinician.'
@@ -29,6 +31,18 @@ function saveConfig(cfg) {
 function prompt(question) {
   const rl = readline.createInterface({ input: process.stdin, output: process.stdout })
   return new Promise((resolve) => rl.question(question, (a) => (rl.close(), resolve(a.trim()))))
+}
+
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms))
+
+function openBrowser(url) {
+  try {
+    if (process.platform === 'win32') spawn('cmd', ['/c', 'start', '', url], { stdio: 'ignore', detached: true }).unref()
+    else if (process.platform === 'darwin') spawn('open', [url], { stdio: 'ignore', detached: true }).unref()
+    else spawn('xdg-open', [url], { stdio: 'ignore', detached: true }).unref()
+  } catch {
+    /* user opens it manually */
+  }
 }
 
 async function callVenice(messages, { apiKey, model }) {
@@ -87,7 +101,7 @@ function parseArgs(argv) {
 
 function resolveBackend(args) {
   const cfg = loadConfig()
-  if (args.flags.ollama) {
+  if (args.flags.ollama || (cfg.backend === 'ollama' && !args.flags.venice && !args.flags.key)) {
     return { kind: 'ollama', model: args.flags.model || cfg.ollamaModel || 'llama3.2' }
   }
   // gateway (credits) — used by default once connected, unless --venice/--key forces direct
@@ -118,6 +132,7 @@ const HELP = `
 🧬 Gennode — private health AI, run locally (macOS & Windows)
 
 Usage:
+  gennode setup                 Guided setup (cloud credits / local model / Venice key)
   gennode                       Start an interactive chat
   gennode ask "your question"   One-shot question
   gennode login                 Save your Venice API key (private, BYO-key mode)
@@ -139,6 +154,78 @@ Privacy: your questions go only to the backend you choose. Gennode logs nothing.
 ${DISCLAIMER}
 `
 
+async function setupCloud(args) {
+  const cfg = loadConfig()
+  const gateway = ((args.flags.gateway && String(args.flags.gateway)) || cfg.gatewayUrl || DEFAULT_GATEWAY).replace(/\/+$/, '')
+  let start
+  try {
+    start = await (await fetch(gateway + '/v1/device/start', { method: 'POST' })).json()
+  } catch {
+    return console.error(`Can't reach gateway at ${gateway}. Is it running? (set GENNODE_GATEWAY or pass --gateway <url>)`)
+  }
+  console.log('\nOpening your dashboard to get free credits…')
+  console.log('If it does not open, visit:\n  ' + start.verifyUrl + '\n')
+  openBrowser(start.verifyUrl)
+  process.stdout.write('Waiting for approval')
+  for (let i = 0; i < 150; i++) {
+    await sleep(2000)
+    process.stdout.write('.')
+    try {
+      const p = await (await fetch(gateway + '/v1/device/poll?code=' + start.code)).json()
+      if (p.apiKey) {
+        const c = loadConfig()
+        c.gatewayUrl = gateway
+        c.gatewayKey = p.apiKey
+        c.backend = 'gateway'
+        saveConfig(c)
+        console.log('\n\n✓ Linked! Run "gennode" to chat. Your usage & credits are on the dashboard.')
+        return
+      }
+    } catch {
+      /* keep polling */
+    }
+  }
+  console.log('\nTimed out. Run "gennode setup" again.')
+}
+
+async function setupLocal() {
+  console.log('\nLocal mode runs an AI model on your machine via Ollama — free and fully private.')
+  const ok = await fetch('http://localhost:11434/api/tags').then((r) => r.ok).catch(() => false)
+  if (!ok) {
+    console.log('  • Install Ollama:  https://ollama.com')
+    console.log('  • Pull a model:    ollama pull llama3.2')
+    console.log('  • (HuggingFace GGUF models work too:  ollama run hf.co/<user>/<model>)')
+  } else {
+    console.log('  ✓ Ollama detected. Make sure a model is pulled:  ollama pull llama3.2')
+  }
+  const c = loadConfig()
+  c.backend = 'ollama'
+  c.ollamaModel = c.ollamaModel || 'llama3.2'
+  saveConfig(c)
+  console.log('\n✓ Local mode set. Run "gennode" to chat — offline, on your machine.')
+}
+
+async function setupVenice() {
+  const key = await prompt('Paste your Venice API key (https://venice.ai): ')
+  if (!key) return console.log('No key entered.')
+  const c = loadConfig()
+  c.veniceApiKey = key
+  c.backend = 'venice'
+  saveConfig(c)
+  console.log('✓ Venice key saved. Run "gennode" to chat.')
+}
+
+async function setup(args) {
+  console.log('\n🧬 Gennode setup — private AI in your terminal\n')
+  console.log('  1) Cloud credits  — free credits via the dashboard (easiest)')
+  console.log('  2) Local model    — fully private, on your machine (Ollama / HuggingFace)')
+  console.log('  3) Venice key     — bring your own Venice API key\n')
+  const choice = await prompt('Choose 1 / 2 / 3: ')
+  if (choice === '2') return setupLocal()
+  if (choice === '3') return setupVenice()
+  return setupCloud(args)
+}
+
 async function main() {
   const args = parseArgs(process.argv)
   const cmd = args._[0]
@@ -147,6 +234,8 @@ async function main() {
     console.log(HELP)
     return
   }
+
+  if (cmd === 'setup') return setup(args)
 
   if (cmd === 'connect') {
     const url = args._[1]
@@ -186,6 +275,12 @@ async function main() {
       process.exitCode = 1
     }
     return
+  }
+
+  // first run, nothing configured → guided setup
+  {
+    const c = loadConfig()
+    if (!c.gatewayKey && !c.veniceApiKey && !c.backend && !args.flags.ollama && !args.flags.key) return setup(args)
   }
 
   // interactive chat
