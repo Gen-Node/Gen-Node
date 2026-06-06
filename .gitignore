@@ -16,6 +16,9 @@ dist/
 # gateway credit store (do not commit)
 **/data.json
 
+# server env (do not commit)
+infra/gennode.env
+
 # editor / os
 .DS_Store
 Thumbs.db
