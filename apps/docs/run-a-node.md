@@ -26,6 +26,10 @@ Cross-platform desktop apps (macOS / Windows / Linux) will be published on **[Gi
 
 The app runs in your tray, shows your live **points & uptime**, and earns while your machine is idle.
 
+::: warning Windows SmartScreen ("Windows protected your PC")
+During early access the installer is **not code-signed yet**, so Windows SmartScreen may warn you. The app is safe — it's open source ([apps/desktop](https://github.com/Gen-Node/Gen-Node/tree/main/apps/desktop)). To install: click **More info → Run anyway**. (macOS: right-click the app → **Open**.) Signed installers are coming.
+:::
+
 ## How you earn
 Points = `uptime × capacity`. Points convert to **`$GENNODE`** in the airdrop. Higher capacity and higher uptime earn more. Real compute jobs will earn additional points as the network matures.
 
