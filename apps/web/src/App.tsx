@@ -4,6 +4,7 @@ import Model3D from './components/Model3D'
 import Intro from './components/Intro'
 
 const X_URL = 'https://x.com/gennode'
+const DOCS_URL = 'https://docs.gennode.org'
 
 function Pill({ color, label }: { color: string; label: string }) {
   return (
@@ -73,41 +74,24 @@ function MotifMolecule({ className = '' }: { className?: string }) {
 }
 
 const problems = [
-  { t: 'Your privacy is gone', d: 'Big tech logs and profiles your most personal questions — your health included.' },
-  { t: 'Care is gatekept', d: 'The bio-AI that could help — drug discovery, genomics — runs on expensive, centralized compute.' },
-  { t: 'Generic AI isn’t enough', d: 'One-size chatbots aren’t built for health, and most GPU networks aren’t built for bio.' },
+  { t: 'Compute is expensive', d: 'Protein folding, molecule discovery and genomics are not lightweight workloads.' },
+  { t: 'Access is centralized', d: 'A handful of clouds gatekeep the GPUs that biological AI depends on.' },
+  { t: 'GPU networks are too generic', d: 'Most DePIN compute sells empty hours to anyone — none are built for bio.' },
 ]
 
 const steps = [
-  {
-    n: '01',
-    t: 'Ask privately',
-    d: 'Type your health question. No profiling, no logging — your questions stay yours.',
-    tag: 'Live · beta',
-    live: true,
-  },
-  {
-    n: '02',
-    t: 'Grounded answers',
-    d: 'Sourced, guard-railed responses that help you understand — never a diagnosis.',
-    tag: 'Live · beta',
-    live: true,
-  },
-  {
-    n: '03',
-    t: 'Community nodes',
-    d: 'People run GPU nodes; the AI runs on a decentralized network handling DNA & protein compute.',
-    tag: 'Coming',
-    live: false,
-  },
+  { n: '01', t: 'Download', d: 'Get the Gennode app for macOS, Windows or Linux. One click, like Ollama.', tag: 'Soon', live: false },
+  { n: '02', t: 'Connect wallet', d: 'Link a wallet — your node identity. Keeps the network sybil-resistant and fair.', tag: 'Soon', live: false },
+  { n: '03', t: 'Run a node', d: 'Your idle GPU joins the network and stays online. It runs quietly in the tray.', tag: 'Soon', live: false },
+  { n: '04', t: 'Earn $GENNODE', d: 'Earn points for uptime + capacity. Points convert to $GENNODE in the airdrop.', tag: 'Soon', live: false },
 ]
 
 const roadmap = [
-  { p: 'Phase 1', t: 'Health AI beta', d: 'Private, Venice-powered health assistant + this site.', state: 'now' },
-  { p: 'Phase 2', t: 'Community & points', d: 'Grow users, doctor mode, earn participation points.', state: 'next' },
-  { p: 'Phase 3', t: 'Token launch', d: '$GENNODE on Base via Bankr. Airdrop to early supporters.', state: 'next' },
-  { p: 'Phase 4', t: 'Node network', d: 'Run a node, decentralized inference, compute rewards.', state: 'coming' },
-  { p: 'Phase 5', t: 'Bio-compute', d: 'DNA, protein folding & genomics jobs on the network.', state: 'coming' },
+  { p: 'Phase 1', t: 'Node app + points', d: 'Desktop node (Mac/Win/Linux), wallet, uptime → points, leaderboard.', state: 'now' },
+  { p: 'Phase 2', t: 'Token launch', d: '$GENNODE fair launch on Base via Bankr. Season 1 points open.', state: 'next' },
+  { p: 'Phase 3', t: 'Airdrop & growth', d: 'Points → $GENNODE airdrop. Referrals, staking, holder boosts.', state: 'next' },
+  { p: 'Phase 4', t: 'Real compute', d: 'Nodes run real jobs (AI inference) with proof-of-compute & paying demand.', state: 'coming' },
+  { p: 'Phase 5', t: 'Bio-compute', d: 'DNA, protein folding & genomics jobs. Genes meet nodes.', state: 'coming' },
 ]
 
 const supply = [
@@ -126,7 +110,7 @@ function Section({ id, children, className = '' }: { id?: string; children: Reac
 
 function Nav() {
   const links = [
-    ['Health AI', '#health'],
+    ['Run a node', '#run'],
     ['How it works', '#how'],
     ['Token', '#token'],
     ['Roadmap', '#roadmap'],
@@ -152,8 +136,8 @@ function Nav() {
             </a>
           ))}
         </nav>
-        <a href="#waitlist" className="btn btn-primary px-4 py-2 text-sm">
-          Join the Airdrop
+        <a href="#run" className="btn btn-primary px-4 py-2 text-sm">
+          Run a node
         </a>
       </div>
     </header>
@@ -171,41 +155,39 @@ function Hero() {
       <Section className="relative z-10 pb-24 pt-20 md:pt-28">
         <div className="max-w-2xl fade-up">
           <div className="mb-5 flex flex-wrap gap-3">
-            <Pill color="#22d3ee" label="AI: Live (beta)" />
-            <Pill color="#818cf8" label="Node network: Coming" />
+            <Pill color="#22d3ee" label="Network: building" />
+            <Pill color="#818cf8" label="100% fair launch" />
           </div>
 
           <h1 className="text-5xl font-extrabold leading-[1.05] tracking-tight md:text-6xl">
-            Your health questions,
+            Run a node,
             <br />
-            <span className="font-chalk text-6xl text-bluex glow-text md:text-7xl">kept private.</span>
+            <span className="font-chalk text-6xl text-bluex glow-text md:text-7xl">earn $GENNODE.</span>
           </h1>
 
           <p className="mt-6 max-w-xl text-lg text-white/70">
-            A private, judgment-free health AI built for one vertical: <strong className="text-white">bio</strong>. Ask
-            freely — your questions are never logged or sold. Powered today by Venice; tomorrow by a decentralized
-            network of community GPU nodes.
+            Download Gennode, connect your wallet, and put your <strong className="text-white">idle GPU</strong> to work
+            for a decentralized <strong className="text-white">bio-compute</strong> network — protein folding, genomics,
+            AI. Earn while it runs. Mac · Windows · Linux.
           </p>
 
           <div className="mt-9 flex flex-wrap gap-4">
-            <a href="#health" className="btn btn-primary px-6 py-3">
-              Try Health AI (beta)
+            <a href="#run" className="btn btn-primary px-6 py-3">
+              Run a node
             </a>
             <a href="#waitlist" className="btn btn-ghost px-6 py-3">
-              Join the Airdrop →
+              Join the airdrop →
             </a>
           </div>
 
           <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-white/55">
-            <span>🔒 No logs</span>
-            <span>📚 Sourced answers</span>
-            <span>🩺 Doctor mode</span>
+            <span>💻 Mac · Windows · Linux</span>
+            <span>🟢 Earn while idle</span>
+            <span>🛡 Fair launch</span>
             <span>⛓ Built on Base</span>
           </div>
 
-          <p className="mt-5 text-xs text-white/40">
-            Information & wellness only — not medical advice. Beta software.
-          </p>
+          <p className="mt-5 text-xs text-white/40">Node app coming soon · $GENNODE not yet launched.</p>
         </div>
       </Section>
 
@@ -238,9 +220,7 @@ function Problem() {
       <div className="mt-8 rounded-2xl border border-bluex/25 bg-bluex/5 p-7 text-center glow-text">
         <p className="text-sm uppercase tracking-widest text-white/50">Gennode is built for one vertical</p>
         <p className="font-chalk text-5xl text-bluex md:text-6xl">BIO-COMPUTE</p>
-        <p className="mt-1 text-white/60">
-          Private health AI today — a community bio-compute network tomorrow. Genes meet nodes.
-        </p>
+        <p className="mt-1 text-white/60">A node-powered compute layer for biological AI. Genes meet nodes.</p>
       </div>
     </Section>
   )
@@ -250,7 +230,8 @@ function How() {
   return (
     <Section id="how" className="py-20">
       <h2 className="text-center text-3xl font-bold md:text-4xl">How it works</h2>
-      <div className="mt-12 grid gap-5 md:grid-cols-3">
+      <p className="mx-auto mt-2 max-w-xl text-center text-white/60">From download to earning in four steps.</p>
+      <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {steps.map((s) => (
           <div key={s.n} className="card relative p-6">
             <div className="flex items-center justify-between">
@@ -266,66 +247,75 @@ function How() {
   )
 }
 
-function HealthDemo() {
+function RunNode() {
   return (
-    <Section id="health" className="py-20">
+    <Section id="run" className="py-20">
       <div className="mb-12 grid grid-cols-2 gap-5">
         <div className="card flex flex-col items-center p-4">
-          <Model3D src="/models/brain.glb" tint="#22d3ee" className="h-36 w-full" />
-          <div className="mt-1 text-sm font-semibold text-white/90">Neural intelligence</div>
+          <Model3D src="/models/node.glb" tint="#22d3ee" className="h-36 w-full" />
+          <div className="mt-1 text-sm font-semibold text-white/90">Your node</div>
         </div>
         <div className="card flex flex-col items-center p-4">
-          <Model3D src="/models/shield.glb" tint="#5eead4" className="h-36 w-full" />
-          <div className="mt-1 text-sm font-semibold text-white/90">Private by design</div>
+          <Model3D src="/models/galaxy.glb" tint="#a78bfa" className="h-36 w-full" />
+          <div className="mt-1 text-sm font-semibold text-white/90">The network</div>
         </div>
       </div>
+
       <div className="grid items-center gap-10 md:grid-cols-2">
         <div>
-          <Pill color="#22d3ee" label="Live · beta" />
-          <h2 className="mt-4 text-3xl font-bold md:text-4xl">A health assistant that respects you</h2>
+          <Pill color="#818cf8" label="App: coming soon" />
+          <h2 className="mt-4 text-3xl font-bold md:text-4xl">A node anyone can run</h2>
           <p className="mt-4 text-white/70">
-            Gennode helps you understand symptoms, lab results and what to ask your doctor — in plain language, with
-            sources. It never diagnoses, and it always points you to a professional when it matters.
+            One install, no command line, no config. It runs quietly in your tray and turns idle GPU time into rewards —
+            the way Ollama made local AI a one-click thing.
           </p>
           <ul className="mt-6 space-y-3 text-sm text-white/70">
-            <li>🔒 Private by design — no logging, no profiling.</li>
-            <li>📚 Grounded answers with sources, not guesses.</li>
-            <li>🩺 Doctor mode — explain conditions to patients faster.</li>
-            <li>⚠️ Safe triage — flags red-flag symptoms to seek care.</li>
+            <li>🟢 Passive — earn points just by keeping it running.</li>
+            <li>🛡️ Wallet-bound identity — sybil-resistant, fair for everyone.</li>
+            <li>🧬 Powers real bio-compute (coming): folding, genomics, AI.</li>
+            <li>📊 Live earnings, uptime and a global leaderboard.</li>
           </ul>
-          <p className="mt-6 text-xs text-white/40">
-            Not a medical device. For information only — the final decision and responsibility rest with you and your
-            clinician.
-          </p>
+          <div className="mt-7 flex flex-wrap gap-3">
+            <span className="btn btn-ghost cursor-default px-5 py-2.5 opacity-70"> macOS — soon</span>
+            <span className="btn btn-ghost cursor-default px-5 py-2.5 opacity-70"> Windows — soon</span>
+            <span className="btn btn-ghost cursor-default px-5 py-2.5 opacity-70"> Linux — soon</span>
+          </div>
         </div>
 
-        {/* mock chat */}
+        {/* node status mock */}
         <div className="card p-5">
           <div className="mb-4 flex items-center gap-2 border-b border-white/5 pb-3">
             <img src="/dna.svg" alt="" className="h-5 w-5" />
-            <span className="text-sm font-semibold">Gennode Health AI</span>
-            <span className="ml-auto text-xs text-white/40">beta</span>
+            <span className="text-sm font-semibold">Gennode Node</span>
+            <span className="ml-auto inline-flex items-center gap-1.5 text-xs text-bluex">
+              <span className="h-2 w-2 rounded-full bg-bluex" style={{ boxShadow: '0 0 8px #22d3ee' }} /> running
+            </span>
           </div>
-          <div className="space-y-3 text-sm">
-            <div className="ml-auto max-w-[80%] rounded-2xl rounded-tr-sm bg-bluex/15 px-4 py-2 text-white/90">
-              I've had a mild headache and low fever for 2 days. Should I worry?
+          <div className="grid grid-cols-2 gap-3 text-center text-sm">
+            <div className="rounded-xl bg-white/5 p-3">
+              <div className="font-chalk text-2xl text-bluex">12,480</div>
+              <div className="text-xs text-white/50">points</div>
             </div>
-            <div className="max-w-[88%] rounded-2xl rounded-tl-sm bg-white/5 px-4 py-3 text-white/80">
-              <p>
-                I'm not a doctor, but here's general info. A mild headache with low-grade fever for a couple of days is
-                often viral and tends to settle with rest and fluids.
-              </p>
-              <p className="mt-2 text-white/70">
-                <strong className="text-white">Seek care</strong> if you notice: a stiff neck, a rash that doesn't fade,
-                confusion, a fever above 39.5°C, or symptoms lasting beyond a few days.
-              </p>
-              <p className="mt-2 text-xs text-white/40">This isn't a diagnosis. Please consult a clinician.</p>
+            <div className="rounded-xl bg-white/5 p-3">
+              <div className="font-chalk text-2xl text-bluex">99.8%</div>
+              <div className="text-xs text-white/50">uptime</div>
             </div>
           </div>
-          <div className="mt-4 flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/40">
-            Ask a health question…
-            <span className="ml-auto rounded-full bg-bluex/20 px-3 py-1 text-xs text-bluex">soon</span>
+          <div className="mt-3 space-y-2 text-sm text-white/70">
+            <div className="flex justify-between">
+              <span className="text-white/50">GPU</span>
+              <span>RTX 4070 · detected</span>
+            </div>
+            <div className="flex justify-between">
+              <span className="text-white/50">Wallet</span>
+              <span>0x9a…3f2c</span>
+            </div>
+            <div className="flex justify-between">
+              <span className="text-white/50">Network</span>
+              <span>4,200 nodes online</span>
+            </div>
           </div>
+          <div className="mt-4 rounded-full bg-bluex/15 px-4 py-2 text-center text-sm text-bluex">Stop node</div>
         </div>
       </div>
     </Section>
@@ -333,10 +323,10 @@ function HealthDemo() {
 }
 
 const flywheel = [
-  { t: 'Real usage', s: 'queries & swaps' },
+  { t: 'Real usage', s: 'compute & swaps' },
   { t: 'Trading fees', s: '1.2% per swap' },
   { t: 'Treasury · Rewards · Buyback', s: 'routed on-chain' },
-  { t: 'Buy pressure → growth', s: 'more users' },
+  { t: 'More nodes → growth', s: 'network effect' },
 ]
 
 function FeeFlywheel() {
@@ -373,17 +363,17 @@ function Token() {
           <p className="mt-4 text-white/70">
             Launching on <strong className="text-white">Base</strong> via Bankr as a{' '}
             <strong className="text-white">100% fair launch</strong> — no team allocation, no pre-mine, no insider buy.
-            Fixed supply of 100B, every token on the open market. Treasury and rewards are funded entirely by trading
-            fees.
+            Fixed supply of 100B, every token on the open market. Treasury and node rewards are funded entirely by
+            trading fees.
           </p>
           <div className="mt-6 space-y-3">
             <div className="card p-4 text-sm">
-              <span className="text-bluex">Revenue → rewards.</span> Swap fees + premium revenue fund buybacks, the
-              community airdrop and (soon) node-operator pay.
+              <span className="text-bluex">Run a node, earn.</span> Uptime + capacity earn points; points convert to
+              $GENNODE in the airdrop.
             </div>
             <div className="card p-4 text-sm">
-              <span className="text-bluex">Earn by contributing.</span> Today: early use, referrals, feedback. Tomorrow:
-              real compute on your GPU.
+              <span className="text-bluex">Hold for more.</span> Fees buy back $GENNODE; holders/stakers get boosted
+              rewards (soon).
             </div>
           </div>
           <p className="mt-6 text-xs text-white/40">
@@ -440,7 +430,7 @@ function Roadmap() {
   return (
     <Section id="roadmap" className="py-20">
       <h2 className="text-center text-3xl font-bold md:text-4xl">Roadmap</h2>
-      <p className="mt-2 text-center text-white/60">Progressive decentralization — working product first, network next.</p>
+      <p className="mt-2 text-center text-white/60">Node network first, real bio-compute next.</p>
       <div className="mt-12 grid gap-4 md:grid-cols-5">
         {roadmap.map((r) => {
           const st = stateStyle[r.state]
@@ -461,24 +451,24 @@ function Roadmap() {
 const showcase = [
   { src: '/models/protein.glb', label: 'Protein folding', tint: '#38bdf8' },
   { src: '/models/cell.glb', label: 'Cells & genomics', tint: '#5eead4' },
-  { src: '/models/cluster.glb', label: 'Molecule cluster', tint: '#38bdf8' },
+  { src: '/models/cluster.glb', label: 'Molecule discovery', tint: '#38bdf8' },
   { src: '/models/capsule.glb', label: 'Drug discovery', tint: '#22d3ee' },
-  { src: '/models/heart.glb', label: 'Health', tint: '#818cf8' },
-  { src: '/models/atom.glb', label: 'Science', tint: '#38bdf8' },
-  { src: '/models/node.glb', label: 'Compute node', tint: '#818cf8' },
-  { src: '/models/galaxy.glb', label: 'Decentralized network', tint: '#a78bfa' },
+  { src: '/models/atom.glb', label: 'AI inference', tint: '#38bdf8' },
+  { src: '/models/dna.glb', label: 'DNA & genomics', tint: '#22d3ee' },
+  { src: '/models/node.glb', label: 'Your node', tint: '#818cf8' },
+  { src: '/models/galaxy.glb', label: 'The network', tint: '#a78bfa' },
 ]
 
 function Showcase() {
   return (
     <Section id="science" className="py-20">
-      <h2 className="text-center text-3xl font-bold md:text-4xl">Built for bio</h2>
+      <h2 className="text-center text-3xl font-bold md:text-4xl">What the network computes</h2>
       <p className="mx-auto mt-2 max-w-xl text-center text-white/60">
-        The biology and infrastructure Gennode is made of — and what the network will compute.
+        Built for one vertical: bio. The workloads your nodes will power.
       </p>
       <div className="mt-12 grid grid-cols-2 gap-5 md:grid-cols-3">
         {showcase.map((m) => (
-          <div key={m.src} className="card flex flex-col items-center p-4">
+          <div key={m.label} className="card flex flex-col items-center p-4">
             <Model3D src={m.src} tint={m.tint} className="h-40 w-full" />
             <div className="mt-1 text-sm font-semibold text-white/90">{m.label}</div>
           </div>
@@ -502,9 +492,9 @@ function Waitlist() {
   return (
     <Section id="waitlist" className="py-20">
       <div className="rounded-3xl border border-bluex/20 bg-gradient-to-b from-bluex/10 to-transparent p-10 text-center">
-        <h2 className="text-3xl font-bold md:text-4xl">Get early access + airdrop</h2>
+        <h2 className="text-3xl font-bold md:text-4xl">Be an early node</h2>
         <p className="mx-auto mt-3 max-w-xl text-white/65">
-          Be first to try the private health AI and earn participation points toward the $GENNODE airdrop.
+          Get notified the moment the node app drops, and start earning points toward the $GENNODE airdrop.
         </p>
 
         {done ? (
@@ -520,7 +510,7 @@ function Waitlist() {
               className="flex-1 rounded-full border border-white/15 bg-white/5 px-5 py-3 text-sm outline-none placeholder:text-white/30 focus:border-bluex"
             />
             <button type="submit" className="btn btn-primary px-6 py-3">
-              Join
+              Notify me
             </button>
           </form>
         )}
@@ -546,8 +536,11 @@ function Footer() {
             <span className="font-bold tracking-wide">GENNODE</span>
           </div>
           <div className="flex items-center gap-6 text-sm text-white/60">
-            <a href="#health" className="transition hover:text-white">
-              Health AI
+            <a href="#run" className="transition hover:text-white">
+              Run a node
+            </a>
+            <a href={DOCS_URL} className="transition hover:text-white">
+              Docs
             </a>
             <a href="#token" className="transition hover:text-white">
               Token
@@ -560,16 +553,15 @@ function Footer() {
 
         <div className="mt-8 space-y-2 text-center text-xs leading-relaxed text-white/35 md:text-left">
           <p>
-            <strong className="text-white/50">Beta software.</strong> Gennode provides general health information and
-            wellness support only. It is not a medical device and does not diagnose, treat or prescribe. Always consult
-            a qualified clinician; the final decision and responsibility rest with you and your doctor. In an emergency,
-            contact local emergency services.
+            <strong className="text-white/50">Early access.</strong> Gennode is a decentralized bio-compute network in
+            active development. The node app and $GENNODE token are not yet released; features, rewards and timelines may
+            change.
           </p>
           <p>
             $GENNODE is a utility token intended for use within the network. Nothing on this site is financial, investment
-            or legal advice, nor an offer or solicitation to buy any asset.
+            or legal advice, nor an offer or solicitation to buy any asset. Crypto is volatile and risky.
           </p>
-          <p className="pt-2 text-white/30">© {new Date().getFullYear()} Gennode. All rights reserved.</p>
+          <p className="pt-2 text-white/30">© {new Date().getFullYear()} Gennode. Genes meet nodes.</p>
         </div>
       </Section>
     </footer>
@@ -593,10 +585,10 @@ export default function App() {
           <How />
         </Reveal>
         <Reveal>
-          <Showcase />
+          <RunNode />
         </Reveal>
         <Reveal>
-          <HealthDemo />
+          <Showcase />
         </Reveal>
         <Reveal>
           <Token />
