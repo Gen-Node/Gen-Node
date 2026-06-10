@@ -31,6 +31,8 @@ export default defineConfig({
         items: [
           { text: 'Run a node', link: '/run-a-node' },
           { text: 'The network', link: '/node-network' },
+          { text: 'Use cases', link: '/use-cases' },
+          { text: 'Data layer', link: '/data-layer' },
         ],
       },
       {

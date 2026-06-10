@@ -3,7 +3,7 @@ layout: home
 hero:
   name: Gennode
   text: Run a node. Power bio & health AI.
-  tagline: Download Gennode, put your idle GPU to work for a decentralized compute network — and earn $GENNODE. Genes meet nodes.
+  tagline: Download Gennode, contribute idle GPU + storage to a private, decentralized network for deep health & DNA data — and earn $GENNODE. Genes meet nodes.
   actions:
     - theme: brand
       text: Run a node
@@ -12,12 +12,14 @@ hero:
       text: How it works
       link: /how-it-works
 features:
-  - title: 🖥 One-click node
-    details: Install on macOS, Windows or Linux from GitHub. It runs in your tray and turns idle GPU into rewards.
-  - title: 🧬 Built for bio & health
-    details: The network solves real jobs — health AI questions, protein folding, genomics, drug discovery, AI inference.
+  - title: 🖥 One-click node — GPU + storage
+    details: Install on macOS, Windows or Linux from GitHub. Contribute idle GPU and disk; it runs quietly in your tray.
+  - title: 🧬 Deep health & bio data
+    details: DNA & genome analysis, protein folding, drug discovery, medical imaging, private health AI — analyzed privately.
+  - title: 🔒 Torrent-like data layer
+    details: Sensitive data is encrypted, sharded and served peer-to-peer across nodes. Operators never see raw data.
   - title: ⛓ Earn $GENNODE
-    details: Points for uptime + capacity. 100% fair launch on Base. Points convert in the airdrop.
+    details: Points for compute, storage + uptime. 100% fair launch on Base. Points convert in the airdrop.
 ---
 
 > **Early access.** The node app and `$GENNODE` token are in active development and not yet released; features, rewards and timelines may change.

@@ -17,7 +17,9 @@ When a job arrives, the coordinator routes it to capable nodes:
 ## Architecture (high level)
 | Layer | Role |
 | --- | --- |
-| **Node app** | runs on your machine, contributes GPU, completes jobs |
+| **Node app** | runs on your machine, contributes **GPU + disk**, completes jobs |
+| **Compute** | nodes analyze data — DNA, proteins, imaging, health AI |
+| **Data (torrent-like)** | encrypted, sharded data served peer-to-peer across nodes |
 | **Coordinator** | registers nodes, dispatches & verifies jobs, tracks points |
 | **On-chain (Base)** | `$GENNODE`, rewards, points → airdrop |
 

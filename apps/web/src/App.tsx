@@ -74,9 +74,9 @@ function MotifMolecule({ className = '' }: { className?: string }) {
 }
 
 const problems = [
-  { t: 'Compute is expensive', d: 'Protein folding, molecule discovery and genomics are not lightweight workloads.' },
-  { t: 'Access is centralized', d: 'A handful of clouds gatekeep the GPUs that biological AI depends on.' },
-  { t: 'GPU networks are too generic', d: 'Most DePIN compute sells empty hours to anyone — none are built for bio.' },
+  { t: 'Compute is expensive', d: 'Protein folding, genomics and drug discovery are not lightweight — they need serious GPU power.' },
+  { t: 'Health data is huge & sensitive', d: 'A single genome is ~100GB. Storing it on someone else’s server is a privacy risk.' },
+  { t: 'Generic networks aren’t enough', d: 'Most DePIN sells empty GPU hours to anyone — none are built for private bio & health data.' },
 ]
 
 const steps = [
@@ -166,9 +166,9 @@ function Hero() {
           </h1>
 
           <p className="mt-6 max-w-xl text-lg text-white/70">
-            Download Gennode, connect your wallet, and put your <strong className="text-white">idle GPU</strong> to work
-            for a decentralized <strong className="text-white">bio-compute</strong> network — protein folding, genomics,
-            AI. Earn while it runs. Mac · Windows · Linux.
+            Download Gennode, connect your wallet, and put your <strong className="text-white">idle GPU + storage</strong> to
+            work for a private network for <strong className="text-white">deep health &amp; DNA data</strong> — genomics,
+            protein folding, drug discovery, AI. Earn while it runs. Mac · Windows · Linux.
           </p>
 
           <div className="mt-9 flex flex-wrap gap-4">
@@ -270,10 +270,10 @@ function RunNode() {
             the way Ollama made local AI a one-click thing.
           </p>
           <ul className="mt-6 space-y-3 text-sm text-white/70">
-            <li>🟢 Passive — earn points just by keeping it running.</li>
+            <li>🟢 Passive — earn points for GPU, storage + uptime.</li>
+            <li>🔒 Torrent-like data layer — data is encrypted &amp; sharded; you never see raw data.</li>
+            <li>🧬 Powers deep health &amp; DNA: genomics, folding, drug discovery, health AI.</li>
             <li>🛡️ Wallet-bound identity — sybil-resistant, fair for everyone.</li>
-            <li>🧬 Powers real bio-compute (coming): folding, genomics, AI.</li>
-            <li>📊 Live earnings, uptime and a global leaderboard.</li>
           </ul>
           <div className="mt-7 flex flex-wrap gap-3">
             <span className="btn btn-ghost cursor-default px-5 py-2.5 opacity-70"> macOS — soon</span>

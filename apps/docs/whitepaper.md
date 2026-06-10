@@ -6,7 +6,7 @@
 > Informational and a work in progress. Not financial, investment, legal or medical advice. See [Disclaimers](/disclaimers).
 
 ## 1. Abstract
-Gennode is an **io.net-style decentralized compute network** focused on one vertical: **biological & health AI**. People run a **node** (a desktop app, idle GPU); the network **dispatches jobs** — private health-AI questions, protein folding, genomics, drug discovery, AI inference — to those nodes; operators earn **`$GENNODE`**. 100% fair launch; node rewards are funded by trading fees, not a token allocation.
+Gennode is an **io.net-style decentralized network for deep health & bio data** — focused on one vertical. People run a **node** (a desktop app) that contributes **GPU + storage**; the network **analyzes sensitive biological data** — DNA & genome analysis, protein folding, drug discovery, medical imaging, private health AI — and stores it in a **torrent-like, encrypted data layer**. Open models run today; a purpose-built **Gennode bio/health LLM** comes over time (built from scratch if needed). Operators earn **`$GENNODE`**. 100% fair launch; rewards are funded by trading fees, not a token allocation.
 
 ## 2. Problem
 Bio & health AI needs huge GPU compute that is **expensive, centralized and privacy-sensitive** (genomic/health data). Generic GPU networks aren't tuned for this vertical.
@@ -17,11 +17,15 @@ Aggregate **idle community GPUs** into a **privacy-first, bio/health-focused** c
 ## 4. The node app
 Cross-platform desktop app (Mac / Windows / Linux), distributed via **GitHub Releases**. Connect wallet → run → earn. Runs in the tray with live points/uptime. A headless CLI is available for servers.
 
-## 5. The network
+## 5. The network — three layers
+1. **Compute** — nodes run jobs: DNA & genome analysis, protein folding, drug discovery, medical imaging, health-AI inference.
+2. **Data (torrent-like)** — datasets, model weights and results are encrypted, chunked, content-addressed (DHT) and served peer-to-peer; erasure-coded for durability.
+3. **Models** — open models today; a purpose-built **Gennode bio/health LLM** served across nodes over time.
+
 ```
-Demand → Coordinator (match + verify) → Nodes (execute) → reward in $GENNODE
+Demand → Coordinator (match job + data → nodes, verify) → Nodes (pull encrypted data, compute) → result + reward in $GENNODE
 ```
-Job types: **health-AI inference**, **bio-compute** (folding, genomics, docking), **AI inference**.
+A node contributes **GPU**, **disk**, or both.
 
 ## 6. Privacy & security
 Privacy-first: minimized data; roadmap **sealed / self-hostable execution** + **confidential computing (GPU TEE)** so node operators cannot see the data. GDPR/HIPAA-aware.

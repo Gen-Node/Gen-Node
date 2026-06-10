@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Gennode — Private Health AI</title>
+    <title>Gennode — Run a node</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -40,9 +40,9 @@
 
       .wrap { max-width: 860px; margin: 0 auto; padding: 36px 20px 80px; }
       h1 { font-size: 40px; line-height: 1.05; margin: 0 0 10px; font-weight: 800; }
-      .sub { color: #8aa0ad; margin: 0 0 26px; max-width: 540px; }
+      .sub { color: #8aa0ad; margin: 0 0 26px; max-width: 560px; }
       .grid2 { display: grid; gap: 18px; grid-template-columns: 1fr; }
-      @media (min-width: 780px) { .grid2 { grid-template-columns: 1.3fr 1fr; } }
+      @media (min-width: 780px) { .grid2 { grid-template-columns: 1fr 1fr; } }
 
       .card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 18px; padding: 18px; }
       .card h3 { margin: 0 0 12px; font-size: 14px; text-transform: uppercase; letter-spacing: .12em; color: #8aa0ad; font-weight: 600; }
@@ -51,11 +51,7 @@
         background: linear-gradient(135deg,#22d3ee,#38bdf8); color: #04212b; font-family: inherit; }
       button.ghost { background: rgba(255,255,255,0.05); color: #e8edf2; border: 1px solid rgba(255,255,255,0.16); }
       button:hover { filter: brightness(1.06); }
-      textarea { width: 100%; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.12);
-        border-radius: 14px; padding: 12px 14px; color: #e8edf2; font: inherit; min-height: 64px; resize: vertical; }
-      textarea:focus { outline: none; border-color: rgba(34,211,238,0.5); }
 
-      /* terminal card */
       .term { background: #080b10; border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; overflow: hidden; }
       .termbar { background: rgba(255,255,255,0.04); padding: 9px 12px; font-size: 12px; color: #6b8190; display: flex; align-items: center; gap: 7px; }
       .termbar i { width: 11px; height: 11px; border-radius: 50%; display: inline-block; }
@@ -63,16 +59,10 @@
       .term .p { color: #22d3ee; }
       .copy { font-size: 11px; padding: 5px 10px; }
 
-      /* chat */
-      #log { display: flex; flex-direction: column; gap: 10px; min-height: 60px; margin-bottom: 12px; }
-      .msg { white-space: pre-wrap; line-height: 1.55; font-size: 14px; max-width: 90%; }
-      .me { align-self: flex-end; background: rgba(34,211,238,0.14); border: 1px solid rgba(34,211,238,0.2); border-radius: 16px 16px 4px 16px; padding: 10px 14px; }
-      .ai { align-self: flex-start; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07); border-radius: 16px 16px 16px 4px; padding: 12px 14px; }
       .small { font-size: 12px; color: #6b8190; }
       .keybox { font-family: ui-monospace, monospace; font-size: 12px; color: #9fb3c0; word-break: break-all; }
-      .stat { display: flex; gap: 18px; }
+      .stat { display: flex; gap: 22px; }
       .stat b { font-family: 'Caveat', cursive; font-size: 26px; color: #22d3ee; display: block; line-height: 1; }
-      .hide { display: none; }
       footer { border-top: 1px solid rgba(255,255,255,0.06); margin-top: 40px; }
       .foot { max-width: 860px; margin: 0 auto; padding: 22px 20px; color: #59707e; font-size: 12px; line-height: 1.6; }
     </style>
@@ -85,57 +75,69 @@
           GENNODE
         </span>
         <span class="spacer"></span>
-        <span class="pill"><span class="dot"></span>AI: Live (beta)</span>
-        <span class="pill" id="creditPill">— credits</span>
+        <span class="pill"><span class="dot"></span>Network: building</span>
+        <span class="pill" id="creditPill">— points</span>
       </div>
     </header>
 
     <div class="wrap">
       <div id="linkBanner"></div>
 
-      <h1>Your health questions,<br /><span class="chalk accent glow" style="font-size:46px">kept private.</span></h1>
-      <p class="sub">A private health AI you can use right here, or run in your terminal — powered by Venice. No logging, no profiling.</p>
+      <h1>Run a Gennode node.<br /><span class="chalk accent glow" style="font-size:44px">Earn $GENNODE.</span></h1>
+      <p class="sub">Contribute your idle GPU + storage to a private, decentralized network for DNA, genomics and health AI. This dashboard links your wallet and tracks your points.</p>
 
       <div class="grid2">
-        <!-- chat -->
-        <div class="card">
-          <h3>Ask Gennode</h3>
-          <div id="log">
-            <div class="ai msg small">Hi, I'm Gennode. Ask me about a symptom, a lab result, or what to ask your doctor. I'm not a doctor and I won't diagnose — but I'll help you understand. 🧬</div>
-          </div>
-          <textarea id="input" placeholder="e.g. mild headache and low fever for 2 days — should I worry?"></textarea>
-          <div style="display:flex; align-items:center; justify-content:space-between; margin-top:10px;">
-            <span class="small">Information &amp; wellness only — not a diagnosis.</span>
-            <button id="sendBtn">Send</button>
-          </div>
-        </div>
-
-        <!-- terminal + account -->
+        <!-- left: your node + what the network computes -->
         <div style="display:flex; flex-direction:column; gap:18px;">
-          <div class="card">
-            <h3>Run it in your terminal</h3>
-            <p class="small" style="margin:0 0 10px">Claude-style, on macOS / Windows / Linux.</p>
-            <div class="term">
-              <div class="termbar"><i style="background:#ff5f56"></i><i style="background:#ffbd2e"></i><i style="background:#27c93f"></i>&nbsp; gennode</div>
-              <pre><span class="p">$</span> npx @gennode/node setup</pre>
-            </div>
-            <button class="ghost copy" style="margin-top:10px" data-copy="npx @gennode/node setup">Copy command</button>
-          </div>
-
           <div class="card" id="accountCard">
-            <h3>Your account</h3>
+            <h3>Your node</h3>
             <div id="walletRow" style="margin-bottom:14px; display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
               <button id="connectWallet">Connect wallet</button>
-              <span class="small" id="walletState"></span>
+              <span class="small" id="walletState">your node identity</span>
             </div>
             <div class="stat">
-              <div><b id="cCredits">—</b><span class="small">credits</span></div>
-              <div><b id="cUsed">—</b><span class="small">used</span></div>
+              <div><b id="cCredits">—</b><span class="small">points</span></div>
+              <div><b id="cUsed">—</b><span class="small">spent</span></div>
+              <div><b id="cUptime">—</b><span class="small">uptime</span></div>
             </div>
-            <p class="small" style="margin:14px 0 6px">Connect this account to your terminal:</p>
+            <p class="small" style="margin:14px 0 6px">Link this account to your node in the terminal:</p>
             <div class="term"><pre id="connectCmd" style="font-size:11px"><span class="p">$</span> npx @gennode/node connect …</pre></div>
             <button class="ghost copy" style="margin-top:10px" id="copyConnect">Copy connect command</button>
             <p class="keybox" id="keyLine" style="margin-top:10px"></p>
+          </div>
+
+          <div class="card">
+            <h3>What the network computes</h3>
+            <p class="small" style="margin:0; line-height:1.95; color:#9fb3c0">
+              🧬 DNA &amp; genome analysis &nbsp;·&nbsp; 🧪 protein folding<br />
+              💊 drug discovery &nbsp;·&nbsp; 🩻 medical imaging<br />
+              🩺 private health AI &nbsp;·&nbsp; 🔬 multi-omics
+            </p>
+            <p class="small" style="margin-top:12px"><a href="https://docs.gennode.org/use-cases" target="_blank" rel="noreferrer">See all use cases →</a></p>
+          </div>
+        </div>
+
+        <!-- right: run a node + network -->
+        <div style="display:flex; flex-direction:column; gap:18px;">
+          <div class="card">
+            <h3>Run a node</h3>
+            <p class="small" style="margin:0 0 10px">One install — macOS / Windows / Linux.</p>
+            <div class="term">
+              <div class="termbar"><i style="background:#ff5f56"></i><i style="background:#ffbd2e"></i><i style="background:#27c93f"></i>&nbsp; gennode</div>
+              <pre><span class="p">$</span> npx @gennode/node</pre>
+            </div>
+            <button class="ghost copy" style="margin-top:10px" data-copy="npx @gennode/node">Copy command</button>
+            <p class="small" style="margin-top:10px">Desktop app coming to <a href="https://github.com/Gen-Node" target="_blank" rel="noreferrer">GitHub</a> — for now, run the CLI.</p>
+          </div>
+
+          <div class="card">
+            <h3>Network</h3>
+            <div class="stat">
+              <div><b id="nNodes">—</b><span class="small">nodes</span></div>
+              <div><b id="nJobs">—</b><span class="small">jobs done</span></div>
+              <div><b id="nData">—</b><span class="small">data served</span></div>
+            </div>
+            <p class="small" style="margin-top:12px">Season 1 points open at token launch. Be an early node. <a href="https://gennode.org" target="_blank" rel="noreferrer">gennode.org</a></p>
           </div>
         </div>
       </div>
@@ -143,23 +145,20 @@
 
     <footer>
       <div class="foot">
-        <strong style="color:#7d909c">Beta.</strong> Gennode provides general health information and wellness support only — it is not a medical device and does not diagnose, treat or prescribe. Always consult a clinician; the final decision rests with you and your doctor. In an emergency, contact local emergency services.
-        <br />$GENNODE is a utility token; nothing here is financial advice. · <a href="https://x.com/gennode" target="_blank" rel="noreferrer">@gennode</a>
+        <strong style="color:#7d909c">Early access.</strong> Gennode is a decentralized bio &amp; health compute network in active development; the node app and $GENNODE token are not yet released. The network is built privacy-first — data is encrypted and node operators never see raw data.
+        <br />$GENNODE is a utility token — nothing here is financial advice. Health-AI features provide information only, not medical advice. · <a href="https://x.com/gennode" target="_blank" rel="noreferrer">@gennode</a>
       </div>
     </footer>
 
     <script>
       const API = location.origin
-      const HEALTH_SYSTEM =
-        "You are Gennode, a private health-information assistant. Help people understand symptoms, lab results and what to ask their doctor, in plain language. You are NOT a doctor: never diagnose, treat, or prescribe; always remind the user to consult a clinician and that the final decision is theirs. Flag emergency red-flag symptoms and tell them to seek urgent care. Be private, warm and concise."
       let key = localStorage.getItem('gennode_key') || ''
       const $ = (id) => document.getElementById(id)
-      const esc = (s) => s.replace(/[&<>]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]))
       const mask = (k) => (k ? k.slice(0, 6) + '…' + k.slice(-4) : '')
 
       function setAccount(d) {
         if (d && d.credits != null) {
-          $('creditPill').innerHTML = '<span class="dot"></span>' + d.credits + ' credits'
+          $('creditPill').innerHTML = '<span class="dot"></span>' + d.credits + ' points'
           $('cCredits').textContent = d.credits
           if (d.used != null) $('cUsed').textContent = d.used
         }
@@ -189,39 +188,6 @@
         return key
       }
 
-      $('sendBtn').onclick = async () => {
-        const text = $('input').value.trim()
-        if (!text) return
-        $('input').value = ''
-        const log = $('log')
-        const me = document.createElement('div')
-        me.className = 'me msg'
-        me.textContent = text
-        log.appendChild(me)
-        const ai = document.createElement('div')
-        ai.className = 'ai msg small'
-        ai.textContent = '…'
-        log.appendChild(ai)
-        ai.scrollIntoView({ behavior: 'smooth' })
-        try {
-          await ensureKey()
-          const r = await fetch(API + '/v1/chat/completions', {
-            method: 'POST',
-            headers: { 'content-type': 'application/json', authorization: 'Bearer ' + key },
-            body: JSON.stringify({ messages: [{ role: 'system', content: HEALTH_SYSTEM }, { role: 'user', content: text }] }),
-          })
-          const j = await r.json()
-          ai.classList.remove('small')
-          ai.textContent = j.content || 'Error: ' + (j.error || 'unknown')
-          if (j.credits != null) setAccount({ credits: j.credits })
-        } catch {
-          ai.textContent = 'Network error.'
-        }
-      }
-      $('input').addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) $('sendBtn').click()
-      })
-
       document.querySelectorAll('.copy').forEach((b) => {
         b.onclick = () => {
           const t = b.id === 'copyConnect' ? 'npx @gennode/node connect ' + API + ' ' + key : b.dataset.copy
@@ -232,7 +198,7 @@
         }
       })
 
-      // device-auth: terminal opened this page with ?code
+      // device-auth: a node/terminal opened this page with ?code
       const deviceCode = new URLSearchParams(location.search).get('code')
 
       async function connectWallet() {
@@ -246,7 +212,7 @@
           }
         }
         if (!address) {
-          alert('No browser wallet found. Privy email/social login is coming — add your Privy App ID to enable it.')
+          alert('No browser wallet found. Email/social login (Privy) is coming — add your Privy App ID to enable it.')
           return
         }
         await ensureKey()
@@ -263,7 +229,7 @@
           if (j.credits != null) setAccount({ credits: j.credits })
           if (deviceCode)
             $('linkBanner').innerHTML =
-              '<div class="card" style="border-color:rgba(34,211,238,0.5); margin-bottom:18px">✓ <b class="accent">Wallet connected &amp; terminal linked.</b> Return to your terminal.</div>'
+              '<div class="card" style="border-color:rgba(34,211,238,0.5); margin-bottom:18px">✓ <b class="accent">Wallet connected &amp; node linked.</b> Return to your terminal.</div>'
         } else {
           $('walletState').textContent = 'Error: ' + (j.error || 'failed')
         }
@@ -273,8 +239,9 @@
       async function init() {
         if (deviceCode) {
           $('linkBanner').innerHTML =
-            '<div class="card" style="border-color:rgba(129,140,248,0.5); margin-bottom:18px">🔗 A terminal wants to link. <b class="accent">Connect your wallet</b> to link it and unlock your credits.</div>'
+            '<div class="card" style="border-color:rgba(129,140,248,0.5); margin-bottom:18px">🔗 A node wants to link. <b class="accent">Connect your wallet</b> to set your node identity and start earning points.</div>'
         }
+        await ensureKey()
         await refresh()
         setAccount({})
       }
