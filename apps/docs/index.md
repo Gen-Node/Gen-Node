@@ -2,8 +2,8 @@
 layout: home
 hero:
   name: Gennode
-  text: Run a node. Power bio & health AI.
-  tagline: Download Gennode, contribute idle GPU + storage to a private, decentralized network for deep health & DNA data — and earn $GENNODE. Genes meet nodes.
+  text: Run a node. Power bio & AI.
+  tagline: Download Gennode, contribute idle GPU + storage to a private, decentralized network for deep bio & DNA data — and earn $GENNODE. Genes meet nodes.
   actions:
     - theme: brand
       text: Run a node
@@ -14,8 +14,8 @@ hero:
 features:
   - title: 🖥 One-click node — GPU + storage
     details: Install on macOS, Windows or Linux from GitHub. Contribute idle GPU and disk; it runs quietly in your tray.
-  - title: 🧬 Deep health & bio data
-    details: DNA & genome analysis, protein folding, drug discovery, medical imaging, private health AI — analyzed privately.
+  - title: 🧬 Deep bio & DNA data
+    details: DNA & genome analysis, protein folding, drug discovery, multi-omics, scientific simulation & AI inference — computed privately.
   - title: 🔒 Torrent-like data layer
     details: Sensitive data is encrypted, sharded and served peer-to-peer across nodes. Operators never see raw data.
   - title: ⛓ Earn $GENNODE

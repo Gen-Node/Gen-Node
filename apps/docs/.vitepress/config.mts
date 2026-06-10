@@ -3,7 +3,7 @@ import { defineConfig } from 'vitepress'
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: 'Gennode',
-  description: 'Gennode — a decentralized compute network for bio & health AI. Run a node, earn $GENNODE. Documentation.',
+  description: 'Gennode — a decentralized compute network for bio & AI. Run a node, earn $GENNODE. Documentation.',
   appearance: 'dark',
   cleanUrls: true,
   lastUpdated: true,
@@ -55,7 +55,7 @@ export default defineConfig({
     search: { provider: 'local' },
     footer: {
       message:
-        'Early access · $GENNODE is a utility token — nothing here is financial or medical advice. Genes meet nodes.',
+        'Early access · $GENNODE is a utility token — nothing here is financial advice. Genes meet nodes.',
       copyright: '© 2026 Gennode',
     },
   },

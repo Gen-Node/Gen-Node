@@ -1,6 +1,6 @@
 # Data layer — torrent-like & private
 
-Deep health data is **huge** (a single human genome is ~100 GB raw) and **sensitive**. Gennode moves and stores it the way **BitTorrent** and **IPFS** move data — but **encrypted, replicated and incentivized**.
+Deep bio & DNA data is **huge** (a single human genome is ~100 GB raw) and **sensitive**. Gennode moves and stores it the way **BitTorrent** and **IPFS** move data — but **encrypted, replicated and incentivized**.
 
 ## How it works
 - **Content-addressed** — every file and chunk is identified by its hash, so it's tamper-proof and de-duplicated.

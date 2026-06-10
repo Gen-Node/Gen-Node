@@ -11,4 +11,4 @@ A dedicated security email will be published at launch. Do **not** open public i
 - At token launch: smart contracts — third-party **audits** and a **bug bounty** will be announced before mainnet.
 
 ## Please do not include
-Secrets, private keys, or personal health data in any report.
+Secrets, private keys, or personal data in any report.

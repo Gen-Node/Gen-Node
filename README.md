@@ -2,7 +2,7 @@
 
 # 🧬 Gennode
 
-**Private health AI, built for one vertical: bio.**
+**A decentralized compute + data network for bio & AI.**
 
 [Website (soon)] · [Docs](./apps/docs) · [Whitepaper](./WHITEPAPER.md) · [𝕏 @gennode](https://x.com/gennode)
 
@@ -13,14 +13,17 @@
 
 </div>
 
-Ask your health questions privately — **no logging, no profiling, no data selling**. Powered today by Venice; tomorrow by a community network of GPU **nodes** that also runs bio-compute (DNA, protein folding, genomics).
+Run a node, contribute GPU + storage, and power **bio & AI** compute — DNA & genome analysis, protein folding, molecule & drug discovery, multi-omics, scientific simulation and AI inference. Operators earn `$GENNODE`. Powered today by open models on Venice; tomorrow by a community network of GPU **nodes**.
 
 > **Genes meet nodes.**
 
 ## What is Gennode?
 
-- **Now — Health AI (beta):** a private, judgment-free assistant that helps you understand symptoms and lab results, and what to ask your doctor. It **never diagnoses**.
-- **Coming — Node network:** run a node, contribute GPU power, and earn `$GENNODE` for verified compute.
+A decentralized **compute + data network for bio & AI**, built in three layers:
+
+- **Compute** — operators run a node (GPU + storage); the network powers DNA & genome analysis, protein folding, molecule & drug discovery, multi-omics, scientific simulation and AI inference.
+- **Data** — a torrent-like, encrypted data layer for scientific datasets.
+- **Models** — open models now; a purpose-built Gennode bio/AI LLM later.
 
 **Progressive decentralization:** ship a real, working product first; decentralize the compute as the community and token grow.
 
@@ -38,9 +41,9 @@ gennode/
 └─ 3D-PROMPTS.md      # 3D asset prompts
 ```
 
-## Run Gennode locally (health AI node)
+## Run Gennode locally (bio & AI assistant)
 
-Run a private health AI on your own machine — **macOS & Windows** — via the Venice API or a fully offline Ollama model. See [`packages/node`](./packages/node).
+Run the Gennode bio & AI assistant on your own machine — **macOS & Windows** — via the Venice API or a fully offline Ollama model. See [`packages/node`](./packages/node).
 
 ```bash
 npx @gennode/node setup     # cloud credits (auto-opens dashboard) · local model · Venice key
@@ -57,7 +60,7 @@ Base · ERC-20 (Clanker v4 / Bankr) · **100,000,000,000 fixed** · **100% fair 
 
 ## Disclaimers
 
-Beta software. Provides general health **information and wellness support only** — it is **not a medical device** and does not diagnose, treat or prescribe. Always consult a clinician; the final decision rests with you and your doctor. `$GENNODE` is a utility token; nothing here is financial advice or an offer of securities.
+Beta software. `$GENNODE` is a utility token; nothing here is financial advice or an offer of securities. Personal data is handled in line with GDPR.
 
 ## License
 

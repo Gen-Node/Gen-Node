@@ -13,7 +13,7 @@ const OLLAMA_URL = 'http://localhost:11434/api/chat'
 const DEFAULT_GATEWAY = (process.env.GENNODE_GATEWAY || 'http://localhost:8787').replace(/\/+$/, '')
 
 const DISCLAIMER =
-  'Gennode provides health information & wellness support only — not a medical device, not a diagnosis. Always consult a clinician.'
+  'Gennode is a decentralized bio & AI compute network. $GENNODE is a utility token — nothing here is financial advice.'
 
 function loadConfig() {
   try {
@@ -129,7 +129,7 @@ async function answer(messages, backend) {
 }
 
 const HELP = `
-🧬 Gennode — private health AI, run locally (macOS & Windows)
+🧬 Gennode — bio & AI assistant for the compute network, run locally (macOS & Windows)
 
 Usage:
   gennode setup                 Guided setup (cloud credits / local model / Venice key)
@@ -299,7 +299,7 @@ async function main() {
     return
   }
 
-  console.log('\n🧬 Gennode — private health AI (beta)')
+  console.log('\n🧬 Gennode — bio & AI assistant (beta)')
   console.log(`   backend: ${backend.kind} (${backend.model}) · type "exit" to quit`)
   console.log(`   ${DISCLAIMER}\n`)
 

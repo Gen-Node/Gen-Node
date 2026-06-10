@@ -1,5 +1,5 @@
-# Health AI is a workload, not the product
+# Gennode is a node network for bio & AI
 
-Gennode is a **node-powered compute network** for bio & health AI. Answering people's health questions is **one of the jobs the network runs** — not a separate app.
+Gennode powers decentralized **compute + data** for bio & AI — DNA & genome analysis, protein folding, drug discovery and AI inference.
 
-→ See **[Run a node](/run-a-node)** · **[How it works](/how-it-works)** · **[The network](/node-network)**.
+→ See **[Run a node](/run-a-node)** · **[Use cases](/use-cases)** · **[The network](/node-network)**.

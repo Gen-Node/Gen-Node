@@ -1,8 +1,8 @@
 # @gennode/node — run Gennode locally
 
-A **private health AI** you run on your own machine (**macOS & Windows**). Powered by the [Venice](https://venice.ai) API, or fully offline with a local [Ollama](https://ollama.com) model. Your questions go only to the backend you choose — Gennode logs nothing.
+A **bio & AI assistant** for the Gennode compute network, run on your own machine (**macOS & Windows**). Powered by the [Venice](https://venice.ai) API, or fully offline with a local [Ollama](https://ollama.com) model. Your questions go only to the backend you choose — Gennode logs nothing.
 
-> Beta. Information & wellness only — **not** a medical device, **not** a diagnosis. Always consult a clinician.
+> Beta. Gennode is a decentralized bio & AI compute network; `$GENNODE` is a utility token and nothing here is financial advice.
 
 ## Requirements
 - **Node.js 18+** — macOS: `brew install node` · Windows: [nodejs.org](https://nodejs.org)
@@ -27,7 +27,7 @@ gennode --ollama
 
 ## One-shot
 ```bash
-gennode ask "What can cause a mild headache and low fever for two days?"
+gennode ask "Explain how protein folding prediction works"
 ```
 
 ## Options
@@ -43,4 +43,4 @@ node packages/node/src/index.mjs login
 node packages/node/src/index.mjs
 ```
 
-The Gennode persona & safety rules live in [`src/prompt.mjs`](./src/prompt.mjs).
+The Gennode persona lives in [`src/prompt.mjs`](./src/prompt.mjs).

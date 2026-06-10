@@ -1,10 +1,10 @@
 # FAQ
 
 ### What is Gennode?
-A decentralized compute network for biological & health AI. Run a node on your computer, contribute idle GPU, and earn `$GENNODE`. *Genes meet nodes.*
+A decentralized compute network for bio & AI. Run a node on your computer, contribute idle GPU, and earn `$GENNODE`. *Genes meet nodes.*
 
 ### What does a node actually do?
-It stays online and — as the network rolls out — runs jobs the network dispatches: health-AI questions, protein folding, genomics, AI inference.
+It stays online and — as the network rolls out — runs jobs the network dispatches: DNA & genome analysis, protein folding, genomics, AI inference.
 
 ### What do I need?
 A computer with a GPU (Mac / Windows / Linux), a wallet, and internet. Download from GitHub, connect your wallet, run.
@@ -13,7 +13,7 @@ A computer with a GPU (Mac / Windows / Linux), a wallet, and internet. Download 
 Points for uptime + capacity (+ completed jobs). Points convert to `$GENNODE` in the airdrop.
 
 ### Is it like io.net or Nosana?
-Same idea (run a node, earn) — but focused on one vertical: **bio & health AI**.
+Same idea (run a node, earn) — but focused on one vertical: **bio & AI**.
 
 ### What is $GENNODE?
 The network's utility token on **Base** — a 100% fair launch via Bankr. See [Token](/token).

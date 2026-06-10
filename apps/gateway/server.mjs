@@ -12,7 +12,7 @@ const WALLET_BONUS = Number(process.env.WALLET_BONUS || 25)
 const DATA_FILE = path.join(__dirname, 'data.json')
 
 // ---- inference providers (OpenAI-compatible upstreams) ----
-// venice = private tier (default, for health) · surplus = cheap tier (general/budget)
+// venice = private tier (default) · surplus = cheap tier (general/budget)
 const PROVIDERS = {
   venice: {
     url: 'https://api.venice.ai/api/v1/chat/completions',

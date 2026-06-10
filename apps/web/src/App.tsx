@@ -75,8 +75,8 @@ function MotifMolecule({ className = '' }: { className?: string }) {
 
 const problems = [
   { t: 'Compute is expensive', d: 'Protein folding, genomics and drug discovery are not lightweight — they need serious GPU power.' },
-  { t: 'Health data is huge & sensitive', d: 'A single genome is ~100GB. Storing it on someone else’s server is a privacy risk.' },
-  { t: 'Generic networks aren’t enough', d: 'Most DePIN sells empty GPU hours to anyone — none are built for private bio & health data.' },
+  { t: 'Bio data is huge & sensitive', d: 'A single genome is ~100GB. Storing it on someone else’s server is a privacy risk.' },
+  { t: 'Generic networks aren’t enough', d: 'Most DePIN sells empty GPU hours to anyone — none are built for private bio & scientific data.' },
 ]
 
 const steps = [
@@ -167,7 +167,7 @@ function Hero() {
 
           <p className="mt-6 max-w-xl text-lg text-white/70">
             Download Gennode, connect your wallet, and put your <strong className="text-white">idle GPU + storage</strong> to
-            work for a private network for <strong className="text-white">deep health &amp; DNA data</strong> — genomics,
+            work for a private network for <strong className="text-white">deep bio &amp; DNA data</strong> — genomics,
             protein folding, drug discovery, AI. Earn while it runs. Mac · Windows · Linux.
           </p>
 
@@ -204,7 +204,7 @@ function Problem() {
     <Section id="problem" className="py-20">
       <div className="text-center">
         <h2 className="font-chalk text-4xl text-white/90 md:text-5xl">The Problem</h2>
-        <p className="mt-2 text-white/60">Biological AI needs serious compute — and the market has three gaps.</p>
+        <p className="mt-2 text-white/60">Bio &amp; AI needs serious compute — and the market has three gaps.</p>
       </div>
 
       <div className="mt-12 grid gap-5 md:grid-cols-3">
@@ -220,7 +220,7 @@ function Problem() {
       <div className="mt-8 rounded-2xl border border-bluex/25 bg-bluex/5 p-7 text-center glow-text">
         <p className="text-sm uppercase tracking-widest text-white/50">Gennode is built for one vertical</p>
         <p className="font-chalk text-5xl text-bluex md:text-6xl">BIO-COMPUTE</p>
-        <p className="mt-1 text-white/60">A node-powered compute layer for biological AI. Genes meet nodes.</p>
+        <p className="mt-1 text-white/60">A node-powered compute layer for bio &amp; AI. Genes meet nodes.</p>
       </div>
     </Section>
   )
@@ -272,7 +272,7 @@ function RunNode() {
           <ul className="mt-6 space-y-3 text-sm text-white/70">
             <li>🟢 Passive — earn points for GPU, storage + uptime.</li>
             <li>🔒 Torrent-like data layer — data is encrypted &amp; sharded; you never see raw data.</li>
-            <li>🧬 Powers deep health &amp; DNA: genomics, folding, drug discovery, health Q&amp;A.</li>
+            <li>🧬 Powers deep bio &amp; DNA: genomics, folding, drug discovery, AI inference.</li>
             <li>🛡️ Wallet-bound identity — sybil-resistant, fair for everyone.</li>
           </ul>
           <div className="mt-7 flex flex-wrap gap-3">

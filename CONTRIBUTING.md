@@ -19,7 +19,7 @@ cd apps/docs && npm install && npm run dev   # http://localhost:5175
 ## Guidelines
 - Keep pull requests small and focused.
 - Run `npm run build` (and `npm run typecheck` in `apps/web`) before submitting.
-- This is a health-adjacent project — accuracy, safety and clear disclaimers matter.
+- This is a bio & AI / science project — accuracy and clarity matter.
 
 ## Issues
 Open an issue with clear, reproducible steps. For security reports, see [SECURITY.md](./SECURITY.md).

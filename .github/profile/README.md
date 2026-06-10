@@ -2,10 +2,10 @@
 
 # Gennode
 
-**Private health AI, built for one vertical: bio.**
+**A decentralized compute + data network for bio & AI.**
 
-Ask your health questions privately — no logging, no profiling.
-Powered today by Venice; tomorrow by a community GPU node network.
+Run a node, contribute GPU + storage, power bio & AI compute.
+Powered today by open models on Venice; tomorrow by a community GPU node network.
 
 *Genes meet nodes.*
 
@@ -13,10 +13,10 @@ Powered today by Venice; tomorrow by a community GPU node network.
 
 ---
 
-- 🧬 **Private health AI** (beta) — understand symptoms & lab results; never a diagnosis
+- 🧬 **Bio & AI compute** — DNA & genome analysis, protein folding, molecule & drug discovery, multi-omics, scientific simulation, AI inference
 - ⛓ **$GENNODE** on Base — a 100% fair launch; fees fund the network (no team, no pre-mine)
-- 🖥 **Node network** *(coming)* — run a node, earn for real compute: DNA, protein folding, genomics
+- 🖥 **Node network** — run a node (GPU + storage), earn `$GENNODE` for real compute
 
 🌐 Website (soon) · 📄 Docs (soon) · 𝕏 [@gennode](https://x.com/gennode)
 
-> Beta. Information & wellness only — not medical advice. $GENNODE is a utility token; nothing here is financial advice.
+> Beta. $GENNODE is a utility token; nothing here is financial advice.

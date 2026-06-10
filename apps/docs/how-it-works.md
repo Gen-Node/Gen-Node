@@ -1,6 +1,6 @@
 # How it works
 
-Gennode is a **decentralized compute network** for biological & health AI — an io.net-style network, focused on one vertical: **bio + health**. You contribute compute by running a node; the network dispatches jobs to nodes; you earn.
+Gennode is a **decentralized compute network** for bio & AI — an io.net-style network, focused on one vertical: **bio & AI**. You contribute compute by running a node; the network dispatches jobs to nodes; you earn.
 
 ## For node operators (supply)
 1. **Download** the Gennode app (macOS / Windows / Linux) from **GitHub Releases**.
@@ -10,17 +10,17 @@ Gennode is a **decentralized compute network** for biological & health AI — an
 
 ## What the nodes solve (demand)
 When a job arrives, the coordinator routes it to capable nodes:
-- **Health AI** — people ask health questions privately; a node runs the inference and returns the answer.
+- **DNA & genome analysis** — a node runs the job and returns the result.
 - **Bio-compute** — protein folding, genomics, molecule & drug discovery.
-- **AI inference** — model inference for the bio/health vertical.
+- **AI inference** — model inference for the bio & AI vertical.
 
 ## Architecture (high level)
 | Layer | Role |
 | --- | --- |
 | **Node app** | runs on your machine, contributes **GPU + disk**, completes jobs |
-| **Compute** | nodes analyze data — DNA, proteins, imaging, health AI |
+| **Compute** | nodes analyze data — DNA, proteins, multi-omics, AI inference |
 | **Data (torrent-like)** | encrypted, sharded data served peer-to-peer across nodes |
 | **Coordinator** | registers nodes, dispatches & verifies jobs, tracks points |
 | **On-chain (Base)** | `$GENNODE`, rewards, points → airdrop |
 
-> v1 focuses on **node onboarding + uptime/benchmark points**. Real job execution (health AI, bio-compute) rolls out next — see the [Roadmap](/roadmap).
+> v1 focuses on **node onboarding + uptime/benchmark points**. Real job execution (AI inference, bio-compute) rolls out next — see the [Roadmap](/roadmap).
