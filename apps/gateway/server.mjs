@@ -312,6 +312,26 @@ const server = http.createServer(async (req, res) => {
     })
   }
 
+  // a wallet's nodes (links the desktop app ↔ dashboard)
+  if (req.method === 'GET' && pathname === '/v1/nodes/by-wallet') {
+    const wallet = String(url.searchParams.get('wallet') || '').toLowerCase()
+    if (!/^0x[0-9a-f]{40}$/.test(wallet)) return sendJson(res, 400, { error: 'invalid wallet' })
+    const now = Date.now()
+    const allSorted = Object.values(db.nodes).sort((a, b) => b.points - a.points)
+    const nodes = allSorted
+      .filter((n) => n.wallet === wallet)
+      .map((n) => ({
+        nodeId: n.nodeId,
+        points: Math.round(n.points),
+        uptimeSec: n.uptimeSec,
+        cap: n.cap,
+        online: now - n.lastSeen < ONLINE_WINDOW_MS,
+        rank: allSorted.findIndex((x) => x.nodeId === n.nodeId) + 1,
+        specs: n.specs,
+      }))
+    return sendJson(res, 200, { wallet, nodes, totalPoints: nodes.reduce((s, n) => s + n.points, 0) })
+  }
+
   sendJson(res, 404, { error: 'not found' })
 })
 
