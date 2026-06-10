@@ -53,6 +53,19 @@ function save() {
 const db = load()
 if (!db.nodes) db.nodes = {} // node network: nodeKey -> node record
 const devices = {} // device-auth: code -> { apiKey, createdAt }
+const nodeLinks = {} // node wallet-link: code -> { nodeKey, createdAt }
+const MIME = {
+  '.html': 'text/html; charset=utf-8',
+  '.js': 'text/javascript; charset=utf-8',
+  '.css': 'text/css; charset=utf-8',
+  '.svg': 'image/svg+xml',
+  '.png': 'image/png',
+  '.json': 'application/json',
+  '.ico': 'image/x-icon',
+  '.woff2': 'font/woff2',
+  '.woff': 'font/woff',
+  '.map': 'application/json',
+}
 
 // ---- helpers ----
 const CORS = {
@@ -110,14 +123,23 @@ const server = http.createServer(async (req, res) => {
     return res.end()
   }
 
-  // dashboard
-  if (req.method === 'GET' && (pathname === '/' || pathname === '/dashboard')) {
+  // built React dashboard (apps/dashboard/dist) for all non-API GET requests (SPA fallback)
+  if (req.method === 'GET' && !pathname.startsWith('/v1/') && pathname !== '/health') {
+    const distDir = path.join(__dirname, '..', 'dashboard', 'dist')
+    const rel = pathname === '/' ? 'index.html' : pathname.replace(/^\/+/, '')
+    let file = path.normalize(path.join(distDir, rel))
+    if (!file.startsWith(distDir) || !fs.existsSync(file) || fs.statSync(file).isDirectory()) {
+      file = path.join(distDir, 'index.html')
+    }
     try {
-      const html = fs.readFileSync(path.join(__dirname, 'public', 'dashboard.html'), 'utf8')
-      res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' })
-      return res.end(html)
+      const data = fs.readFileSync(file)
+      res.writeHead(200, {
+        'Content-Type': MIME[path.extname(file).toLowerCase()] || 'application/octet-stream',
+        'Cache-Control': rel.startsWith('assets/') ? 'public, max-age=31536000, immutable' : 'no-cache',
+      })
+      return res.end(data)
     } catch {
-      return sendJson(res, 500, { error: 'dashboard missing' })
+      return sendJson(res, 500, { error: 'dashboard not built' })
     }
   }
 
@@ -297,6 +319,30 @@ const server = http.createServer(async (req, res) => {
     const address = String(b.address || '').toLowerCase()
     if (!/^0x[0-9a-f]{40}$/.test(address)) return sendJson(res, 400, { error: 'invalid address' })
     db.nodes[nk].wallet = address
+    save()
+    return sendJson(res, 200, { ok: true, wallet: address })
+  }
+
+  // node ↔ dashboard wallet link: the app starts a code, the (Privy) dashboard approves it
+  if (req.method === 'POST' && pathname === '/v1/node/link-start') {
+    const b = await readBody(req)
+    const nk = authNode(req, b)
+    if (!nk) return sendJson(res, 401, { error: 'unknown node' })
+    const code = crypto.randomBytes(4).toString('hex')
+    nodeLinks[code] = { nodeKey: nk, createdAt: Date.now() }
+    const base = (process.env.PUBLIC_URL || `http://localhost:${PORT}`).replace(/\/+$/, '')
+    return sendJson(res, 200, { code, url: `${base}/?link=${code}` })
+  }
+  if (req.method === 'POST' && pathname === '/v1/node/link-approve') {
+    const b = await readBody(req)
+    const link = nodeLinks[String(b.code || '')]
+    if (!link || Date.now() - link.createdAt > 600000) return sendJson(res, 400, { error: 'invalid or expired code' })
+    const address = String(b.address || '').toLowerCase()
+    if (!/^0x[0-9a-f]{40}$/.test(address)) return sendJson(res, 400, { error: 'invalid address' })
+    const n = db.nodes[link.nodeKey]
+    if (!n) return sendJson(res, 404, { error: 'node gone' })
+    n.wallet = address
+    delete nodeLinks[String(b.code)]
     save()
     return sendJson(res, 200, { ok: true, wallet: address })
   }
