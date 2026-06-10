@@ -11,6 +11,7 @@ type NodeRow = {
   specs?: { cpus?: number; gpu?: string | null; memGB?: number }
 }
 type Stats = { nodesOnline: number; nodesTotal: number; totalPoints: number }
+type LeaderRow = { rank: number; id: string; wallet: string | null; points: number; uptimeSec: number; cap: number; online: boolean }
 
 function fmtDur(sec: number) {
   sec = Math.round(sec || 0)
@@ -27,6 +28,7 @@ export default function App() {
   const [nodes, setNodes] = useState<NodeRow[]>([])
   const [total, setTotal] = useState(0)
   const [stats, setStats] = useState<Stats | null>(null)
+  const [leaders, setLeaders] = useState<LeaderRow[]>([])
   const [linkMsg, setLinkMsg] = useState('')
   const timer = useRef<number | null>(null)
 
@@ -46,10 +48,19 @@ export default function App() {
   }
 
   useEffect(() => {
-    fetch(api + '/v1/network/stats')
-      .then((r) => r.json())
-      .then(setStats)
-      .catch(() => {})
+    const load = () => {
+      fetch(api + '/v1/network/stats')
+        .then((r) => r.json())
+        .then(setStats)
+        .catch(() => {})
+      fetch(api + '/v1/leaderboard')
+        .then((r) => r.json())
+        .then((j) => setLeaders(j.nodes || []))
+        .catch(() => {})
+    }
+    load()
+    const t = window.setInterval(load, 30000)
+    return () => clearInterval(t)
   }, [api])
 
   useEffect(() => {
@@ -182,6 +193,40 @@ export default function App() {
             <span>points</span>
           </div>
         </div>
+      </div>
+
+      <div className="card">
+        <h3>Leaderboard — top nodes</h3>
+        {leaders.length === 0 ? (
+          <p className="muted">
+            No nodes yet. Be the first — <code>npx @gennode/node</code>.
+          </p>
+        ) : (
+          <table className="lb">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Node</th>
+                <th>Wallet</th>
+                <th>Points</th>
+                <th>Uptime</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {leaders.map((l) => (
+                <tr key={l.id}>
+                  <td>{l.rank}</td>
+                  <td className="mono">{l.id}</td>
+                  <td className="mono muted">{l.wallet || '—'}</td>
+                  <td>{l.points.toLocaleString()}</td>
+                  <td>{fmtDur(l.uptimeSec)}</td>
+                  <td>{l.online ? <span className="on">●</span> : <span className="off">○</span>}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
       </div>
 
       <footer>
