@@ -96,7 +96,7 @@ export default function Intro({ onDone }: { onDone: () => void }) {
 
       <div className="-mt-2 text-center">
         <div className="font-chalk text-6xl text-bluex glow-text fade-up md:text-7xl">Gennode</div>
-        <div className="mt-1 text-sm tracking-[0.3em] text-white/55 fade-up">DECENTRALIZED BIO-COMPUTE</div>
+        <div className="mt-1 text-sm tracking-[0.3em] text-white/55 fade-up">PRIVATE BIO-COMPUTE</div>
       </div>
     </div>
   )

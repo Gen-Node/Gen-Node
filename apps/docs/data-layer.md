@@ -15,7 +15,7 @@ Deep bio & DNA data is **huge** (a single human genome is ~100 GB raw) and **sen
 - **Privacy** — encrypted shards; operators never see raw data.
 - **Censorship-resistant** — no single point of control or failure.
 - **Compute near data** — jobs run where the (encrypted) data already lives.
-- **Model distribution** — model weights, including the **Gennode LLM**, are served the same way.
+- **Model distribution** — model weights, including **Gennode's bio model**, are served the same way.
 
 ## Earning
 A node earns `$GENNODE` for **storing and serving** data shards — proven with storage proofs — on top of compute and uptime. Contribute **GPU**, **disk**, or both.

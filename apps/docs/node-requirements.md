@@ -16,7 +16,7 @@ Running a Gennode node is light to start (uptime + benchmark) and scales with wh
 - **Uptime:** the longer you stay online, the more points
 
 ## What a node contributes
-- **Compute (GPU)** — run jobs: DNA & genome analysis, protein folding, AI inference
+- **Compute (GPU)** — run jobs: DNA & genome analysis, protein folding, disease research
 - **Storage (disk)** — hold & serve encrypted data shards
 - **Uptime** — availability points
 

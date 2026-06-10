@@ -3,7 +3,7 @@ import { defineConfig } from 'vitepress'
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: 'Gennode',
-  description: 'Gennode — a decentralized compute network for bio & AI. Run a node, earn $GENNODE. Documentation.',
+  description: 'Gennode — a private, torrent-like decentralized network for heavy bio & health compute. Run a node, earn $GENNODE. Documentation.',
   appearance: 'dark',
   cleanUrls: true,
   lastUpdated: true,

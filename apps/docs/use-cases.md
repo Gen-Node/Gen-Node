@@ -23,11 +23,12 @@ Gennode is built for **deep bio & scientific data** — the workloads that need 
 ## 🔬 Multi-omics & research
 - Transcriptomics, epigenomics, microbiome, metabolomics
 - Large-scale biological simulations
-- Training & serving bio & AI models — including the **Gennode LLM**
+- Disease & health research at scale
+- Training & serving bio models — including **Gennode's bio model**
 
-## 🤖 AI inference & models
-- General AI inference at scale across the node swarm
-- Distributed model training & fine-tuning
-- Serving the purpose-built **Gennode bio/AI LLM** — built from scratch if needed
+## 🤖 AI models for genomics & protein analysis
+- Running AI models that analyze genomes, variants and multi-omics data
+- Distributed training & fine-tuning of bio models (protein folding, genomics)
+- Serving the purpose-built **Gennode bio model** — built from scratch if needed
 
 > Each of these needs enormous GPU time and terabytes of sensitive data. That is exactly what a **private, decentralized** network is for. See [The network](/node-network) and the [Data layer](/data-layer).

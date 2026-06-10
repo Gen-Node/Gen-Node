@@ -1,26 +1,26 @@
 # Whitepaper
 
-**Gennode — a decentralized compute network for bio & AI.**
+**Gennode — a private, torrent-like decentralized network for heavy bio & health compute.**
 *Draft · Chain: Base · Token: $GENNODE · Status: pre-launch*
 
 > Informational and a work in progress. Not financial, investment or legal advice. See [Disclaimers](/disclaimers).
 
 ## 1. Abstract
-Gennode is an **io.net-style decentralized network for deep bio & DNA data** — focused on one vertical. People run a **node** that contributes **compute + storage**. Today, nodes earn for **uptime** and a CPU benchmark that proves real hardware. On the roadmap, the network will **analyze sensitive biological data** — DNA & genome analysis, protein folding, drug discovery, multi-omics, scientific simulation and AI inference — and store it in a **torrent-like, encrypted data layer (planned)**. Open models run today; a purpose-built **Gennode bio/AI LLM** comes over time. Operators earn **`$GENNODE`**. `$GENNODE` is not yet launched; it is planned as a 100% fair launch with rewards funded by trading fees, not a token allocation.
+Gennode is a **private, torrent-like decentralized network for heavy bio & health computation** — focused on one vertical. People run a **node** that contributes **compute + storage**. Today, nodes earn for **uptime** and a CPU benchmark that proves real hardware. On the roadmap, the network will **analyze sensitive biological data** — DNA & genome analysis, protein folding, drug discovery, disease research, multi-omics and scientific simulation — and store it in a **torrent-like, encrypted data layer (planned)**. Open models run today; a purpose-built **Gennode bio model** comes over time. Operators earn **`$GENNODE`**. `$GENNODE` is not yet launched; it is planned as a 100% fair launch with rewards funded by trading fees, not a token allocation.
 
 ## 2. Problem
-Bio & AI needs huge GPU compute that is **expensive, centralized and privacy-sensitive** (genomic & scientific data). Generic GPU networks aren't tuned for this vertical.
+Bio & health research needs huge GPU compute that is **expensive, centralized and privacy-sensitive** (genomic & scientific data). Generic GPU networks aren't tuned for this vertical, and they lack a private place to store the large, sensitive datasets involved.
 
 ## 3. Solution
-Aggregate **idle community GPUs** into a **privacy-first, bio & AI-focused** compute network. Easy to join (one-click node, like Ollama), fair (wallet identity + anti-sybil), aligned via `$GENNODE`.
+Aggregate **idle community GPUs** into a **privacy-first, bio & health-focused** compute network with a **torrent-like, encrypted data layer**. Easy to join (one-click node, like joining a torrent swarm), fair (wallet identity + anti-sybil), aligned via `$GENNODE`.
 
 ## 4. The node app
 A headless CLI is **available now** (`npx @gennode/node`): register and earn on servers or any machine. A cross-platform desktop app (Mac / Windows / Linux) is **available** (early access) via **GitHub Releases** — connect wallet → run → earn, with live points/uptime in the tray. A GPU is recommended but not required.
 
 ## 5. The network — three layers
-1. **Compute** — nodes run jobs: DNA & genome analysis, protein folding, drug discovery, multi-omics, scientific simulation and AI inference (**roadmap**).
+1. **Compute** — nodes run jobs: DNA & genome analysis, protein folding, drug discovery, disease research, multi-omics and scientific simulation (**roadmap**).
 2. **Data (torrent-like) — planned** — datasets, model weights and results will be encrypted, chunked, content-addressed (DHT) and served peer-to-peer; erasure-coded for durability.
-3. **Models** — open models today; a purpose-built **Gennode bio/AI LLM** served across nodes over time.
+3. **Models** — bio AI models the network runs to analyze biological data (protein folding, genomics); open models today, a purpose-built **Gennode bio model** served across nodes over time.
 
 The planned end-to-end flow, once compute and the data layer are live:
 ```

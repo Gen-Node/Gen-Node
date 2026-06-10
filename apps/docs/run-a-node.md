@@ -1,6 +1,6 @@
 # Run a node
 
-Anyone can run a Gennode node — as easy as installing Ollama.
+Anyone can run a Gennode node — as easy as joining a torrent swarm.
 
 ## Requirements
 - A computer running macOS, Windows or Linux

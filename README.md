@@ -2,7 +2,7 @@
 
 # Gennode
 
-**A decentralized compute and data network for bio & AI.**
+**A private, torrent-like decentralized compute network for bio & DNA.**
 
 *Genes meet nodes.*
 
@@ -16,7 +16,7 @@
 
 </div>
 
-Gennode turns idle machines into a network for science. Run a node, contribute idle GPU and storage, and earn points for uptime and capacity. Points convert to `$GENNODE` in a future airdrop.
+Gennode is a private, torrent-like decentralized compute network for heavy bio & health computation — DNA & genome analysis, protein folding, drug discovery, disease research, and genomics. Run a node, contribute idle GPU and storage, and earn points for uptime and capacity. Big, sensitive datasets are stored torrent-like: encrypted and sharded across community machines. Points convert to `$GENNODE` in a future airdrop.
 
 ## Run a node
 
@@ -49,13 +49,13 @@ See [`packages/node`](./packages/node) for details.
 
 ## What is Gennode?
 
-A decentralized compute and data network for bio & AI, built in three layers:
+A private, torrent-like decentralized compute network for heavy bio & health computation, built in three layers:
 
 | Layer | What it does | Status |
 | --- | --- | --- |
-| **Compute** | Nodes power DNA and genome analysis, protein folding, drug discovery, multi-omics, scientific simulation, and AI inference. | Roadmap |
-| **Data** | A torrent-like encrypted data layer: scientific datasets are encrypted, sharded, and served peer-to-peer across nodes. | Planned |
-| **Models** | Open models today; a purpose-built Gennode bio/AI model later. | Open models live |
+| **Compute** | Nodes power DNA & genome analysis, protein folding, drug discovery, disease/health research, genomics, and multi-omics. AI models for genomics and protein analysis run on the network as a compute method. | Roadmap |
+| **Data** | A torrent-like encrypted data layer: large, sensitive scientific datasets are encrypted, sharded, and served peer-to-peer across nodes (like BitTorrent/IPFS but encrypted and incentivized), with a DHT and erasure coding. | Planned |
+| **Models** | Open bio models today; a purpose-built Gennode bio model the network runs to analyze biological data later. | Open models live |
 
 **Progressive decentralization:** ship a real, working product first; add real compute jobs and the data layer as the network and the token economy grow.
 
@@ -74,14 +74,6 @@ A decentralized compute and data network for bio & AI, built in three layers:
 - Treasury, node rewards, and the airdrop are funded entirely by trading fees.
 
 See the [Whitepaper](https://docs.gennode.org/whitepaper).
-
-## The assistant (secondary)
-
-The CLI also ships a bio & AI chat assistant. It is a secondary feature — running a node is the primary use.
-
-```bash
-gennode chat
-```
 
 ## Monorepo
 

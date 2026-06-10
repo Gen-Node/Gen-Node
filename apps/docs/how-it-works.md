@@ -1,6 +1,6 @@
 # How it works
 
-Gennode is a **decentralized compute network** for bio & AI — an io.net-style network, focused on one vertical: **bio & AI**. You contribute compute by running a node; the network dispatches jobs to nodes; you earn.
+Gennode is a **private, torrent-like decentralized compute network** focused on one vertical: **heavy bio & health computation**. You contribute compute by running a node; the network dispatches jobs to nodes; you earn.
 
 ## For node operators (supply)
 1. **Run a node** — start headless with `npx @gennode/node`, or download the desktop app (macOS / Windows / Linux) from [GitHub Releases](https://github.com/Gen-Node/Gen-Node/releases).
@@ -11,16 +11,16 @@ Gennode is a **decentralized compute network** for bio & AI — an io.net-style 
 ## What the nodes solve (demand)
 When a job arrives, the coordinator routes it to capable nodes:
 - **DNA & genome analysis** — a node runs the job and returns the result.
-- **Bio-compute** — protein folding, genomics, molecule & drug discovery.
-- **AI inference** — model inference for the bio & AI vertical.
+- **Bio-compute** — protein folding, genomics, molecule & drug discovery, disease research.
+- **Bio models** — running AI models that analyze genomics and protein data.
 
 ## Architecture (high level)
 | Layer | Role |
 | --- | --- |
 | **Node app** | runs on your machine, contributes **GPU + disk**, completes jobs |
-| **Compute** | nodes analyze data — DNA, proteins, multi-omics, AI inference (roadmap) |
+| **Compute** | nodes analyze data — DNA, proteins, multi-omics, disease research (roadmap) |
 | **Data (torrent-like)** | encrypted, sharded data served peer-to-peer across nodes (planned) |
 | **Coordinator** | registers nodes, dispatches & verifies jobs, tracks points |
 | **On-chain (Base)** | `$GENNODE`, rewards, points → airdrop |
 
-> v1 focuses on **node onboarding + uptime/benchmark points**. Real job execution (AI inference, bio-compute) rolls out next — see the [Roadmap](/roadmap).
+> v1 focuses on **node onboarding + uptime/benchmark points**. Real job execution (bio-compute, genomics, protein analysis) rolls out next — see the [Roadmap](/roadmap).

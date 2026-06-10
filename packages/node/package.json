@@ -1,7 +1,7 @@
 {
   "name": "@gennode/node",
-  "version": "0.1.0",
-  "description": "Run a Gennode node — contribute idle compute to a decentralized network for bio & AI, and earn $GENNODE.",
+  "version": "0.1.1",
+  "description": "Run a Gennode node — contribute idle compute to a private, decentralized network for bio & DNA, and earn $GENNODE.",
   "type": "module",
   "bin": {
     "gennode": "src/index.mjs"

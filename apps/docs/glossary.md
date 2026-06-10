@@ -2,7 +2,7 @@
 
 - **Node** — the Gennode app running on your machine, contributing GPU + storage to the network.
 - **Coordinator** — matches jobs to capable nodes, verifies results, and tracks points.
-- **Job** — a unit of work (e.g. a DNA analysis, a protein fold, an inference request).
+- **Job** — a unit of work (e.g. a DNA analysis, a protein fold, a genomics computation).
 - **Points** — earned as `uptime × capacity` today (completed jobs add points as real compute goes live); convert to `$GENNODE` in the airdrop.
 - **Data layer** *(planned)* — a torrent-like, encrypted storage layer spread across nodes.
 - **Content addressing** — identifying data by its hash (tamper-proof, de-duplicated).

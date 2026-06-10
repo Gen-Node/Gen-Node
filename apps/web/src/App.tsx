@@ -81,7 +81,7 @@ const problems = [
 ]
 
 const steps = [
-  { n: '01', t: 'Download', d: 'Get the Gennode app for macOS, Windows or Linux. One click, like Ollama.', tag: 'Soon', live: false },
+  { n: '01', t: 'Download', d: 'Get the Gennode app for macOS, Windows or Linux. One click — or run npx @gennode/node.', tag: 'Soon', live: false },
   { n: '02', t: 'Connect wallet', d: 'Link a wallet — your node identity. Keeps the network sybil-resistant and fair.', tag: 'Soon', live: false },
   { n: '03', t: 'Run a node', d: 'Your idle GPU joins the network and stays online. It runs quietly in the tray.', tag: 'Soon', live: false },
   { n: '04', t: 'Earn $GENNODE', d: 'Earn points for uptime + capacity. Points convert to $GENNODE in the airdrop.', tag: 'Soon', live: false },
@@ -91,8 +91,8 @@ const roadmap = [
   { p: 'Phase 1', t: 'Node app + points', d: 'Desktop node (Mac/Win/Linux), wallet, uptime → points, leaderboard.', state: 'now' },
   { p: 'Phase 2', t: 'Token launch', d: '$GENNODE fair launch on Base via Bankr. Season 1 points open.', state: 'next' },
   { p: 'Phase 3', t: 'Airdrop & growth', d: 'Points → $GENNODE airdrop. Referrals, staking, holder boosts.', state: 'next' },
-  { p: 'Phase 4', t: 'Real compute', d: 'Nodes run real jobs (AI inference) with proof-of-compute & paying demand.', state: 'coming' },
-  { p: 'Phase 5', t: 'Bio-compute', d: 'DNA, protein folding & genomics jobs. Genes meet nodes.', state: 'coming' },
+  { p: 'Phase 4', t: 'Torrent-like data layer', d: 'Encrypted, sharded, erasure-coded storage for big bio datasets across nodes (planned).', state: 'coming' },
+  { p: 'Phase 5', t: 'Bio-compute', d: 'DNA & genome analysis, protein folding, drug discovery & genomics jobs. Genes meet nodes.', state: 'coming' },
 ]
 
 const supply = [
@@ -155,15 +155,15 @@ function Hero() {
           </div>
 
           <h1 className="text-5xl font-extrabold leading-[1.05] tracking-tight md:text-6xl">
-            Run a node,
+            Run a node, power private bio compute,
             <br />
             <span className="font-chalk text-6xl text-bluex glow-text md:text-7xl">earn $GENNODE.</span>
           </h1>
 
           <p className="mt-6 max-w-xl text-lg text-white/70">
             Download Gennode, connect your wallet, and put your <strong className="text-white">idle GPU + storage</strong> to
-            work powering a private network for <strong className="text-white">deep bio &amp; AI data</strong> — genomics,
-            protein folding, drug discovery, AI. Earn while it runs. Mac · Windows · Linux.
+            work powering a <strong className="text-white">private, torrent-like network for bio &amp; DNA compute</strong> —
+            DNA &amp; genome analysis, protein folding, drug discovery, disease research. Earn while it runs. Mac · Windows · Linux.
           </p>
 
           <div className="mt-9 flex flex-wrap gap-4">
@@ -199,7 +199,7 @@ function Problem() {
     <Section id="problem" className="py-20">
       <div className="text-center">
         <h2 className="font-chalk text-4xl text-white/90 md:text-5xl">The Problem</h2>
-        <p className="mt-2 text-white/60">Bio &amp; AI needs serious compute — and the market has three gaps.</p>
+        <p className="mt-2 text-white/60">Bio &amp; health research needs serious compute — and the market has three gaps.</p>
       </div>
 
       <div className="mt-12 grid gap-5 md:grid-cols-3">
@@ -215,7 +215,7 @@ function Problem() {
       <div className="mt-8 rounded-2xl border border-bluex/25 bg-bluex/5 p-7 text-center glow-text">
         <p className="text-sm uppercase tracking-widest text-white/50">Gennode is built for one vertical</p>
         <p className="font-chalk text-5xl text-bluex md:text-6xl">BIO-COMPUTE</p>
-        <p className="mt-1 text-white/60">A node-powered compute layer for bio &amp; AI. Genes meet nodes.</p>
+        <p className="mt-1 text-white/60">A private, node-powered compute layer for bio &amp; DNA. Genes meet nodes.</p>
       </div>
     </Section>
   )
@@ -262,12 +262,12 @@ function RunNode() {
           <h2 className="mt-4 text-3xl font-bold md:text-4xl">A node anyone can run</h2>
           <p className="mt-4 text-white/70">
             One install, no command line, no config. It runs quietly in your tray and turns idle GPU time into rewards —
-            the way Ollama made local AI a one-click experience.
+            a one-click way to join the network. Prefer the terminal? Run <code className="rounded bg-white/10 px-1.5 py-0.5 text-bluex">npx @gennode/node</code>.
           </p>
           <ul className="mt-6 space-y-3 text-sm text-white/70">
             <li>🟢 Passive — earn points for GPU, storage + uptime.</li>
-            <li>🔒 Torrent-like data layer — data is encrypted &amp; sharded; you never see raw data.</li>
-            <li>🧬 Powers deep bio &amp; DNA: genomics, folding, drug discovery, AI inference.</li>
+            <li>🔒 Torrent-like data layer — bio datasets are encrypted &amp; sharded; you never see raw data.</li>
+            <li>🧬 Powers private bio &amp; DNA: genome analysis, protein folding, drug discovery, disease research.</li>
             <li>🛡️ Wallet-bound identity — sybil-resistant, fair for everyone.</li>
           </ul>
           <div className="mt-7 flex flex-wrap gap-3">
@@ -455,8 +455,8 @@ const showcase = [
   { src: '/models/cell.glb', label: 'Cells & genomics', tint: '#5eead4' },
   { src: '/models/cluster.glb', label: 'Molecule discovery', tint: '#38bdf8' },
   { src: '/models/capsule.glb', label: 'Drug discovery', tint: '#22d3ee' },
-  { src: '/models/atom.glb', label: 'AI inference', tint: '#38bdf8' },
-  { src: '/models/dna.glb', label: 'DNA & genomics', tint: '#22d3ee' },
+  { src: '/models/atom.glb', label: 'Disease research', tint: '#38bdf8' },
+  { src: '/models/dna.glb', label: 'DNA & genome analysis', tint: '#22d3ee' },
   { src: '/models/node.glb', label: 'Your node', tint: '#818cf8' },
   { src: '/models/galaxy.glb', label: 'The network', tint: '#a78bfa' },
 ]
@@ -466,7 +466,7 @@ function Showcase() {
     <Section id="science" className="py-20">
       <h2 className="text-center text-3xl font-bold md:text-4xl">What the network computes</h2>
       <p className="mx-auto mt-2 max-w-xl text-center text-white/60">
-        Built for one vertical: bio &amp; AI. The workloads your nodes will power.
+        Built for one vertical: private bio &amp; DNA. The heavy bio &amp; health workloads your nodes will power.
       </p>
       <div className="mt-12 grid grid-cols-2 gap-5 md:grid-cols-3">
         {showcase.map((m) => (
@@ -481,9 +481,9 @@ function Showcase() {
 }
 
 const layers = [
-  { n: '01', t: 'Compute', d: 'Nodes run jobs on idle GPUs — DNA & genome analysis, protein folding, drug discovery, AI inference.', c: '#22d3ee' },
-  { n: '02', t: 'Data — torrent-like', d: 'Datasets, weights & results are encrypted, sharded and served peer-to-peer across nodes. Operators never see raw data.', c: '#5eead4' },
-  { n: '03', t: 'Models', d: 'Open models today; a purpose-built Gennode bio & AI LLM served across the network over time.', c: '#818cf8' },
+  { n: '01', t: 'Compute', d: 'Nodes run heavy bio jobs on idle GPUs — DNA & genome analysis, protein folding, drug discovery, disease research.', c: '#22d3ee' },
+  { n: '02', t: 'Data — torrent-like', d: 'Big, sensitive bio datasets & results are encrypted, sharded and served peer-to-peer across nodes (planned). Operators never see raw data.', c: '#5eead4' },
+  { n: '03', t: 'Models', d: 'Open bio models today; a purpose-built Gennode bio model the network runs to analyze DNA & proteins over time.', c: '#818cf8' },
 ]
 
 function Layers() {
