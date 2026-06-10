@@ -5,6 +5,7 @@ import os from 'node:os'
 import readline from 'node:readline'
 import { spawn } from 'node:child_process'
 import { GENNODE_SYSTEM_PROMPT } from './prompt.mjs'
+import { runNode, nodeStatus, linkWallet } from './node.mjs'
 
 const CONFIG_DIR = path.join(os.homedir(), '.gennode')
 const CONFIG_FILE = path.join(CONFIG_DIR, 'config.json')
@@ -129,28 +130,28 @@ async function answer(messages, backend) {
 }
 
 const HELP = `
-🧬 Gennode — bio & AI assistant for the compute network, run locally (macOS & Windows)
+🧬 Gennode — run a node for the bio & AI compute network (macOS · Windows · Linux)
 
 Usage:
-  gennode setup                 Guided setup (cloud credits / local model / Venice key)
-  gennode                       Start an interactive chat
-  gennode ask "your question"   One-shot question
-  gennode login                 Save your Venice API key (private, BYO-key mode)
-  gennode connect <url> <key>   Connect to a Gennode gateway (free credits)
+  npx @gennode/node             Start a node (register + earn points)   ← main
+  gennode node                  Start a node
+  gennode node status           Show your node's points, uptime & rank
+  gennode wallet 0x…            Link a payout wallet to your node
+  gennode chat                  Chat with the Gennode bio & AI assistant
+  gennode ask "question"        One-shot question to the assistant
+  gennode setup                 Connect an account / wallet via the dashboard
   gennode help                  Show this help
 
+Run a node:
+  1) npx @gennode/node
+  2) gennode wallet 0x…         (link your rewards wallet)
+  3) leave it running — you earn points for uptime + capacity
+
 Options:
-  --ollama                      Use a local Ollama model (fully offline) instead of Venice
-  --cheap / --private           (gateway) pick the cheap (Surplus) or private (Venice) tier
-  --model <name>                Model (default: Venice 'llama-3.3-70b' / Ollama 'llama3.2')
-  --key <key>                   Venice API key (overrides saved key / env)
+  --wallet 0x…                  Set the payout wallet when starting a node
+  --ollama / --cheap / --private / --model <m> / --key <k>   (assistant backends)
 
-Setup:
-  1) Get a Venice API key: https://venice.ai
-  2) gennode login   (or set the VENICE_API_KEY environment variable)
-  3) gennode
-
-Privacy: your questions go only to the backend you choose. Gennode logs nothing.
+Your node contributes idle compute to a decentralized network for bio & AI.
 ${DISCLAIMER}
 `
 
@@ -243,6 +244,21 @@ async function main() {
 
   if (cmd === 'setup') return setup(args)
 
+  if (cmd === 'node') {
+    const cfg = loadConfig()
+    if (args._[1] === 'status') return nodeStatus(cfg)
+    if (typeof args.flags.wallet === 'string') {
+      cfg.wallet = String(args.flags.wallet).toLowerCase()
+      saveConfig(cfg)
+    }
+    return runNode(cfg, saveConfig)
+  }
+
+  if (cmd === 'wallet') {
+    const cfg = loadConfig()
+    return linkWallet(cfg, saveConfig, args._[1])
+  }
+
   if (cmd === 'connect') {
     const url = args._[1]
     const gkey = args._[2]
@@ -283,13 +299,20 @@ async function main() {
     return
   }
 
-  // first run, nothing configured → guided setup
+  if (cmd === 'chat') return interactiveChat(args)
+
+  // default (no command): run a node — this is the product
+  return runNode(loadConfig(), saveConfig)
+}
+
+async function interactiveChat(args) {
   {
     const c = loadConfig()
-    if (!c.gatewayKey && !c.veniceApiKey && !c.backend && !args.flags.ollama && !args.flags.key) return setup(args)
+    if (!c.gatewayKey && !c.veniceApiKey && !c.backend && !args.flags.ollama && !args.flags.key) {
+      console.log('No assistant backend yet — connecting one.')
+      return setup(args)
+    }
   }
-
-  // interactive chat
   let backend
   try {
     backend = resolveBackend(args)

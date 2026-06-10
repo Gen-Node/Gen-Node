@@ -9,6 +9,9 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const PORT = Number(process.env.PORT || 8787)
 const FREE_CREDITS = Number(process.env.FREE_CREDITS || 25)
 const WALLET_BONUS = Number(process.env.WALLET_BONUS || 25)
+const HEARTBEAT_SEC = Number(process.env.HEARTBEAT_SEC || 30)
+const ONLINE_WINDOW_MS = HEARTBEAT_SEC * 2500 // a node counts as online for ~2.5 missed beats
+const POINTS_PER_MIN = Number(process.env.POINTS_PER_MIN || 1)
 const DATA_FILE = path.join(__dirname, 'data.json')
 
 // ---- inference providers (OpenAI-compatible upstreams) ----
@@ -48,6 +51,7 @@ function save() {
   fs.writeFileSync(DATA_FILE, JSON.stringify(db, null, 2))
 }
 const db = load()
+if (!db.nodes) db.nodes = {} // node network: nodeKey -> node record
 const devices = {} // device-auth: code -> { apiKey, createdAt }
 
 // ---- helpers ----
@@ -77,6 +81,23 @@ function authUser(req) {
   const h = req.headers.authorization || ''
   const key = h.replace(/^Bearer\s+/i, '').trim()
   return db.users[key] ? key : null
+}
+
+// ---- node network helpers ----
+function authNode(req, body) {
+  const h = req.headers.authorization || ''
+  const key = h.replace(/^Bearer\s+/i, '').trim() || (body && body.nodeKey) || ''
+  return db.nodes[key] ? key : null
+}
+function capacity(specs = {}, bench = 0) {
+  const cpus = Number(specs.cpus) || 1
+  const memGB = Number(specs.memGB) || 1
+  const gpu = specs.gpu ? 0.8 : 0
+  const cap = 0.5 + cpus * 0.12 + memGB * 0.02 + gpu + (bench > 0 ? 0 : 0)
+  return Math.max(0.5, Math.min(4, Number(cap.toFixed(2))))
+}
+function rankOf(nk) {
+  return Object.entries(db.nodes).sort((a, b) => b[1].points - a[1].points).findIndex(([k]) => k === nk) + 1
 }
 
 // ---- server ----
@@ -198,6 +219,97 @@ const server = http.createServer(async (req, res) => {
     } catch (e) {
       return sendJson(res, 502, { error: 'upstream', detail: String(e) })
     }
+  }
+
+  // ---- node network: register / heartbeat / status / leaderboard / stats ----
+  if (req.method === 'POST' && pathname === '/v1/node/register') {
+    const b = await readBody(req)
+    const specs = b.specs && typeof b.specs === 'object' ? b.specs : {}
+    const bench = Number(b.bench) || 0
+    if (bench <= 0) return sendJson(res, 400, { error: 'benchmark required' }) // anti-sybil: prove a real CPU
+    const wallet = b.wallet ? String(b.wallet).toLowerCase() : null
+    if (wallet && !/^0x[0-9a-f]{40}$/.test(wallet)) return sendJson(res, 400, { error: 'invalid wallet' })
+    const nodeId = 'gn_' + crypto.randomBytes(5).toString('hex')
+    const nodeKey = 'nk_' + crypto.randomBytes(20).toString('hex')
+    const now = Date.now()
+    const cleanSpecs = {
+      os: String(specs.os || '').slice(0, 24),
+      arch: String(specs.arch || '').slice(0, 12),
+      cpu: String(specs.cpu || '').slice(0, 64),
+      cpus: Number(specs.cpus) || 0,
+      memGB: Number(specs.memGB) || 0,
+      gpu: specs.gpu ? String(specs.gpu).slice(0, 64) : null,
+    }
+    db.nodes[nodeKey] = {
+      nodeId, wallet, specs: cleanSpecs, bench, cap: capacity(cleanSpecs, bench),
+      fingerprint: String(b.fingerprint || '').slice(0, 64),
+      points: 0, uptimeSec: 0, createdAt: now, lastSeen: now,
+    }
+    save()
+    return sendJson(res, 200, { nodeId, nodeKey, cap: db.nodes[nodeKey].cap, heartbeatSec: HEARTBEAT_SEC })
+  }
+
+  if (req.method === 'POST' && pathname === '/v1/node/heartbeat') {
+    const b = await readBody(req)
+    const nk = authNode(req, b)
+    if (!nk) return sendJson(res, 401, { error: 'unknown node' })
+    const n = db.nodes[nk]
+    const now = Date.now()
+    const elapsed = Math.min(now - n.lastSeen, ONLINE_WINDOW_MS) // offline gaps don't farm points
+    if (elapsed > 0) {
+      n.uptimeSec += Math.round(elapsed / 1000)
+      n.points = Number((n.points + (elapsed / 60000) * POINTS_PER_MIN * n.cap).toFixed(2))
+    }
+    n.lastSeen = now
+    if (Number(b.bench) > 0) {
+      n.bench = Number(b.bench)
+      n.cap = capacity(n.specs, n.bench)
+    }
+    save()
+    return sendJson(res, 200, { ok: true, points: n.points, uptimeSec: n.uptimeSec, cap: n.cap, rank: rankOf(nk), online: true, intervalSec: HEARTBEAT_SEC })
+  }
+
+  if (req.method === 'GET' && pathname === '/v1/node/me') {
+    const nk = authNode(req, {})
+    if (!nk) return sendJson(res, 401, { error: 'unknown node' })
+    const n = db.nodes[nk]
+    return sendJson(res, 200, { nodeId: n.nodeId, wallet: n.wallet, specs: n.specs, bench: n.bench, cap: n.cap, points: n.points, uptimeSec: n.uptimeSec, rank: rankOf(nk), online: Date.now() - n.lastSeen < ONLINE_WINDOW_MS })
+  }
+
+  if (req.method === 'POST' && pathname === '/v1/node/link-wallet') {
+    const b = await readBody(req)
+    const nk = authNode(req, b)
+    if (!nk) return sendJson(res, 401, { error: 'unknown node' })
+    const address = String(b.address || '').toLowerCase()
+    if (!/^0x[0-9a-f]{40}$/.test(address)) return sendJson(res, 400, { error: 'invalid address' })
+    db.nodes[nk].wallet = address
+    save()
+    return sendJson(res, 200, { ok: true, wallet: address })
+  }
+
+  if (req.method === 'GET' && pathname === '/v1/leaderboard') {
+    const now = Date.now()
+    const nodes = Object.values(db.nodes)
+      .sort((a, b) => b.points - a.points)
+      .slice(0, 50)
+      .map((n, i) => ({
+        rank: i + 1, id: n.nodeId,
+        wallet: n.wallet ? n.wallet.slice(0, 6) + '…' + n.wallet.slice(-4) : null,
+        points: Math.round(n.points), uptimeSec: n.uptimeSec, cap: n.cap,
+        online: now - n.lastSeen < ONLINE_WINDOW_MS,
+      }))
+    return sendJson(res, 200, { nodes })
+  }
+
+  if (req.method === 'GET' && pathname === '/v1/network/stats') {
+    const now = Date.now()
+    const all = Object.values(db.nodes)
+    return sendJson(res, 200, {
+      nodesTotal: all.length,
+      nodesOnline: all.filter((n) => now - n.lastSeen < ONLINE_WINDOW_MS).length,
+      totalPoints: Math.round(all.reduce((s, n) => s + n.points, 0)),
+      totalUptimeSec: all.reduce((s, n) => s + n.uptimeSec, 0),
+    })
   }
 
   sendJson(res, 404, { error: 'not found' })
