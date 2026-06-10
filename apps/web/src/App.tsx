@@ -5,6 +5,7 @@ import Intro from './components/Intro'
 
 const X_URL = 'https://x.com/gennode'
 const DOCS_URL = 'https://docs.gennode.org'
+const RELEASES_URL = 'https://github.com/Gen-Node/Gen-Node/releases'
 
 function Pill({ color, label }: { color: string; label: string }) {
   return (
@@ -120,14 +121,7 @@ function Nav() {
     <header className="sticky top-0 z-50 border-b border-white/5 bg-ink/70 backdrop-blur-md">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
         <a href="#top" className="flex items-center gap-2">
-          <img
-            src="/logo.png"
-            onError={(e) => {
-              e.currentTarget.src = '/dna.svg'
-            }}
-            alt="Gennode"
-            className="h-8 w-8 rounded-sm"
-          />
+          <img src="/dna.svg" alt="Gennode" className="h-8 w-8 rounded-sm" />
           <span className="text-lg font-bold tracking-wide">GENNODE</span>
         </a>
         <nav className="hidden items-center gap-7 md:flex">
@@ -168,7 +162,7 @@ function Hero() {
 
           <p className="mt-6 max-w-xl text-lg text-white/70">
             Download Gennode, connect your wallet, and put your <strong className="text-white">idle GPU + storage</strong> to
-            work for a private network for <strong className="text-white">deep bio &amp; DNA data</strong> — genomics,
+            work powering a private network for <strong className="text-white">deep bio &amp; AI data</strong> — genomics,
             protein folding, drug discovery, AI. Earn while it runs. Mac · Windows · Linux.
           </p>
 
@@ -268,7 +262,7 @@ function RunNode() {
           <h2 className="mt-4 text-3xl font-bold md:text-4xl">A node anyone can run</h2>
           <p className="mt-4 text-white/70">
             One install, no command line, no config. It runs quietly in your tray and turns idle GPU time into rewards —
-            the way Ollama made local AI a one-click thing.
+            the way Ollama made local AI a one-click experience.
           </p>
           <ul className="mt-6 space-y-3 text-sm text-white/70">
             <li>🟢 Passive — earn points for GPU, storage + uptime.</li>
@@ -277,17 +271,29 @@ function RunNode() {
             <li>🛡️ Wallet-bound identity — sybil-resistant, fair for everyone.</li>
           </ul>
           <div className="mt-7 flex flex-wrap gap-3">
-            <span className="btn btn-ghost cursor-default px-5 py-2.5 opacity-70"> macOS — soon</span>
-            <span className="btn btn-ghost cursor-default px-5 py-2.5 opacity-70"> Windows — soon</span>
-            <span className="btn btn-ghost cursor-default px-5 py-2.5 opacity-70"> Linux — soon</span>
+            <a href={RELEASES_URL} target="_blank" rel="noreferrer" className="btn btn-ghost px-5 py-2.5 opacity-70">
+              {' '}
+              macOS — soon
+            </a>
+            <a href={RELEASES_URL} target="_blank" rel="noreferrer" className="btn btn-ghost px-5 py-2.5 opacity-70">
+              {' '}
+              Windows — soon
+            </a>
+            <a href={RELEASES_URL} target="_blank" rel="noreferrer" className="btn btn-ghost px-5 py-2.5 opacity-70">
+              {' '}
+              Linux — soon
+            </a>
           </div>
         </div>
 
-        {/* node status mock */}
+        {/* node status mock — illustrative preview, not live data */}
         <div className="card p-5">
           <div className="mb-4 flex items-center gap-2 border-b border-white/5 pb-3">
             <img src="/dna.svg" alt="" className="h-5 w-5" />
             <span className="text-sm font-semibold">Gennode Node</span>
+            <span className="rounded-full border border-white/15 bg-white/5 px-2 py-0.5 text-[10px] uppercase tracking-widest text-white/50">
+              Preview
+            </span>
             <span className="ml-auto inline-flex items-center gap-1.5 text-xs text-bluex">
               <span className="h-2 w-2 rounded-full bg-bluex" style={{ boxShadow: '0 0 8px #22d3ee' }} /> running
             </span>
@@ -317,6 +323,7 @@ function RunNode() {
             </div>
           </div>
           <div className="mt-4 rounded-full bg-bluex/15 px-4 py-2 text-center text-sm text-bluex">Stop node</div>
+          <p className="mt-3 text-center text-[10px] text-white/35">Illustrative preview — not live network data.</p>
         </div>
       </div>
     </Section>
@@ -465,7 +472,7 @@ function Showcase() {
     <Section id="science" className="py-20">
       <h2 className="text-center text-3xl font-bold md:text-4xl">What the network computes</h2>
       <p className="mx-auto mt-2 max-w-xl text-center text-white/60">
-        Built for one vertical: bio. The workloads your nodes will power.
+        Built for one vertical: bio &amp; AI. The workloads your nodes will power.
       </p>
       <div className="mt-12 grid grid-cols-2 gap-5 md:grid-cols-3">
         {showcase.map((m) => (
@@ -514,41 +521,27 @@ function Layers() {
 }
 
 function Waitlist() {
-  const [email, setEmail] = useState('')
-  const [done, setDone] = useState(false)
-
-  const submit = (e: React.FormEvent) => {
-    e.preventDefault()
-    if (!email.includes('@')) return
-    // TODO: wire to coordinator/API. For now we just acknowledge locally.
-    setDone(true)
-  }
-
   return (
     <Section id="waitlist" className="py-20">
       <div className="rounded-3xl border border-bluex/20 bg-gradient-to-b from-bluex/10 to-transparent p-10 text-center">
         <h2 className="text-3xl font-bold md:text-4xl">Be an early node</h2>
         <p className="mx-auto mt-3 max-w-xl text-white/65">
-          Get notified the moment the node app drops, and start earning points toward the $GENNODE airdrop.
+          Follow Gennode to catch the launch the moment the node app drops, and start earning points toward the
+          $GENNODE airdrop.
         </p>
 
-        {done ? (
-          <p className="mt-8 font-chalk text-3xl text-bluex glow-text">You're on the list. See you soon ✦</p>
-        ) : (
-          <form onSubmit={submit} className="mx-auto mt-8 flex max-w-md flex-col gap-3 sm:flex-row">
-            <input
-              type="email"
-              required
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="you@email.com"
-              className="flex-1 rounded-full border border-white/15 bg-white/5 px-5 py-3 text-sm outline-none placeholder:text-white/30 focus:border-bluex"
-            />
-            <button type="submit" className="btn btn-primary px-6 py-3">
-              Notify me
-            </button>
-          </form>
-        )}
+        <div className="mx-auto mt-8 flex max-w-md flex-col items-center justify-center gap-3 sm:flex-row">
+          <a href={X_URL} target="_blank" rel="noreferrer" className="btn btn-primary px-6 py-3">
+            Follow @gennode on X
+          </a>
+          <a href={RELEASES_URL} target="_blank" rel="noreferrer" className="btn btn-ghost px-6 py-3">
+            Watch GitHub releases →
+          </a>
+        </div>
+
+        <p className="mx-auto mt-5 max-w-md text-xs text-white/40">
+          No email signup yet — follow on X or watch the GitHub releases so you don't miss the launch.
+        </p>
       </div>
     </Section>
   )
@@ -560,14 +553,7 @@ function Footer() {
       <Section>
         <div className="flex flex-col items-center justify-between gap-6 md:flex-row">
           <div className="flex items-center gap-2">
-            <img
-              src="/logo.png"
-              onError={(e) => {
-                e.currentTarget.src = '/dna.svg'
-              }}
-              alt="Gennode"
-              className="h-8 w-8 rounded-sm"
-            />
+            <img src="/dna.svg" alt="Gennode" className="h-8 w-8 rounded-sm" />
             <span className="font-bold tracking-wide">GENNODE</span>
           </div>
           <div className="flex items-center gap-6 text-sm text-white/60">

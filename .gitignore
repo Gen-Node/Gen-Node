@@ -23,3 +23,7 @@ infra/gennode.env
 .DS_Store
 Thumbs.db
 .vscode/
+
+# internal planning docs + server deploy config (not public)
+internal/
+infra/

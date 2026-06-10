@@ -139,7 +139,7 @@ Usage:
   gennode wallet 0x…            Link a payout wallet to your node
   gennode chat                  Chat with the Gennode bio & AI assistant
   gennode ask "question"        One-shot question to the assistant
-  gennode setup                 Connect an account / wallet via the dashboard
+  gennode setup                 Choose an assistant backend (cloud credits / local Ollama / Venice key)
   gennode help                  Show this help
 
 Run a node:
@@ -302,7 +302,12 @@ async function main() {
   if (cmd === 'chat') return interactiveChat(args)
 
   // default (no command): run a node — this is the product
-  return runNode(loadConfig(), saveConfig)
+  const cfg = loadConfig()
+  if (typeof args.flags.wallet === 'string' && /^0x[0-9a-fA-F]{40}$/.test(args.flags.wallet)) {
+    cfg.wallet = String(args.flags.wallet).toLowerCase()
+    saveConfig(cfg)
+  }
+  return runNode(cfg, saveConfig)
 }
 
 async function interactiveChat(args) {

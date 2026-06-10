@@ -1,66 +1,110 @@
 <div align="center">
 
-# 🧬 Gennode
+# Gennode
 
-**A decentralized compute + data network for bio & AI.**
+**A decentralized compute and data network for bio & AI.**
 
-[Website (soon)] · [Docs](./apps/docs) · [Whitepaper](./WHITEPAPER.md) · [𝕏 @gennode](https://x.com/gennode)
+*Genes meet nodes.*
+
+[Website](https://gennode.org) · [Docs](https://docs.gennode.org) · [App](https://app.gennode.org) · [X @gennode](https://x.com/gennode)
 
 ![license](https://img.shields.io/badge/license-MIT-22d3ee)
-![status](https://img.shields.io/badge/status-beta-818cf8)
-![chain](https://img.shields.io/badge/chain-Base-38bdf8)
-![launch](https://img.shields.io/badge/launch-100%25%20fair-5eead4)
+![status](https://img.shields.io/badge/status-early%20access-818cf8)
+![platforms](https://img.shields.io/badge/platforms-macOS%20·%20Windows%20·%20Linux-38bdf8)
+![chain](https://img.shields.io/badge/chain-Base-5eead4)
+![launch](https://img.shields.io/badge/launch-100%25%20fair-a78bfa)
 
 </div>
 
-Run a node, contribute GPU + storage, and power **bio & AI** compute — DNA & genome analysis, protein folding, molecule & drug discovery, multi-omics, scientific simulation and AI inference. Operators earn `$GENNODE`. Powered today by open models on Venice; tomorrow by a community network of GPU **nodes**.
+Gennode turns idle machines into a network for science. Run a node, contribute idle GPU and storage, and earn points for uptime and capacity. Points convert to `$GENNODE` in a future airdrop.
 
-> **Genes meet nodes.**
+## Run a node
+
+This is the primary way to participate. Pick either option — both register your node and start earning points.
+
+### Desktop app
+
+A lightweight desktop node for **macOS, Windows, and Linux**, built with Tauri. It runs quietly in the tray and shows live points and uptime.
+
+1. Download the installer from [GitHub Releases](https://github.com/Gen-Node/Gen-Node/releases). Desktop builds are coming soon — check the releases page for the latest status.
+2. Install and open the app.
+3. Link a wallet — this is your node identity and your payout address.
+4. Click **Start node**. Your idle GPU and storage join the network.
+
+### Headless CLI
+
+Prefer the command line, or running on a server without a GUI?
+
+```bash
+npx @gennode/node
+```
+
+This registers your node and starts earning. Link a payout wallet with:
+
+```bash
+gennode wallet 0x…
+```
+
+See [`packages/node`](./packages/node) for details.
 
 ## What is Gennode?
 
-A decentralized **compute + data network for bio & AI**, built in three layers:
+A decentralized compute and data network for bio & AI, built in three layers:
 
-- **Compute** — operators run a node (GPU + storage); the network powers DNA & genome analysis, protein folding, molecule & drug discovery, multi-omics, scientific simulation and AI inference.
-- **Data** — a torrent-like, encrypted data layer for scientific datasets.
-- **Models** — open models now; a purpose-built Gennode bio/AI LLM later.
+| Layer | What it does | Status |
+| --- | --- | --- |
+| **Compute** | Nodes power DNA and genome analysis, protein folding, drug discovery, multi-omics, scientific simulation, and AI inference. | Roadmap |
+| **Data** | A torrent-like encrypted data layer: scientific datasets are encrypted, sharded, and served peer-to-peer across nodes. | Planned |
+| **Models** | Open models today; a purpose-built Gennode bio/AI model later. | Open models live |
 
-**Progressive decentralization:** ship a real, working product first; decentralize the compute as the community and token grow.
+**Progressive decentralization:** ship a real, working product first; add real compute jobs and the data layer as the network and the token economy grow.
+
+## How you earn
+
+- **Points = uptime × capacity.** Today, nodes earn for staying online and for a CPU benchmark that proves real hardware. Real compute jobs are on the roadmap.
+- Points convert to **`$GENNODE`** in a future airdrop.
+- **Anti-sybil (today):** wallet linking plus a basic CPU benchmark. Device fingerprinting, deduplication, and cluster analysis are planned.
+
+## Token — `$GENNODE`
+
+`$GENNODE` is not launched yet. The planned design:
+
+- **Chain:** Base · **Standard:** ERC-20 (Clanker v4 via Bankr).
+- **100% fair launch** — no team allocation, no pre-mine, no insider buy.
+- Treasury, node rewards, and the airdrop are funded entirely by trading fees.
+
+See the [Whitepaper](https://docs.gennode.org/whitepaper).
+
+## The assistant (secondary)
+
+The CLI also ships a bio & AI chat assistant. It is a secondary feature — running a node is the primary use.
+
+```bash
+gennode chat
+```
 
 ## Monorepo
 
 ```
 gennode/
 ├─ apps/
-│  ├─ web/    # 3D landing page  (Vite + React + React Three Fiber + Tailwind)
-│  └─ docs/   # documentation    (VitePress)
-├─ PLAN.md            # master plan
-├─ WHITEPAPER.md      # whitepaper
-├─ LAUNCH-PLAN.md     # fair-launch playbook
-├─ LAUNCH-CHECKLIST.md
-└─ 3D-PROMPTS.md      # 3D asset prompts
+│  ├─ web/       # landing page              (Vite + React + Tailwind)
+│  ├─ docs/      # documentation             (VitePress)
+│  ├─ gateway/   # coordinator API + dashboard (Node)
+│  └─ desktop/   # desktop node app          (Tauri + React)
+├─ packages/
+│  └─ node/      # published node CLI        (npx @gennode/node)
+└─ .github/      # workflows + org profile
 ```
 
-## Run Gennode locally (bio & AI assistant)
+## Contributing & security
 
-Run the Gennode bio & AI assistant on your own machine — **macOS & Windows** — via the Venice API or a fully offline Ollama model. See [`packages/node`](./packages/node).
+- Contributions are welcome — see [CONTRIBUTING.md](./CONTRIBUTING.md).
+- Found a vulnerability? Please report it privately — see [SECURITY.md](./SECURITY.md).
 
-```bash
-npx @gennode/node setup     # cloud credits (auto-opens dashboard) · local model · Venice key
-npx @gennode/node           # chat
-```
+## Disclaimer
 
-## Token — `$GENNODE`
-
-Base · ERC-20 (Clanker v4 / Bankr) · **100,000,000,000 fixed** · **100% fair launch** — no team allocation, no pre-mine, no dev buy. Treasury, rewards and the airdrop are funded **entirely by trading fees**. See the [Whitepaper](./WHITEPAPER.md) and [tokenomics](./apps/docs/token.md).
-
-## Roadmap
-
-`MVP → Beta → Community → Demand → TGE (fair launch) → Node network`. Full [roadmap](./apps/docs/roadmap.md).
-
-## Disclaimers
-
-Beta software. `$GENNODE` is a utility token; nothing here is financial advice or an offer of securities. Personal data is handled in line with GDPR.
+Early-access software under active development. `$GENNODE` is a planned utility token and is not yet launched; nothing in this repository is financial advice or an offer of securities.
 
 ## License
 

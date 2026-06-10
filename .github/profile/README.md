@@ -2,10 +2,9 @@
 
 # Gennode
 
-**A decentralized compute + data network for bio & AI.**
+**A decentralized compute and data network for bio & AI.**
 
-Run a node, contribute GPU + storage, power bio & AI compute.
-Powered today by open models on Venice; tomorrow by a community GPU node network.
+Run a node. Contribute idle GPU and storage. Earn points.
 
 *Genes meet nodes.*
 
@@ -13,10 +12,11 @@ Powered today by open models on Venice; tomorrow by a community GPU node network
 
 ---
 
-- 🧬 **Bio & AI compute** — DNA & genome analysis, protein folding, molecule & drug discovery, multi-omics, scientific simulation, AI inference
-- ⛓ **$GENNODE** on Base — a 100% fair launch; fees fund the network (no team, no pre-mine)
-- 🖥 **Node network** — run a node (GPU + storage), earn `$GENNODE` for real compute
+- **Run a node** — a desktop app for macOS, Windows, and Linux (builds coming soon on GitHub Releases), or headless via `npx @gennode/node`.
+- **Earn** — points for uptime and capacity; compute jobs are on the roadmap. Points convert to `$GENNODE` in a future airdrop.
+- **Bio & AI compute** — DNA and genome analysis, protein folding, drug discovery, multi-omics, scientific simulation, AI inference.
+- **`$GENNODE` on Base** — a planned 100% fair launch: no team allocation, no pre-mine; funded by trading fees.
 
-🌐 Website (soon) · 📄 Docs (soon) · 𝕏 [@gennode](https://x.com/gennode)
+[Website](https://gennode.org) · [Docs](https://docs.gennode.org) · [App](https://app.gennode.org) · [Repository](https://github.com/Gen-Node/Gen-Node) · [X @gennode](https://x.com/gennode)
 
-> Beta. $GENNODE is a utility token; nothing here is financial advice.
+> Early access. `$GENNODE` is a planned utility token and is not yet launched; nothing here is financial advice.

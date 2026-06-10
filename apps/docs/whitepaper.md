@@ -6,7 +6,7 @@
 > Informational and a work in progress. Not financial, investment or legal advice. See [Disclaimers](/disclaimers).
 
 ## 1. Abstract
-Gennode is an **io.net-style decentralized network for deep bio & DNA data** — focused on one vertical. People run a **node** (a desktop app) that contributes **GPU + storage**; the network **analyzes sensitive biological data** — DNA & genome analysis, protein folding, drug discovery, multi-omics, scientific simulation and AI inference — and stores it in a **torrent-like, encrypted data layer**. Open models run today; a purpose-built **Gennode bio/AI LLM** comes over time (built from scratch if needed). Operators earn **`$GENNODE`**. 100% fair launch; rewards are funded by trading fees, not a token allocation.
+Gennode is an **io.net-style decentralized network for deep bio & DNA data** — focused on one vertical. People run a **node** that contributes **compute + storage**. Today, nodes earn for **uptime** and a CPU benchmark that proves real hardware. On the roadmap, the network will **analyze sensitive biological data** — DNA & genome analysis, protein folding, drug discovery, multi-omics, scientific simulation and AI inference — and store it in a **torrent-like, encrypted data layer (planned)**. Open models run today; a purpose-built **Gennode bio/AI LLM** comes over time. Operators earn **`$GENNODE`**. `$GENNODE` is not yet launched; it is planned as a 100% fair launch with rewards funded by trading fees, not a token allocation.
 
 ## 2. Problem
 Bio & AI needs huge GPU compute that is **expensive, centralized and privacy-sensitive** (genomic & scientific data). Generic GPU networks aren't tuned for this vertical.
@@ -15,32 +15,33 @@ Bio & AI needs huge GPU compute that is **expensive, centralized and privacy-sen
 Aggregate **idle community GPUs** into a **privacy-first, bio & AI-focused** compute network. Easy to join (one-click node, like Ollama), fair (wallet identity + anti-sybil), aligned via `$GENNODE`.
 
 ## 4. The node app
-Cross-platform desktop app (Mac / Windows / Linux), distributed via **GitHub Releases**. Connect wallet → run → earn. Runs in the tray with live points/uptime. A headless CLI is available for servers.
+A headless CLI is **available now** (`npx @gennode/node`): register and earn on servers or any machine. A cross-platform desktop app (Mac / Windows / Linux) is **coming soon** and will be distributed via **GitHub Releases** — connect wallet → run → earn, with live points/uptime in the tray. A GPU is recommended but not required.
 
 ## 5. The network — three layers
-1. **Compute** — nodes run jobs: DNA & genome analysis, protein folding, drug discovery, multi-omics, scientific simulation and AI inference.
-2. **Data (torrent-like)** — datasets, model weights and results are encrypted, chunked, content-addressed (DHT) and served peer-to-peer; erasure-coded for durability.
+1. **Compute** — nodes run jobs: DNA & genome analysis, protein folding, drug discovery, multi-omics, scientific simulation and AI inference (**roadmap**).
+2. **Data (torrent-like) — planned** — datasets, model weights and results will be encrypted, chunked, content-addressed (DHT) and served peer-to-peer; erasure-coded for durability.
 3. **Models** — open models today; a purpose-built **Gennode bio/AI LLM** served across nodes over time.
 
+The planned end-to-end flow, once compute and the data layer are live:
 ```
 Demand → Coordinator (match job + data → nodes, verify) → Nodes (pull encrypted data, compute) → result + reward in $GENNODE
 ```
-A node contributes **GPU**, **disk**, or both.
+A node contributes **compute**, **disk**, or both.
 
 ## 6. Privacy & security
-Privacy-first: minimized data; roadmap **sealed / self-hostable execution** + **confidential computing (GPU TEE)** so node operators cannot see the data. GDPR-aware.
+Privacy-first by design. On the roadmap: minimized data, **sealed / self-hostable execution** and **confidential computing (GPU TEE)** so node operators cannot see the data. GDPR-aware. These protections are planned, not yet live.
 
 ## 7. Anti-sybil
-1 wallet = 1 node · device fingerprint · benchmark (real GPU) · cluster analysis. Critical for fair points/rewards.
+Today: **wallet linking** + a **CPU benchmark** that proves real hardware. A "1 wallet = 1 node" rule, device fingerprinting and cluster analysis are **planned**. Critical for fair points/rewards.
 
 ## 8. Token — $GENNODE
-Base · ERC-20 (Clanker v4 / Bankr) · 100B fixed, non-mintable. Utility: node rewards, pay-for-compute, governance, holder/staking boosts.
+Planned: Base · ERC-20 (Clanker v4 / Bankr) · 100B fixed, non-mintable. Utility: node rewards, pay-for-compute, governance, holder/staking boosts. Not yet launched.
 
 ## 9. Tokenomics — 100% fair launch
-100% public liquidity · 0 team · 0 pre-mine. **Self-funded by trading fees** (creator ~57% of the 1.2% swap) → treasury / rewards / buyback.
+Planned as 100% public liquidity · 0 team · 0 pre-mine. **Self-funded by trading fees** (creator ~57% of the 1.2% swap) → treasury / rewards / buyback.
 
 ## 10. Points & airdrop
-Run a node → points (uptime + capacity + completed jobs) → fee-funded buyback → **Merkle airdrop**. No pre-allocated airdrop tokens.
+Run a node → points (`uptime × capacity`; completed jobs add points as real compute goes live) → fee-funded buyback → **Merkle airdrop**. No pre-allocated airdrop tokens.
 
 ## 11. Governance
 `$GENNODE` holders vote on parameters, supported jobs and treasury. Progressive decentralization.

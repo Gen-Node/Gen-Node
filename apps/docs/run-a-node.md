@@ -1,30 +1,35 @@
 # Run a node
 
-Anyone with a GPU can run a Gennode node — as easy as installing Ollama.
+Anyone can run a Gennode node — as easy as installing Ollama.
 
 ## Requirements
-- A computer with a GPU (NVIDIA / AMD / Apple Silicon) — macOS, Windows or Linux
+- A computer running macOS, Windows or Linux
 - A crypto wallet (your node identity)
 - A stable internet connection
+- A GPU (NVIDIA / AMD / Apple Silicon) is **recommended** but not required
 
 ## Install
-1. Download the latest release from **[GitHub Releases](https://github.com/Gen-Node)** (also linked on the [website](https://gennode.org)).
+
+### Headless / CLI (available now)
+The fastest way to run a node today is the command-line client — it registers your node and starts earning:
+```bash
+npx @gennode/node
+```
+This works on servers and headless machines without a GUI.
+
+### Desktop app (coming soon)
+Cross-platform desktop apps (macOS / Windows / Linux) will be published on **[GitHub Releases](https://github.com/Gen-Node/Gen-Node/releases)**. Once available, you will:
+1. Download the latest release for your platform.
 2. Install and open the app.
 3. **Connect your wallet.**
 4. Click **Start node**.
 
-It runs in your tray, shows your live **points & uptime**, and earns while your machine is idle.
+The app runs in your tray, shows your live **points & uptime**, and earns while your machine is idle.
 
 ## How you earn
-Points = `uptime × capacity` (+ completed jobs as the network matures). Points convert to **`$GENNODE`** in the airdrop. Better GPUs and higher uptime earn more.
-
-## Headless / servers
-Prefer the command line or a server without a GUI? A headless node client is also available:
-```bash
-npx @gennode/node
-```
+Points = `uptime × capacity`. Points convert to **`$GENNODE`** in the airdrop. Higher capacity and higher uptime earn more. Real compute jobs will earn additional points as the network matures.
 
 ## Fairness (anti-sybil)
-1 wallet = 1 node identity · device fingerprint · benchmark (proves a real GPU). Rewards go to real operators — not fake-node farms.
+Today, fairness comes from **wallet linking** and a **CPU benchmark** that proves your node runs on real hardware. Device fingerprinting, deduplication and cluster analysis are **planned** to further protect rewards for genuine operators.
 
 > The desktop app and token are in active development.

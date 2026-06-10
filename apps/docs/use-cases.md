@@ -7,8 +7,8 @@ Gennode is built for **deep bio & scientific data** — the workloads that need 
 - Variant calling (SNPs, indels, structural variants)
 - Whole-genome / exome interpretation
 - Rare-disease variant analysis
-- Pharmacogenomics — drug response from your genes
-- Polygenic risk scores, ancestry & heritage
+- Pharmacogenomics — drug-response variants
+- Polygenic risk scores and population genetics
 
 ## 🧪 Proteins & structure
 - Protein folding & structure prediction (AlphaFold / Boltz-style)
