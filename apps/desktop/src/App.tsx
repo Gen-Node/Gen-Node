@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { invoke } from '@tauri-apps/api/core'
+import { openUrl } from '@tauri-apps/plugin-opener'
 
 type Specs = { os: string; arch: string; cpu: string; cpus: number; mem_gb: number; gpu: string | null; bench: number }
 type Cfg = { coordinatorUrl: string; nodeId?: string; nodeKey?: string; wallet?: string; specs?: Specs }
@@ -60,6 +61,7 @@ export default function App() {
     setBusy(true)
     try {
       if (!cfg.current.nodeKey) {
+        if (ADDR.test(wallet.trim())) cfg.current.wallet = wallet.trim().toLowerCase()
         const sp = await invoke<Specs>('get_specs')
         setSpecs(sp)
         cfg.current.specs = sp
@@ -191,6 +193,9 @@ export default function App() {
           <input value={wallet} onChange={(e) => setWallet(e.target.value)} placeholder="0x…" spellCheck={false} />
           <button onClick={link}>Link</button>
         </div>
+        <button className="dash" onClick={() => openUrl('https://app.gennode.org')}>
+          Open dashboard ↗
+        </button>
       </div>
 
       <footer>

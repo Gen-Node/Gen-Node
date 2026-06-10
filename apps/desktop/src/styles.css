@@ -151,6 +151,14 @@ button:disabled {
   padding: 8px 14px;
   font-size: 13px;
 }
+.dash {
+  width: 100%;
+  margin-top: 10px;
+  background: rgba(34, 211, 238, 0.12);
+  color: #22d3ee;
+  padding: 10px;
+  font-size: 13px;
+}
 footer {
   font-size: 11px;
   color: #59707e;

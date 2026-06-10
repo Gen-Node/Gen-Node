@@ -2,5 +2,5 @@
   "identifier": "default",
   "description": "Default capability set for the Gennode node window.",
   "windows": ["main"],
-  "permissions": ["core:default", "core:window:allow-show", "core:window:allow-set-focus"]
+  "permissions": ["core:default", "core:window:allow-show", "core:window:allow-set-focus", "opener:default"]
 }
