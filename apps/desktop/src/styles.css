@@ -1,0 +1,162 @@
+:root {
+  color-scheme: dark;
+}
+* {
+  box-sizing: border-box;
+}
+html,
+body,
+#root {
+  margin: 0;
+  height: 100%;
+}
+body {
+  background: #06070a;
+  color: #e8edf2;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-image: radial-gradient(700px 360px at 50% -10%, rgba(56, 189, 248, 0.14), transparent 60%);
+  -webkit-font-smoothing: antialiased;
+  user-select: none;
+}
+.app {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.logo {
+  font-size: 20px;
+}
+.brand {
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+.dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #475569;
+  margin-left: auto;
+}
+.dot.on {
+  background: #22d3ee;
+  box-shadow: 0 0 10px #22d3ee;
+}
+.state {
+  font-size: 12px;
+  color: #8aa0ad;
+}
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+.stats > div {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: 12px;
+  text-align: center;
+}
+.stats b {
+  display: block;
+  font-size: 22px;
+  color: #22d3ee;
+}
+.stats span {
+  font-size: 11px;
+  color: #8aa0ad;
+}
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: 0;
+  border-radius: 999px;
+  font-weight: 700;
+}
+.big {
+  padding: 14px;
+  font-size: 15px;
+}
+.big.start {
+  background: linear-gradient(135deg, #22d3ee, #38bdf8);
+  color: #04212b;
+}
+.big.stop {
+  background: rgba(255, 255, 255, 0.06);
+  color: #e8edf2;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+button:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+.err {
+  color: #fca5a5;
+  font-size: 12px;
+  text-align: center;
+}
+.card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: 12px 14px;
+}
+.row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  padding: 3px 0;
+}
+.row span {
+  color: #8aa0ad;
+}
+.row b {
+  font-weight: 600;
+}
+.label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #8aa0ad;
+  margin-bottom: 8px;
+}
+.wallet {
+  display: flex;
+  gap: 8px;
+}
+.wallet input {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  padding: 8px 10px;
+  color: #e8edf2;
+  font: inherit;
+  font-size: 12px;
+  outline: none;
+  user-select: text;
+}
+.wallet input:focus {
+  border-color: rgba(34, 211, 238, 0.5);
+}
+.wallet button {
+  background: rgba(34, 211, 238, 0.15);
+  color: #22d3ee;
+  padding: 8px 14px;
+  font-size: 13px;
+}
+footer {
+  font-size: 11px;
+  color: #59707e;
+  text-align: center;
+  margin-top: 4px;
+}
+a {
+  color: #38bdf8;
+}
