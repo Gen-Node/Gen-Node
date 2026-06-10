@@ -17,8 +17,8 @@ npx @gennode/node
 ```
 This works on servers and headless machines without a GUI.
 
-### Desktop app (coming soon)
-Cross-platform desktop apps (macOS / Windows / Linux) will be published on **[GitHub Releases](https://github.com/Gen-Node/Gen-Node/releases)**. Once available, you will:
+### Desktop app (early access)
+Cross-platform desktop apps (macOS / Windows / Linux) are on **[GitHub Releases](https://github.com/Gen-Node/Gen-Node/releases)**:
 1. Download the latest release for your platform.
 2. Install and open the app.
 3. **Connect your wallet.**

@@ -182,7 +182,7 @@ function Hero() {
             <span>⛓ Built on Base</span>
           </div>
 
-          <p className="mt-5 text-xs text-white/40">Node app coming soon · $GENNODE not yet launched.</p>
+          <p className="mt-5 text-xs text-white/40">Node app live (early access) · $GENNODE not yet launched.</p>
         </div>
       </Section>
 
@@ -258,7 +258,7 @@ function RunNode() {
 
       <div className="grid items-center gap-10 md:grid-cols-2">
         <div>
-          <Pill color="#818cf8" label="App: coming soon" />
+          <Pill color="#22d3ee" label="App: live (early access)" />
           <h2 className="mt-4 text-3xl font-bold md:text-4xl">A node anyone can run</h2>
           <p className="mt-4 text-white/70">
             One install, no command line, no config. It runs quietly in your tray and turns idle GPU time into rewards —
@@ -271,17 +271,11 @@ function RunNode() {
             <li>🛡️ Wallet-bound identity — sybil-resistant, fair for everyone.</li>
           </ul>
           <div className="mt-7 flex flex-wrap gap-3">
-            <a href={RELEASES_URL} target="_blank" rel="noreferrer" className="btn btn-ghost px-5 py-2.5 opacity-70">
-              {' '}
-              macOS — soon
+            <a href={RELEASES_URL} target="_blank" rel="noreferrer" className="btn btn-primary px-5 py-2.5">
+              Download
             </a>
-            <a href={RELEASES_URL} target="_blank" rel="noreferrer" className="btn btn-ghost px-5 py-2.5 opacity-70">
-              {' '}
-              Windows — soon
-            </a>
-            <a href={RELEASES_URL} target="_blank" rel="noreferrer" className="btn btn-ghost px-5 py-2.5 opacity-70">
-              {' '}
-              Linux — soon
+            <a href={RELEASES_URL} target="_blank" rel="noreferrer" className="btn btn-ghost px-5 py-2.5">
+              macOS · Windows · Linux
             </a>
           </div>
         </div>

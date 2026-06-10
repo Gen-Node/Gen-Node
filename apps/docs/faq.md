@@ -19,7 +19,7 @@ Same idea (run a node, earn) — but focused on one vertical: **bio & AI**.
 The network's planned utility token on **Base** — a 100% fair launch via Bankr. It is **not launched yet**. See [Token](/token).
 
 ### Can I run it now?
-Yes — the headless CLI is available now: `npx @gennode/node`. The desktop app is in active development and will be published on [GitHub Releases](https://github.com/Gen-Node/Gen-Node/releases) (coming soon).
+Yes — the headless CLI: `npx @gennode/node`, or download the desktop app (early access) from [GitHub Releases](https://github.com/Gen-Node/Gen-Node/releases).
 
 ### Is this financial advice?
 No. Nothing here is financial advice or an offer of securities. Beware of fakes — only trust official links.

@@ -6,7 +6,7 @@ A bullet (•) marks which layers a phase involves; "—" means not applicable.
 
 | Phase | Status | Focus | Token | Node |
 | --- | --- | --- | --- | --- |
-| **1 — Node app + points** | current | headless node now, desktop app (Mac/Win/Linux) coming soon, wallet, uptime → points, leaderboard | — | • |
+| **1 — Node app + points** | current | headless node + desktop app (Mac/Win/Linux), wallet, uptime → points, leaderboard | — | • |
 | **2 — Token launch** | planned | `$GENNODE` fair launch on Base via Bankr; Season 1 points | • | • |
 | **3 — Airdrop & growth** | planned | points → airdrop; referrals, staking, holder boosts | • | • |
 | **4 — Real compute** | planned | nodes run real jobs (AI inference) + proof-of-compute + paying demand | • | • |

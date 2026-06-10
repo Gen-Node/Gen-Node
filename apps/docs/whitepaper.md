@@ -15,7 +15,7 @@ Bio & AI needs huge GPU compute that is **expensive, centralized and privacy-sen
 Aggregate **idle community GPUs** into a **privacy-first, bio & AI-focused** compute network. Easy to join (one-click node, like Ollama), fair (wallet identity + anti-sybil), aligned via `$GENNODE`.
 
 ## 4. The node app
-A headless CLI is **available now** (`npx @gennode/node`): register and earn on servers or any machine. A cross-platform desktop app (Mac / Windows / Linux) is **coming soon** and will be distributed via **GitHub Releases** — connect wallet → run → earn, with live points/uptime in the tray. A GPU is recommended but not required.
+A headless CLI is **available now** (`npx @gennode/node`): register and earn on servers or any machine. A cross-platform desktop app (Mac / Windows / Linux) is **available** (early access) via **GitHub Releases** — connect wallet → run → earn, with live points/uptime in the tray. A GPU is recommended but not required.
 
 ## 5. The network — three layers
 1. **Compute** — nodes run jobs: DNA & genome analysis, protein folding, drug discovery, multi-omics, scientific simulation and AI inference (**roadmap**).

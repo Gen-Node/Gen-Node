@@ -13,7 +13,7 @@ hero:
       link: /how-it-works
 features:
   - title: 🖥 One-click node — CPU + GPU
-    details: Run headless today via npx, or use the desktop app (coming soon to GitHub Releases) on macOS, Windows or Linux. A GPU is recommended but not required.
+    details: Run headless via npx, or download the desktop app (GitHub Releases, early access) for macOS, Windows or Linux. A GPU is recommended but not required.
   - title: 🧬 Deep bio & DNA data
     details: On the roadmap — DNA & genome analysis, protein folding, drug discovery, multi-omics, scientific simulation & AI inference.
   - title: 🔒 Torrent-like data layer (planned)
