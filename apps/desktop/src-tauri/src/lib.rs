@@ -17,6 +17,7 @@ struct Specs {
     mem_gb: u32,
     gpu: Option<String>,
     bench: u64,
+    fingerprint: String,
 }
 
 // Best-effort NVIDIA GPU name; None if unavailable (never panics).
@@ -50,6 +51,16 @@ fn benchmark(ms: u64) -> u64 {
     n * 1000 / ms.max(1)
 }
 
+// stable per-device id (Windows MachineGuid / macOS IOPlatformUUID / Linux machine-id), hashed
+fn device_fingerprint(cpu: &str) -> String {
+    let id = machine_uid::get().unwrap_or_else(|_| "unknown".to_string());
+    let mut h = Sha256::new();
+    h.update(id.as_bytes());
+    h.update(b"|");
+    h.update(cpu.as_bytes());
+    h.finalize().iter().map(|b| format!("{:02x}", b)).collect::<String>().chars().take(32).collect()
+}
+
 #[tauri::command]
 fn get_specs() -> Specs {
     let sys = System::new_all();
@@ -59,6 +70,7 @@ fn get_specs() -> Specs {
         .map(|c| c.brand().trim().to_string())
         .filter(|s| !s.is_empty())
         .unwrap_or_else(|| "unknown".to_string());
+    let fingerprint = device_fingerprint(&cpu);
     Specs {
         os: std::env::consts::OS.to_string(),
         arch: std::env::consts::ARCH.to_string(),
@@ -67,6 +79,7 @@ fn get_specs() -> Specs {
         mem_gb: (sys.total_memory() / 1_000_000_000).max(1) as u32,
         gpu: detect_gpu(),
         bench: benchmark(500),
+        fingerprint,
     }
 }
 

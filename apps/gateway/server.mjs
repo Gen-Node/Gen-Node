@@ -229,9 +229,8 @@ const server = http.createServer(async (req, res) => {
     if (bench <= 0) return sendJson(res, 400, { error: 'benchmark required' }) // anti-sybil: prove a real CPU
     const wallet = b.wallet ? String(b.wallet).toLowerCase() : null
     if (wallet && !/^0x[0-9a-f]{40}$/.test(wallet)) return sendJson(res, 400, { error: 'invalid wallet' })
-    const nodeId = 'gn_' + crypto.randomBytes(5).toString('hex')
-    const nodeKey = 'nk_' + crypto.randomBytes(20).toString('hex')
     const now = Date.now()
+    const fingerprint = String(b.fingerprint || '').slice(0, 64)
     const cleanSpecs = {
       os: String(specs.os || '').slice(0, 24),
       arch: String(specs.arch || '').slice(0, 12),
@@ -240,9 +239,24 @@ const server = http.createServer(async (req, res) => {
       memGB: Number(specs.memGB) || 0,
       gpu: specs.gpu ? String(specs.gpu).slice(0, 64) : null,
     }
+    // one PC = one node: a device (fingerprint) maps to a single node identity
+    if (fingerprint) {
+      const existKey = Object.keys(db.nodes).find((k) => db.nodes[k].fingerprint === fingerprint)
+      if (existKey) {
+        const n = db.nodes[existKey]
+        if (wallet && !n.wallet) n.wallet = wallet
+        n.specs = cleanSpecs
+        n.bench = bench
+        n.cap = capacity(cleanSpecs, bench)
+        save()
+        return sendJson(res, 200, { nodeId: n.nodeId, nodeKey: existKey, cap: n.cap, heartbeatSec: HEARTBEAT_SEC, existing: true })
+      }
+    }
+    const nodeId = 'gn_' + crypto.randomBytes(5).toString('hex')
+    const nodeKey = 'nk_' + crypto.randomBytes(20).toString('hex')
     db.nodes[nodeKey] = {
       nodeId, wallet, specs: cleanSpecs, bench, cap: capacity(cleanSpecs, bench),
-      fingerprint: String(b.fingerprint || '').slice(0, 64),
+      fingerprint,
       points: 0, uptimeSec: 0, createdAt: now, lastSeen: now,
     }
     save()

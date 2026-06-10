@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { invoke } from '@tauri-apps/api/core'
 import { openUrl } from '@tauri-apps/plugin-opener'
 
-type Specs = { os: string; arch: string; cpu: string; cpus: number; mem_gb: number; gpu: string | null; bench: number }
+type Specs = { os: string; arch: string; cpu: string; cpus: number; mem_gb: number; gpu: string | null; bench: number; fingerprint: string }
 type Cfg = { coordinatorUrl: string; nodeId?: string; nodeKey?: string; wallet?: string; specs?: Specs }
 type Status = { points: number; uptimeSec: number; rank: number; cap: number; online: boolean }
 
@@ -72,7 +72,7 @@ export default function App() {
             wallet: cfg.current.wallet || null,
             specs: { os: sp.os, arch: sp.arch, cpu: sp.cpu, cpus: sp.cpus, memGB: sp.mem_gb, gpu: sp.gpu },
             bench: sp.bench,
-            fingerprint: '',
+            fingerprint: sp.fingerprint,
           }),
         })
         const j = await r.json()
