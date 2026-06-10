@@ -7,14 +7,15 @@ export default defineConfig({
   appearance: 'dark',
   cleanUrls: true,
   lastUpdated: true,
-  head: [['link', { rel: 'icon', type: 'image/png', href: '/logo.png' }]],
+  head: [['link', { rel: 'icon', type: 'image/svg+xml', href: '/dna.svg' }]],
   themeConfig: {
-    logo: '/logo.png',
+    logo: '/dna.svg',
     nav: [
       { text: 'Introduction', link: '/' },
       { text: 'Run a node', link: '/run-a-node' },
       { text: 'Token', link: '/token' },
       { text: 'Whitepaper', link: '/whitepaper' },
+      { text: 'GitHub', link: 'https://github.com/Gen-Node' },
       { text: 'Website', link: 'https://gennode.org' },
     ],
     sidebar: [
@@ -33,6 +34,15 @@ export default defineConfig({
           { text: 'The network', link: '/node-network' },
           { text: 'Use cases', link: '/use-cases' },
           { text: 'Data layer', link: '/data-layer' },
+          { text: 'Node requirements', link: '/node-requirements' },
+        ],
+      },
+      {
+        text: 'Resources',
+        items: [
+          { text: 'Privacy & security', link: '/privacy' },
+          { text: 'Community & links', link: '/community' },
+          { text: 'Glossary', link: '/glossary' },
         ],
       },
       {
@@ -51,7 +61,10 @@ export default defineConfig({
         ],
       },
     ],
-    socialLinks: [{ icon: 'x', link: 'https://x.com/gennode' }],
+    socialLinks: [
+      { icon: 'github', link: 'https://github.com/Gen-Node' },
+      { icon: 'x', link: 'https://x.com/gennode' },
+    ],
     search: { provider: 'local' },
     footer: {
       message:

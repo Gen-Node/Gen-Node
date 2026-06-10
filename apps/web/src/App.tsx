@@ -114,6 +114,7 @@ function Nav() {
     ['How it works', '#how'],
     ['Token', '#token'],
     ['Roadmap', '#roadmap'],
+    ['Docs', DOCS_URL],
   ]
   return (
     <header className="sticky top-0 z-50 border-b border-white/5 bg-ink/70 backdrop-blur-md">
@@ -478,6 +479,40 @@ function Showcase() {
   )
 }
 
+const layers = [
+  { n: '01', t: 'Compute', d: 'Nodes run jobs on idle GPUs — DNA & genome analysis, protein folding, drug discovery, AI inference.', c: '#22d3ee' },
+  { n: '02', t: 'Data — torrent-like', d: 'Datasets, weights & results are encrypted, sharded and served peer-to-peer across nodes. Operators never see raw data.', c: '#5eead4' },
+  { n: '03', t: 'Models', d: 'Open models today; a purpose-built Gennode bio & AI LLM served across the network over time.', c: '#818cf8' },
+]
+
+function Layers() {
+  return (
+    <Section id="network" className="py-20">
+      <h2 className="text-center text-3xl font-bold md:text-4xl">How the network works</h2>
+      <p className="mx-auto mt-2 max-w-xl text-center text-white/60">
+        Three layers — compute, data and models — owned by the community.
+      </p>
+      <div className="mt-12 grid gap-5 md:grid-cols-3">
+        {layers.map((l) => (
+          <div key={l.n} className="card p-6">
+            <div className="font-chalk text-3xl" style={{ color: l.c }}>
+              {l.n}
+            </div>
+            <h3 className="mt-2 text-lg font-semibold">{l.t}</h3>
+            <p className="mt-2 text-sm text-white/60">{l.d}</p>
+          </div>
+        ))}
+      </div>
+      <p className="mt-6 text-center text-sm text-white/45">
+        Run a node and contribute <strong className="text-white/70">GPU + storage</strong> to all three.{' '}
+        <a href={`${DOCS_URL}/node-network`} className="text-bluex hover:underline">
+          Read the docs →
+        </a>
+      </p>
+    </Section>
+  )
+}
+
 function Waitlist() {
   const [email, setEmail] = useState('')
   const [done, setDone] = useState(false)
@@ -545,6 +580,9 @@ function Footer() {
             <a href="#token" className="transition hover:text-white">
               Token
             </a>
+            <a href="https://github.com/Gen-Node" target="_blank" rel="noreferrer" className="transition hover:text-white">
+              GitHub
+            </a>
             <a href={X_URL} target="_blank" rel="noreferrer" className="transition hover:text-white">
               X / Twitter
             </a>
@@ -589,6 +627,9 @@ export default function App() {
         </Reveal>
         <Reveal>
           <Showcase />
+        </Reveal>
+        <Reveal>
+          <Layers />
         </Reveal>
         <Reveal>
           <Token />
