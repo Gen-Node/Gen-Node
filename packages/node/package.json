@@ -1,16 +1,43 @@
 {
   "name": "@gennode/node",
   "version": "0.1.0",
-  "description": "Run the Gennode bio & AI assistant locally (macOS & Windows) — powered by the Venice API or a local Ollama model.",
+  "description": "Run a Gennode node — contribute idle compute to a decentralized network for bio & AI, and earn $GENNODE.",
   "type": "module",
   "bin": {
     "gennode": "src/index.mjs"
   },
+  "files": [
+    "src",
+    "README.md"
+  ],
   "engines": {
     "node": ">=18"
   },
   "license": "MIT",
+  "author": "Gennode",
+  "homepage": "https://gennode.org",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gen-Node/Gen-Node.git",
+    "directory": "packages/node"
+  },
+  "bugs": {
+    "url": "https://github.com/Gen-Node/Gen-Node/issues"
+  },
+  "keywords": [
+    "gennode",
+    "depin",
+    "node",
+    "compute",
+    "bio",
+    "ai",
+    "base",
+    "crypto"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
-    "start": "node src/index.mjs"
+    "start": "node src/index.mjs node"
   }
 }
