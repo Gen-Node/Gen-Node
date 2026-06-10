@@ -272,7 +272,7 @@ function RunNode() {
           <ul className="mt-6 space-y-3 text-sm text-white/70">
             <li>🟢 Passive — earn points for GPU, storage + uptime.</li>
             <li>🔒 Torrent-like data layer — data is encrypted &amp; sharded; you never see raw data.</li>
-            <li>🧬 Powers deep health &amp; DNA: genomics, folding, drug discovery, health AI.</li>
+            <li>🧬 Powers deep health &amp; DNA: genomics, folding, drug discovery, health Q&amp;A.</li>
             <li>🛡️ Wallet-bound identity — sybil-resistant, fair for everyone.</li>
           </ul>
           <div className="mt-7 flex flex-wrap gap-3">
