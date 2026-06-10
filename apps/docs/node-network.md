@@ -1,20 +1,26 @@
-# Node network <Badge type="warning" text="coming" />
+# The network
 
-> This is the future direction of Gennode. It is **in development** and not yet live.
+Gennode is a **node-powered compute layer for biological & health AI** — an io.net-style decentralized network, focused on one vertical.
 
-The long-term vision: the AI runs on a **decentralized network of community GPU nodes**, not on a single provider.
+## Why it exists
+Bio & health AI — protein folding, genomics, drug discovery, private health inference — need huge GPU compute that is **expensive, centralized and privacy-sensitive**. Gennode aggregates compute from thousands of community nodes: cheaper, decentralized, and private.
 
-## Run a node *(future)*
-```bash
-npx gennode        # install & start
+## How jobs flow
 ```
-Your machine registers with the coordinator, runs sealed model containers on your GPU, and earns `$GENNODE` for verified compute.
+Demand (researcher / app / a person's health question)
+   → Coordinator  (matches job → capable nodes, verifies the result)
+   → Nodes        (run the job on idle GPUs)
+   → Result + reward in $GENNODE
+```
 
-## Privacy by design
-- **Self-host mode** — run your own node for a 100% local, private assistant.
-- **Confidential computing (TEE)** — on supported GPUs, operators cannot see the data; cryptographic attestation guarantees privacy.
+## Privacy
+Health and genomic data are sensitive. The network is built **privacy-first**: data is minimized, and (roadmap) sealed / self-hostable execution plus **confidential computing (GPU TEE)** so node operators cannot see the data.
 
-## Beyond inference
-The same network will run bio-compute: **DNA analysis, protein folding, molecule docking and genomics**.
+## Anti-sybil
+1 wallet = 1 node identity · device fingerprint · benchmark (prove a real GPU) · cluster analysis. Keeps points & rewards fair.
 
-> Genes meet nodes.
+## Phases
+- **v1:** node app + uptime/benchmark points.
+- **v2:** real job execution — health-AI inference, then bio-compute — with proof-of-compute and paying demand.
+
+See the [Roadmap](/roadmap).

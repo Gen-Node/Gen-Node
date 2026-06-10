@@ -2,22 +2,22 @@
 layout: home
 hero:
   name: Gennode
-  text: Private health AI, built for bio
-  tagline: Ask your health questions privately. Powered today by Venice — tomorrow by a community GPU node network. Genes meet nodes.
+  text: Run a node. Power bio & health AI.
+  tagline: Download Gennode, put your idle GPU to work for a decentralized compute network — and earn $GENNODE. Genes meet nodes.
   actions:
     - theme: brand
+      text: Run a node
+      link: /run-a-node
+    - theme: alt
       text: How it works
       link: /how-it-works
-    - theme: alt
-      text: Health AI
-      link: /health-ai
 features:
-  - title: 🔒 Private by design
-    details: No logging, no profiling, no selling your data. Your questions stay yours.
-  - title: 🩺 Built for health
-    details: Understand symptoms, lab results and what to ask your doctor — never a diagnosis.
-  - title: ⛓ Self-funded network
-    details: $GENNODE on Base. Fees and revenue flow back to the community and, soon, node operators.
+  - title: 🖥 One-click node
+    details: Install on macOS, Windows or Linux from GitHub. It runs in your tray and turns idle GPU into rewards.
+  - title: 🧬 Built for bio & health
+    details: The network solves real jobs — health AI questions, protein folding, genomics, drug discovery, AI inference.
+  - title: ⛓ Earn $GENNODE
+    details: Points for uptime + capacity. 100% fair launch on Base. Points convert in the airdrop.
 ---
 
-> **Beta.** Gennode provides general health information and wellness support only — it is not a medical device and does not diagnose or treat. Always consult a clinician. See [Disclaimers](/disclaimers).
+> **Early access.** The node app and `$GENNODE` token are in active development and not yet released; features, rewards and timelines may change.

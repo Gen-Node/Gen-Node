@@ -1,18 +1,14 @@
-# Airdrop & points
+# Points & airdrop
 
-Early supporters and contributors earn **points** that convert to `$GENNODE`.
+Run a node, earn **points** → convert to **`$GENNODE`** in the airdrop.
 
-## Phase 1 — participation points
-Earn by genuinely contributing:
-- Early use & feedback
-- Referrals
-- Community tasks
-
-## Phase 2 — compute points *(coming)*
-When the node network launches, you earn points for the **GPU compute** your node contributes — `compute × difficulty × uptime`.
+## How to earn points
+- **Run a node** — uptime + GPU capacity (the main way)
+- **Complete jobs** (as the network goes live) — real compute earns more
+- **Referrals** and **community tasks**
 
 ## Anti-sybil
-Points are protected against farming via device fingerprinting, behavior analysis and staged verification. Rewards go to **real contributors**.
+1 wallet = 1 node · device fingerprint · benchmark (real GPU). Rewards go to real operators, not fake-node farms.
 
-## How to qualify
-Join the waitlist on the [website](https://gennode.org) and stay active. The snapshot and distribution details will be published **before** launch through official channels.
+## Conversion
+No tokens are pre-allocated for the airdrop. Accrued **fees buy `$GENNODE` on the market** and distribute it to points-holders via a Merkle claim. The snapshot and details are published **before** launch through official channels.

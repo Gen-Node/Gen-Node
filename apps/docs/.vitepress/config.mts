@@ -12,7 +12,7 @@ export default defineConfig({
     logo: '/logo.png',
     nav: [
       { text: 'Introduction', link: '/' },
-      { text: 'Health AI', link: '/health-ai' },
+      { text: 'Run a node', link: '/run-a-node' },
       { text: 'Token', link: '/token' },
       { text: 'Whitepaper', link: '/whitepaper' },
       { text: 'Website', link: 'https://gennode.org' },
@@ -27,10 +27,10 @@ export default defineConfig({
         ],
       },
       {
-        text: 'Product',
+        text: 'Node',
         items: [
-          { text: 'Health AI', link: '/health-ai' },
-          { text: 'Node network (coming)', link: '/node-network' },
+          { text: 'Run a node', link: '/run-a-node' },
+          { text: 'The network', link: '/node-network' },
         ],
       },
       {

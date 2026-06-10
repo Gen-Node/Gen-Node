@@ -1,19 +1,25 @@
 # FAQ
 
-### Is Gennode a doctor?
-No. It provides general health information and wellness support only. It does not diagnose, treat or prescribe. Always consult a clinician.
+### What is Gennode?
+A decentralized compute network for biological & health AI. Run a node on your computer, contribute idle GPU, and earn `$GENNODE`. *Genes meet nodes.*
 
-### Is it really private?
-Yes — no logging, no profiling, no data selling. Today it runs on Venice's private infrastructure; the future node network adds self-hosting and confidential computing.
+### What does a node actually do?
+It stays online and — as the network rolls out — runs jobs the network dispatches: health-AI questions, protein folding, genomics, AI inference.
+
+### What do I need?
+A computer with a GPU (Mac / Windows / Linux), a wallet, and internet. Download from GitHub, connect your wallet, run.
+
+### How do I earn?
+Points for uptime + capacity (+ completed jobs). Points convert to `$GENNODE` in the airdrop.
+
+### Is it like io.net or Nosana?
+Same idea (run a node, earn) — but focused on one vertical: **bio & health AI**.
 
 ### What is $GENNODE?
-A utility token on Base that fuels access, governance and rewards. See [Token](/token).
+The network's utility token on **Base** — a 100% fair launch via Bankr. See [Token](/token).
 
-### Can I run a node now?
-Not yet — the node network is in development. Join the waitlist to be first.
-
-### How do I get the token?
-The token launches on Base via Bankr. The official contract address and details will be published through our channels. **Beware of fakes — only trust official links.**
+### Can I run it now?
+The node app is in active development — join the waitlist on the [website](https://gennode.org) to be first. A headless CLI is available for servers.
 
 ### Is this financial advice?
-No. Nothing here is financial advice or an offer of securities.
+No. Nothing here is financial advice or an offer of securities. Beware of fakes — only trust official links.

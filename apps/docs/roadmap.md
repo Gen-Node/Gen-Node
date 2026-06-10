@@ -1,28 +1,13 @@
 # Roadmap
 
-**Progressive decentralization** — a working product first, the network second.
+**Node network first, real bio-compute next.**
 
 | Phase | Focus | Token | Node |
 | --- | --- | --- | --- |
-| **0 — MVP** | Venice-powered health AI + guard-rails | – | – |
-| **1 — Beta** | 3D site, health AI beta, participation points, waitlist | – | – |
-| **2 — Community** | grow users, doctor mode, grounded (RAG) answers | – (points) | – |
-| **3 — Demand** | paying usage, first revenue | – | – |
-| **4 — TGE** | `$GENNODE` fair launch via Bankr, airdrop | ✅ | – |
-| **5 — Network** | node client, confidential computing (TEE), compute rewards, bio-compute | ✅ | ✅ |
-
-## Now
-- ✅ 3D landing page, documentation, brand
-- ✅ Tokenomics defined — **100% fair launch** (no team, no pre-mine)
-- 🔜 Health AI beta (Venice) + waitlist + participation points
-
-## Next
-- Community growth, doctor mode, sourced answers
-- Grant applications (DeSci · Base · Gitcoin)
-- `$GENNODE` launch on **Base** via Bankr
-
-## Later
-- Node network (`npx gennode`) + confidential computing (TEE) for true privacy
-- Bio-compute jobs: DNA analysis, protein folding, genomics
+| **1 — Node app + points** | desktop node (Mac/Win/Linux), wallet, uptime → points, leaderboard | – | ✅ |
+| **2 — Token launch** | `$GENNODE` fair launch on Base via Bankr; Season 1 points | ✅ | ✅ |
+| **3 — Airdrop & growth** | points → airdrop; referrals, staking, holder boosts | ✅ | ✅ |
+| **4 — Real compute** | nodes run real jobs (health-AI inference) + proof-of-compute + paying demand | ✅ | ✅ |
+| **5 — Bio-compute** | protein folding, genomics, molecule & drug discovery | ✅ | ✅ |
 
 > Timelines are directional and subject to change.

@@ -1,22 +1,24 @@
 # How it works
 
-Gennode rolls out with **progressive decentralization** — a working product first, the network second.
+Gennode is a **decentralized compute network** for biological & health AI — an io.net-style network, focused on one vertical: **bio + health**. You contribute compute by running a node; the network dispatches jobs to nodes; you earn.
 
-## 1. Ask privately
-You ask a health question. Your query is not logged or tied to your identity.
+## For node operators (supply)
+1. **Download** the Gennode app (macOS / Windows / Linux) from **GitHub Releases**.
+2. **Connect your wallet** — your node identity (keeps the network sybil-resistant and fair).
+3. **Run a node** — your idle GPU joins the network and stays online, quietly in your tray.
+4. **Earn $GENNODE** — points for uptime + capacity (+ completed jobs); points convert to `$GENNODE` in the airdrop.
 
-## 2. Grounded answer
-The assistant responds in plain language, with sources, guard-rails and safe triage — and always reminds you it is **not a diagnosis**.
-
-## 3. Community nodes *(coming)*
-In a later phase, people run GPU **nodes** that perform the AI inference and, eventually, bio-compute jobs (DNA, protein folding, genomics). Operators earn `$GENNODE` for the compute they contribute.
+## What the nodes solve (demand)
+When a job arrives, the coordinator routes it to capable nodes:
+- **Health AI** — people ask health questions privately; a node runs the inference and returns the answer.
+- **Bio-compute** — protein folding, genomics, molecule & drug discovery.
+- **AI inference** — model inference for the bio/health vertical.
 
 ## Architecture (high level)
-
 | Layer | Role |
 | --- | --- |
-| **Coordinator** | Routes requests, verifies work, tracks contribution |
-| **Node agent** *(coming)* | `npx gennode` — runs sealed models on your GPU |
-| **On-chain (Base)** | `$GENNODE`, reward distribution, treasury |
+| **Node app** | runs on your machine, contributes GPU, completes jobs |
+| **Coordinator** | registers nodes, dispatches & verifies jobs, tracks points |
+| **On-chain (Base)** | `$GENNODE`, rewards, points → airdrop |
 
-See [Node network](/node-network) for the future design.
+> v1 focuses on **node onboarding + uptime/benchmark points**. Real job execution (health AI, bio-compute) rolls out next — see the [Roadmap](/roadmap).
