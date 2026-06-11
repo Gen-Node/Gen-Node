@@ -2,6 +2,8 @@
 
 Gennode is built for **deep bio & scientific data** — the workloads that need the most compute, the largest datasets and the strongest privacy. Whatever the field, the common thread is the same: **huge compute + large, sensitive data + a hard privacy requirement.**
 
+> These are the **target workloads** — real compute jobs roll out per the [Roadmap](/roadmap).
+
 ## 🧬 Genomics & DNA
 - Sequence alignment & genome assembly
 - Variant calling (SNPs, indels, structural variants)

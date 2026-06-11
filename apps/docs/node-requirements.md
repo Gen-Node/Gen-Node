@@ -6,7 +6,7 @@ Running a Gennode node is light to start (uptime + benchmark) and scales with wh
 - **OS:** macOS 12+, Windows 10+, or Linux (x64 / arm64)
 - **CPU:** any modern 4-core
 - **RAM:** 8 GB
-- **Disk:** 10 GB free (more disk = more storage rewards)
+- **Disk:** 10 GB free (more disk = more storage rewards once the data layer ships)
 - **Network:** stable broadband
 - **Wallet:** any EVM wallet (your node identity)
 
@@ -20,4 +20,4 @@ Running a Gennode node is light to start (uptime + benchmark) and scales with wh
 - **Storage (disk)** — hold & serve encrypted data shards
 - **Uptime** — availability points
 
-> v1 is intentionally light (uptime + benchmark). Heavier compute jobs are **opt-in** as they roll out, and the app lets you cap how much CPU/GPU/disk it uses.
+> v1 is intentionally light (uptime + benchmark). Heavier compute jobs will be **opt-in** as they roll out, and the app will let you cap how much CPU/GPU/disk it uses.

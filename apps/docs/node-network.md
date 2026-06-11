@@ -23,7 +23,7 @@ These privacy properties are part of the roadmap, not yet live:
 - Owners control access with keys; nothing is sold or profiled.
 
 ## Anti-sybil
-Today, fairness comes from **wallet linking** and a **CPU benchmark** that proves a node runs on real hardware. A "1 wallet = 1 node" rule, device fingerprinting, storage proofs and cluster analysis are **planned**.
+Today, fairness comes from **wallet linking**, a **CPU benchmark** that proves a node runs on real hardware, and a **device fingerprint** (one device = one node = one wallet). Storage proofs and cluster analysis are **planned**.
 
 ## Node roles & rewards
 Today, a node earns `$GENNODE` points for **uptime** and proving real hardware. As the network matures, nodes will also earn for **compute** (running jobs) and **storage** (holding & serving data shards, proven) — see the [Roadmap](/roadmap).

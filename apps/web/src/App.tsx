@@ -81,18 +81,18 @@ const problems = [
 ]
 
 const steps = [
-  { n: '01', t: 'Download', d: 'Get the Gennode app for macOS, Windows or Linux. One click — or run npx @gennode/node.', tag: 'Soon', live: false },
-  { n: '02', t: 'Connect wallet', d: 'Link a wallet — your node identity. Keeps the network sybil-resistant and fair.', tag: 'Soon', live: false },
-  { n: '03', t: 'Run a node', d: 'Your idle GPU joins the network and stays online. It runs quietly in the tray.', tag: 'Soon', live: false },
-  { n: '04', t: 'Earn $GENNODE', d: 'Earn points for uptime + capacity. Points convert to $GENNODE in the airdrop.', tag: 'Soon', live: false },
+  { n: '01', t: 'Download', d: 'Get the Gennode app for macOS, Windows or Linux. One click — or run npx @gennode/node.', tag: 'Live', live: true },
+  { n: '02', t: 'Connect wallet', d: 'Link a wallet — your node identity. Keeps the network sybil-resistant and fair.', tag: 'Live', live: true },
+  { n: '03', t: 'Run a node', d: 'Your idle GPU joins the network and stays online. It runs quietly in the tray.', tag: 'Live', live: true },
+  { n: '04', t: 'Earn $GENNODE', d: 'Earn points for uptime × capacity. Points convert to $GENNODE in the airdrop.', tag: 'Live (points)', live: true },
 ]
 
 const roadmap = [
   { p: 'Phase 1', t: 'Node app + points', d: 'Desktop node (Mac/Win/Linux), wallet, uptime → points, leaderboard.', state: 'now' },
   { p: 'Phase 2', t: 'Token launch', d: '$GENNODE fair launch on Base via Bankr. Season 1 points open.', state: 'next' },
   { p: 'Phase 3', t: 'Airdrop & growth', d: 'Points → $GENNODE airdrop. Referrals, staking, holder boosts.', state: 'next' },
-  { p: 'Phase 4', t: 'Torrent-like data layer', d: 'Encrypted, sharded, erasure-coded storage for big bio datasets across nodes (planned).', state: 'coming' },
-  { p: 'Phase 5', t: 'Bio-compute', d: 'DNA & genome analysis, protein folding, drug discovery & genomics jobs. Genes meet nodes.', state: 'coming' },
+  { p: 'Phase 4', t: 'Real compute', d: 'Nodes run real bio jobs (genomics, protein analysis) + proof-of-compute + paying demand.', state: 'coming' },
+  { p: 'Phase 5', t: 'Bio-compute', d: 'Protein folding, genomics, molecule & drug discovery. Genes meet nodes.', state: 'coming' },
 ]
 
 const supply = [
@@ -265,8 +265,8 @@ function RunNode() {
             a one-click way to join the network. Prefer the terminal? Run <code className="rounded bg-white/10 px-1.5 py-0.5 text-bluex">npx @gennode/node</code>.
           </p>
           <ul className="mt-6 space-y-3 text-sm text-white/70">
-            <li>🟢 Passive — earn points for GPU, storage + uptime.</li>
-            <li>🔒 Torrent-like data layer — bio datasets are encrypted &amp; sharded; you never see raw data.</li>
+            <li>🟢 Passive — earn points for uptime × capacity (CPU benchmark today; GPU &amp; storage rewards on the roadmap).</li>
+            <li>🔒 Torrent-like data layer (planned) — bio datasets will be encrypted &amp; sharded; you never see raw data.</li>
             <li>🧬 Powers private bio &amp; DNA: genome analysis, protein folding, drug discovery, disease research.</li>
             <li>🛡️ Wallet-bound identity — sybil-resistant, fair for everyone.</li>
           </ul>
@@ -520,8 +520,8 @@ function Waitlist() {
       <div className="rounded-3xl border border-bluex/20 bg-gradient-to-b from-bluex/10 to-transparent p-10 text-center">
         <h2 className="text-3xl font-bold md:text-4xl">Be an early node</h2>
         <p className="mx-auto mt-3 max-w-xl text-white/65">
-          Follow Gennode to catch the launch the moment the node app drops, and start earning points toward the
-          $GENNODE airdrop.
+          The node app is live — run one today and start earning points toward the $GENNODE airdrop. Follow Gennode
+          to catch the $GENNODE launch the moment it happens.
         </p>
 
         <div className="mx-auto mt-8 flex max-w-md flex-col items-center justify-center gap-3 sm:flex-row">
@@ -534,7 +534,7 @@ function Waitlist() {
         </div>
 
         <p className="mx-auto mt-5 max-w-md text-xs text-white/40">
-          No email signup yet — follow on X or watch the GitHub releases so you don't miss the launch.
+          No email signup yet — follow on X or watch the GitHub releases so you don't miss the $GENNODE launch.
         </p>
       </div>
     </Section>
@@ -572,8 +572,8 @@ function Footer() {
         <div className="mt-8 space-y-2 text-center text-xs leading-relaxed text-white/35 md:text-left">
           <p>
             <strong className="text-white/50">Early access.</strong> Gennode is a decentralized bio-compute network in
-            active development. The node app and $GENNODE token are not yet released; features, rewards and timelines may
-            change.
+            active development. The node app is live in early access; the $GENNODE token is not yet launched. Features,
+            rewards and timelines may change.
           </p>
           <p>
             $GENNODE is a utility token intended for use within the network. Nothing on this site is financial, investment

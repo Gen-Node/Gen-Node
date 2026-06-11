@@ -32,7 +32,7 @@ A node contributes **compute**, **disk**, or both.
 Privacy-first by design. On the roadmap: minimized data, **sealed / self-hostable execution** and **confidential computing (GPU TEE)** so node operators cannot see the data. GDPR-aware. These protections are planned, not yet live.
 
 ## 7. Anti-sybil
-Today: **wallet linking** + a **CPU benchmark** that proves real hardware. A "1 wallet = 1 node" rule, device fingerprinting and cluster analysis are **planned**. Critical for fair points/rewards.
+Today: **wallet linking** + a **CPU benchmark** that proves real hardware + a **device fingerprint** enforcing one device = one node = one wallet. Cluster analysis is **planned**. Critical for fair points/rewards.
 
 ## 8. Token — $GENNODE
 Planned: Base · ERC-20 (Clanker v4 / Bankr) · 100B fixed, non-mintable. Utility: node rewards, pay-for-compute, governance, holder/staking boosts. Not yet launched.

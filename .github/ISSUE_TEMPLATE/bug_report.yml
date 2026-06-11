@@ -1,0 +1,43 @@
+name: 🐛 Bug report
+description: Something in the node app, CLI, dashboard, or sites isn't working
+labels: [bug]
+body:
+  - type: dropdown
+    id: surface
+    attributes:
+      label: Where did it happen?
+      options:
+        - Desktop app (Windows)
+        - Desktop app (macOS)
+        - Desktop app (Linux)
+        - CLI (npx @gennode/node)
+        - Dashboard (app.gennode.org)
+        - Website / Docs
+        - Coordinator API
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: Desktop app version (e.g. 0.1.3) or CLI version (`gennode --version`)
+      placeholder: "0.1.3"
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: What did you expect, and what happened instead? Paste any error output.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Open the app
+        2. Click Start node
+        3. …
+  - type: markdown
+    attributes:
+      value: |
+        > ⚠️ Never share your private keys or seed phrase. A wallet **address** (0x…) is fine.

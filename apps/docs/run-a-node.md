@@ -27,13 +27,13 @@ Cross-platform desktop apps (macOS / Windows / Linux) are on **[GitHub Releases]
 The app runs in your tray, shows your live **points & uptime**, and earns while your machine is idle.
 
 ::: warning Windows SmartScreen ("Windows protected your PC")
-During early access the installer is **not code-signed yet**, so Windows SmartScreen may warn you. The app is safe — it's open source ([apps/desktop](https://github.com/Gen-Node/Gen-Node/tree/main/apps/desktop)). To install: click **More info → Run anyway**. (macOS: right-click the app → **Open**.) Signed installers are coming.
+During early access the installer is **not code-signed yet**, so Windows SmartScreen may warn you. The app is safe — it's open source ([apps/desktop](https://github.com/Gen-Node/Gen-Node/tree/main/apps/desktop)). To install: click **More info → Run anyway**. macOS: open the app once (it will be blocked), then go to **System Settings → Privacy & Security → Open Anyway**; on macOS 14 and earlier, right-click the app → **Open** also works. Signed installers are coming.
 :::
 
 ## How you earn
 Points = `uptime × capacity`. Points convert to **`$GENNODE`** in the airdrop. Higher capacity and higher uptime earn more. Real compute jobs will earn additional points as the network matures.
 
 ## Fairness (anti-sybil)
-Today, fairness comes from **wallet linking** and a **CPU benchmark** that proves your node runs on real hardware. Device fingerprinting, deduplication and cluster analysis are **planned** to further protect rewards for genuine operators.
+Today, fairness comes from **wallet linking**, a **CPU benchmark** that proves your node runs on real hardware, and a **device fingerprint** (one device = one node = one wallet). Cluster analysis is **planned** to further protect rewards for genuine operators.
 
-> The desktop app and token are in active development.
+> The desktop app is in early access; the `$GENNODE` token is not yet launched.

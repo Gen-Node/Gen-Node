@@ -1,6 +1,6 @@
 # @gennode/gateway
 
-The Gennode **node coordinator + dashboard**. It tracks the node network (registration, heartbeats, points, leaderboard, network stats) and serves the React dashboard from `apps/dashboard/dist`. Runs on **Node 18+** (or Bun).
+The Gennode **node coordinator + dashboard**. It tracks the node network (registration, heartbeats, points, leaderboard, network stats) and serves the React dashboard from `apps/dashboard/dist`. Runs on **Node 18+** (or Bun). Deployed at **https://app.gennode.org** (the CLI and desktop app default to it).
 
 ## Run
 ```bash
@@ -29,7 +29,7 @@ The desktop app and `@gennode/node` CLI talk to these endpoints.
 - `GET /v1/network/stats` — `{ nodesTotal, nodesOnline, totalPoints, totalUptimeSec }`.
 - `GET /health` — ops liveness check `{ ok }`.
 
-> Points and capacity are v1: uptime × a capacity score (CPU cores, RAM, benchmark). Real compute-job scheduling, the encrypted torrent-like data layer, and advanced anti-sybil (fingerprint dedup, cluster analysis) are roadmap, not yet implemented here.
+> Points and capacity are v1: uptime × a capacity score (CPU cores, RAM, benchmark). Real compute-job scheduling, the encrypted torrent-like data layer, and advanced anti-sybil (cross-device cluster analysis) are roadmap, not yet implemented here.
 
 ## Dashboard
 - `GET /` (and any non-`/v1` GET) serves the React dashboard built to `apps/dashboard/dist`, with SPA fallback. The dashboard lets operators connect a wallet (Privy), view their nodes (points, uptime, rank, capacity, specs), the leaderboard, and live network stats.

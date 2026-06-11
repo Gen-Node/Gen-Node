@@ -22,4 +22,4 @@ features:
     details: Points = uptime × capacity. Planned 100% fair launch on Base. Points convert in the airdrop.
 ---
 
-> **Early access.** The node app and `$GENNODE` token are in active development and not yet released; features, rewards and timelines may change.
+> **Early access.** The node app is live in early access (CLI on npm, desktop app on GitHub Releases); the `$GENNODE` token is not yet launched. Features, rewards and timelines may change.

@@ -1,0 +1,11 @@
+blank_issues_enabled: true
+contact_links:
+  - name: 📄 Documentation
+    url: https://docs.gennode.org
+    about: How to run a node, the network design, token & airdrop, FAQ.
+  - name: 🔒 Report a security vulnerability
+    url: https://github.com/Gen-Node/Gen-Node/blob/main/SECURITY.md
+    about: Please report vulnerabilities privately — do not open a public issue.
+  - name: 🌐 Website
+    url: https://gennode.org
+    about: Project overview and downloads.

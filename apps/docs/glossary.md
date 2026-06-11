@@ -9,7 +9,7 @@
 - **DHT** (Distributed Hash Table) — a decentralized index mapping content → which nodes hold it.
 - **Erasure coding** — redundancy (e.g. Reed–Solomon) that keeps data durable if nodes drop offline.
 - **Shard** — an encrypted piece of a file stored on a node.
-- **Anti-sybil** — measures that stop fake-node farming: wallet linking + a CPU benchmark today; device fingerprinting and cluster analysis are planned.
+- **Anti-sybil** — measures that stop fake-node farming: wallet linking + a CPU benchmark + a device fingerprint (one device = one node) today; cluster analysis is planned.
 - **Confidential computing (TEE)** — hardware that lets nodes compute on data without seeing it.
 - **Fair launch** — 100% of supply to the open market; no team, pre-mine or presale.
 - **$GENNODE** — the network's planned utility token on Base (to launch via Bankr; not yet launched).

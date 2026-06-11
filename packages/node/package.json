@@ -30,7 +30,11 @@
     "node",
     "compute",
     "bio",
-    "ai",
+    "dna",
+    "genomics",
+    "bioinformatics",
+    "protein-folding",
+    "p2p",
     "base",
     "crypto"
   ],

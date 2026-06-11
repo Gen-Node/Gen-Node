@@ -1,7 +1,7 @@
 # Disclaimers
 
 ## Early access
-Gennode is a private, torrent-like decentralized network for heavy bio & health compute, in active development. The node app and `$GENNODE` token are **not yet released**; features, rewards and timelines may change.
+Gennode is a private, torrent-like decentralized network for heavy bio & health compute, in active development. The node app is **early-access software** (headless CLI plus unsigned desktop builds); the `$GENNODE` token is **not yet launched**. Features, rewards and timelines may change.
 
 ## Data & privacy
 The network handles sensitive workloads (including genomic & scientific data) **privacy-first**: data is minimized, and (roadmap) sealed / confidential execution so node operators cannot see the data. Applicable rules (e.g., GDPR) are respected as the network matures.

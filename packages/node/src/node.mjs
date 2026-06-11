@@ -5,6 +5,7 @@ import crypto from 'node:crypto'
 import { execFile } from 'node:child_process'
 
 const HEARTBEAT_MS = 30_000
+const LINE_W = 72 // status-line repaint width (single width so \r repaints never leave stale chars)
 const DEFAULT_COORDINATOR = (process.env.GENNODE_COORDINATOR || 'https://app.gennode.org').replace(/\/+$/, '')
 
 // ---- hardware ----
@@ -131,19 +132,19 @@ export async function runNode(cfg, saveConfig) {
   }
 
   if (!cfg.wallet) {
-    console.log('\n⚠  No wallet linked. Run "gennode wallet 0x…" (or link at app.gennode.org) to claim rewards.')
+    console.log('\n⚠  No wallet linked. Run "gennode wallet <address>" (or link at app.gennode.org) to claim rewards.')
   }
-  console.log('\nNode running — earning points for uptime + capacity. Press Ctrl+C to stop.\n')
+  console.log('\nNode running — earning points for uptime × capacity. Press Ctrl+C to stop.\n')
 
   const beat = async () => {
     const r = await post(url + '/v1/node/heartbeat', { nodeKey: cfg.nodeKey })
     if (r && r.ok) {
       const line = `● online    ${fmtPts(r.points)} pts    up ${fmtDur(r.uptimeSec)}    rank #${r.rank}    ×${r.cap}`
-      process.stdout.write('\r' + line.padEnd(72))
+      process.stdout.write('\r' + line.padEnd(LINE_W))
     } else if (r && r.error) {
-      process.stdout.write('\r⚠ ' + String(r.error).padEnd(62))
+      process.stdout.write('\r' + ('⚠ ' + String(r.error)).padEnd(LINE_W))
     } else {
-      process.stdout.write('\r◌ reconnecting…'.padEnd(62))
+      process.stdout.write('\r' + '◌ reconnecting…'.padEnd(LINE_W))
     }
   }
 
@@ -167,12 +168,12 @@ export async function nodeStatus(cfg) {
   if (r.error) return console.log('Error:', r.error)
   console.log(`\n🧬 Node ${r.nodeId}   ${r.online ? '● online' : '○ offline'}`)
   console.log(`   points  ${fmtPts(r.points)}    uptime ${fmtDur(r.uptimeSec)}    rank #${r.rank}    capacity ×${r.cap}`)
-  console.log(`   wallet  ${r.wallet || '— (run: gennode wallet 0x…)'}\n`)
+  console.log(`   wallet  ${r.wallet || '— (run: gennode wallet <address>)'}\n`)
 }
 
 export async function linkWallet(cfg, saveConfig, address) {
   address = String(address || '').toLowerCase()
-  if (!/^0x[0-9a-f]{40}$/.test(address)) return console.log('Usage: gennode wallet 0x…  (a valid EVM address)')
+  if (!/^0x[0-9a-f]{40}$/.test(address)) return console.log('Usage: gennode wallet <address>  (a valid 0x... EVM address)')
   cfg.wallet = address
   saveConfig(cfg)
   if (cfg.nodeKey) {

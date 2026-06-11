@@ -1,6 +1,6 @@
 # @gennode/docs
 
-Gennode documentation — **VitePress**.
+Gennode documentation — **VitePress**. Published at **[docs.gennode.org](https://docs.gennode.org)**.
 
 ```bash
 npm install
