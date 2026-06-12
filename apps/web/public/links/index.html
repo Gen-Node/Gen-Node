@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/dna.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gennode — Links</title>
+    <meta name="description" content="Every Gennode link in one place: run a node, docs, GitHub, npm, dashboard and the live network. A private, torrent-like compute network for bio & DNA." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://gennode.org/links" />
+    <meta property="og:title" content="Gennode — Links" />
+    <meta property="og:description" content="Every Gennode link in one place — run a node, docs, GitHub, npm, dashboard, live network. Genes meet nodes." />
+    <meta property="og:image" content="https://gennode.org/og.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@gennode" />
+    <meta name="twitter:title" content="Gennode — Links" />
+    <meta name="twitter:description" content="Every Gennode link in one place — run a node, docs, GitHub, npm, dashboard, live network." />
+    <meta name="twitter:image" content="https://gennode.org/og.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --ink: #070b12;
+        --panel: #0a0f1a;
+        --card: #0f1a2b;
+        --card-hover: #13243a;
+        --border: #1b2c44;
+        --border-hover: #2b4d6e;
+        --text: #e8f1f8;
+        --muted: #9fb2c2;
+        --dim: #6f8aa0;
+        --label: #5f7a8c;
+        --cyan: #22d3ee;
+        --sky: #38bdf8;
+        --indigo: #818cf8;
+        --teal: #5eead4;
+      }
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      body {
+        background:
+          radial-gradient(900px 500px at 50% -10%, rgba(34, 211, 238, 0.08), transparent 70%),
+          var(--ink);
+        color: var(--text);
+        font-family: "Inter", system-ui, -apple-system, sans-serif;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        padding: 28px 16px 48px;
+        -webkit-font-smoothing: antialiased;
+      }
+      .wrap { width: 100%; max-width: 600px; }
+      .panel {
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        padding: 30px 26px 22px;
+      }
+      .head { display: flex; align-items: center; gap: 14px; }
+      .mark {
+        width: 50px; height: 50px; border-radius: 15px;
+        background: #0e1c2e; border: 1px solid #1e3a52;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 26px;
+      }
+      .brand { font-size: 24px; font-weight: 700; letter-spacing: 0.05em; }
+      .tag { font-size: 13px; color: var(--dim); margin-top: 2px; }
+      .lead { margin-top: 16px; font-size: 15px; color: var(--muted); line-height: 1.6; }
+      .pills { display: flex; gap: 8px; margin-top: 13px; flex-wrap: wrap; }
+      .pill { font-size: 12px; border-radius: 999px; padding: 4px 12px; border: 1px solid; }
+      .pill.a { color: #7fd9ec; background: #0e1c2e; border-color: #1e3a52; }
+      .pill.b { color: #9aa7f0; background: #141a33; border-color: #2a2f5a; }
+      .pill.c { color: #7fe3c6; background: #0c2018; border-color: #1c4338; }
+      .label { margin-top: 24px; font-size: 12px; color: var(--label); letter-spacing: 0.1em; text-transform: uppercase; }
+      .grid { display: grid; gap: 10px; margin-top: 9px; }
+      .g3 { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); }
+      .g2 { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+      .card {
+        text-decoration: none; display: flex; align-items: center; gap: 12px;
+        background: var(--card); border: 1px solid var(--border); border-radius: 13px;
+        padding: 13px 14px; transition: background 0.14s, border-color 0.14s, transform 0.14s;
+      }
+      .card:hover { background: var(--card-hover); border-color: var(--border-hover); transform: translateY(-1px); }
+      .ic { font-size: 22px; line-height: 1; flex-shrink: 0; }
+      .ttl { display: block; font-size: 15px; font-weight: 500; color: var(--text); }
+      .url { display: block; font-size: 12px; font-family: "JetBrains Mono", monospace; margin-top: 1px; }
+      .docs { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2px 16px; margin-top: 6px; }
+      .doc { text-decoration: none; display: flex; align-items: center; gap: 9px; padding: 9px 8px; border-radius: 9px; color: #cdd9e3; font-size: 14px; transition: background 0.14s; }
+      .doc:hover { background: var(--card-hover); }
+      .doc .arr { color: #2f6f8f; font-size: 14px; }
+      .api .card { padding: 11px 13px; }
+      .api .ttl { font-size: 14px; }
+      .api .url { font-size: 11px; color: var(--dim); }
+      .foot { margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+      .foot a { color: var(--sky); font-family: "JetBrains Mono", monospace; font-size: 14px; text-decoration: none; }
+      .foot span { font-size: 11px; color: var(--label); }
+      @media (max-width: 480px) { .panel { padding: 24px 18px 20px; } .brand { font-size: 22px; } }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="panel">
+        <div class="head">
+          <div class="mark">🧬</div>
+          <div>
+            <div class="brand">GENNODE</div>
+            <div class="tag">Genes meet nodes.</div>
+          </div>
+        </div>
+
+        <p class="lead">A private, torrent-like network for bio &amp; DNA compute. Run a node → power genome analysis, protein folding &amp; drug discovery.</p>
+        <div class="pills">
+          <span class="pill a">Early access</span>
+          <span class="pill b">Built on Base</span>
+          <span class="pill c">100% fair launch</span>
+        </div>
+
+        <div class="label">Sites</div>
+        <div class="grid g3">
+          <a class="card" href="https://gennode.org"><span class="ic" style="color:var(--cyan)">🌐</span><span><span class="ttl">Website</span><span class="url" style="color:var(--sky)">gennode.org</span></span></a>
+          <a class="card" href="https://docs.gennode.org"><span class="ic" style="color:var(--cyan)">📚</span><span><span class="ttl">Docs</span><span class="url" style="color:var(--sky)">docs.gennode.org</span></span></a>
+          <a class="card" href="https://app.gennode.org"><span class="ic" style="color:var(--cyan)">📊</span><span><span class="ttl">Dashboard</span><span class="url" style="color:var(--sky)">app.gennode.org</span></span></a>
+        </div>
+
+        <div class="label">Run a node</div>
+        <div class="grid g2">
+          <a class="card" href="https://www.npmjs.com/package/@gennode/node"><span class="ic" style="color:var(--teal)">⌨️</span><span><span class="ttl">CLI — one line</span><span class="url" style="color:var(--teal)">npx @gennode/node</span></span></a>
+          <a class="card" href="https://github.com/Gen-Node/Gen-Node/releases"><span class="ic" style="color:var(--teal)">⬇️</span><span><span class="ttl">Desktop app</span><span class="url" style="color:var(--dim)">macOS · Windows · Linux</span></span></a>
+        </div>
+
+        <div class="label">Code &amp; community</div>
+        <div class="grid g3">
+          <a class="card" href="https://github.com/Gen-Node"><span class="ic" style="color:var(--indigo)">🐙</span><span><span class="ttl">GitHub org</span><span class="url" style="color:var(--sky)">github.com/Gen-Node</span></span></a>
+          <a class="card" href="https://github.com/Gen-Node/Gen-Node"><span class="ic" style="color:var(--indigo)">{ }</span><span><span class="ttl">Main repo</span><span class="url" style="color:var(--sky)">Gen-Node/Gen-Node</span></span></a>
+          <a class="card" href="https://x.com/gennode"><span class="ic" style="color:var(--indigo)">𝕏</span><span><span class="ttl">X</span><span class="url" style="color:var(--sky)">@gennode</span></span></a>
+        </div>
+
+        <div class="label">Docs</div>
+        <div class="docs">
+          <a class="doc" href="https://docs.gennode.org/whitepaper"><span class="arr">↗</span>Whitepaper</a>
+          <a class="doc" href="https://docs.gennode.org/run-a-node"><span class="arr">↗</span>Run a node guide</a>
+          <a class="doc" href="https://docs.gennode.org/node-network"><span class="arr">↗</span>Network architecture</a>
+          <a class="doc" href="https://docs.gennode.org/data-layer"><span class="arr">↗</span>Data layer (torrent-like)</a>
+          <a class="doc" href="https://docs.gennode.org/use-cases"><span class="arr">↗</span>Use cases — DNA, protein, drugs</a>
+          <a class="doc" href="https://docs.gennode.org/token"><span class="arr">↗</span>Token</a>
+          <a class="doc" href="https://docs.gennode.org/airdrop"><span class="arr">↗</span>Airdrop &amp; points</a>
+          <a class="doc" href="https://docs.gennode.org/roadmap"><span class="arr">↗</span>Roadmap</a>
+          <a class="doc" href="https://docs.gennode.org/faq"><span class="arr">↗</span>FAQ</a>
+        </div>
+
+        <div class="label">Live network · API</div>
+        <div class="grid g3 api">
+          <a class="card" href="https://app.gennode.org/v1/network/stats"><span class="ic" style="color:var(--cyan)">📈</span><span><span class="ttl">Network stats</span><span class="url">/v1/network/stats</span></span></a>
+          <a class="card" href="https://app.gennode.org/v1/leaderboard"><span class="ic" style="color:var(--cyan)">🏆</span><span><span class="ttl">Leaderboard</span><span class="url">/v1/leaderboard</span></span></a>
+          <a class="card" href="https://app.gennode.org/health"><span class="ic" style="color:var(--cyan)">💚</span><span><span class="ttl">Health</span><span class="url">/health</span></span></a>
+        </div>
+
+        <div class="foot">
+          <a href="https://gennode.org">gennode.org</a>
+          <span>Early access · $GENNODE not launched — not financial advice.</span>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
