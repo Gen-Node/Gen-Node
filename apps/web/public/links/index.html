@@ -21,48 +21,20 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
     <style>
       :root {
-        --ink: #070b12;
-        --panel: #0a0f1a;
-        --card: #0f1a2b;
-        --card-hover: #13243a;
-        --border: #1b2c44;
-        --border-hover: #2b4d6e;
-        --text: #e8f1f8;
-        --muted: #9fb2c2;
-        --dim: #6f8aa0;
-        --label: #5f7a8c;
-        --cyan: #22d3ee;
-        --sky: #38bdf8;
-        --indigo: #818cf8;
-        --teal: #5eead4;
+        --ink: #070b12; --panel: #0a0f1a; --card: #0f1a2b; --card-hover: #13243a;
+        --border: #1b2c44; --border-hover: #2b4d6e; --text: #e8f1f8; --muted: #93a7b8;
+        --dim: #6f8aa0; --label: #5f7a8c; --cyan: #22d3ee; --sky: #38bdf8; --indigo: #818cf8; --teal: #5eead4;
       }
       * { box-sizing: border-box; margin: 0; padding: 0; }
       body {
-        background:
-          radial-gradient(900px 500px at 50% -10%, rgba(34, 211, 238, 0.08), transparent 70%),
-          var(--ink);
-        color: var(--text);
-        font-family: "Inter", system-ui, -apple-system, sans-serif;
-        min-height: 100vh;
-        display: flex;
-        justify-content: center;
-        padding: 28px 16px 48px;
-        -webkit-font-smoothing: antialiased;
+        background: radial-gradient(900px 520px at 50% -12%, rgba(34, 211, 238, 0.09), transparent 70%), var(--ink);
+        color: var(--text); font-family: "Inter", system-ui, -apple-system, sans-serif;
+        min-height: 100vh; display: flex; justify-content: center; padding: 28px 16px 52px; -webkit-font-smoothing: antialiased;
       }
-      .wrap { width: 100%; max-width: 600px; }
-      .panel {
-        background: var(--panel);
-        border: 1px solid var(--border);
-        border-radius: 20px;
-        padding: 30px 26px 22px;
-      }
+      .wrap { width: 100%; max-width: 620px; }
+      .panel { background: var(--panel); border: 1px solid var(--border); border-radius: 20px; padding: 30px 26px 22px; }
       .head { display: flex; align-items: center; gap: 14px; }
-      .mark {
-        width: 50px; height: 50px; border-radius: 15px;
-        background: #0e1c2e; border: 1px solid #1e3a52;
-        display: flex; align-items: center; justify-content: center;
-        font-size: 26px;
-      }
+      .mark { width: 50px; height: 50px; border-radius: 15px; background: #0e1c2e; border: 1px solid #1e3a52; display: flex; align-items: center; justify-content: center; font-size: 26px; }
       .brand { font-size: 24px; font-weight: 700; letter-spacing: 0.05em; }
       .tag { font-size: 13px; color: var(--dim); margin-top: 2px; }
       .lead { margin-top: 16px; font-size: 15px; color: var(--muted); line-height: 1.6; }
@@ -71,30 +43,30 @@
       .pill.a { color: #7fd9ec; background: #0e1c2e; border-color: #1e3a52; }
       .pill.b { color: #9aa7f0; background: #141a33; border-color: #2a2f5a; }
       .pill.c { color: #7fe3c6; background: #0c2018; border-color: #1c4338; }
-      .label { margin-top: 24px; font-size: 12px; color: var(--label); letter-spacing: 0.1em; text-transform: uppercase; }
-      .grid { display: grid; gap: 10px; margin-top: 9px; }
-      .g3 { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); }
-      .g2 { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
-      .card {
-        text-decoration: none; display: flex; align-items: center; gap: 12px;
-        background: var(--card); border: 1px solid var(--border); border-radius: 13px;
-        padding: 13px 14px; transition: background 0.14s, border-color 0.14s, transform 0.14s;
-      }
-      .card:hover { background: var(--card-hover); border-color: var(--border-hover); transform: translateY(-1px); }
-      .ic { font-size: 22px; line-height: 1; flex-shrink: 0; }
-      .ttl { display: block; font-size: 15px; font-weight: 500; color: var(--text); }
-      .url { display: block; font-size: 12px; font-family: "JetBrains Mono", monospace; margin-top: 1px; }
-      .docs { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2px 16px; margin-top: 6px; }
-      .doc { text-decoration: none; display: flex; align-items: center; gap: 9px; padding: 9px 8px; border-radius: 9px; color: #cdd9e3; font-size: 14px; transition: background 0.14s; }
+      .label { margin-top: 26px; margin-bottom: 9px; font-size: 12px; color: var(--label); letter-spacing: 0.1em; text-transform: uppercase; }
+      .stack { display: flex; flex-direction: column; gap: 9px; }
+      .row { text-decoration: none; display: flex; align-items: center; gap: 14px; background: var(--card); border: 1px solid var(--border); border-radius: 13px; padding: 13px 15px; transition: background 0.14s, border-color 0.14s, transform 0.14s; }
+      .row:hover { background: var(--card-hover); border-color: var(--border-hover); transform: translateY(-1px); }
+      .ic { font-size: 22px; width: 26px; text-align: center; flex-shrink: 0; }
+      .bd { flex: 1; min-width: 0; }
+      .top { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+      .ttl { font-size: 15px; font-weight: 600; color: var(--text); }
+      .url { font-size: 12px; font-family: "JetBrains Mono", monospace; color: var(--sky); white-space: nowrap; }
+      .desc { font-size: 12.5px; color: var(--muted); margin-top: 3px; line-height: 1.45; }
+      .docs { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2px 14px; }
+      .doc { text-decoration: none; display: flex; align-items: baseline; gap: 9px; padding: 9px 8px; border-radius: 9px; transition: background 0.14s; }
       .doc:hover { background: var(--card-hover); }
-      .doc .arr { color: #2f6f8f; font-size: 14px; }
-      .api .card { padding: 11px 13px; }
+      .doc .arr { color: #2f6f8f; font-size: 13px; flex-shrink: 0; }
+      .doc .dt { font-size: 14px; color: #d3dde6; font-weight: 500; }
+      .doc .dd { font-size: 12px; color: var(--dim); }
+      .api { display: grid; grid-template-columns: repeat(auto-fit, minmax(165px, 1fr)); gap: 9px; }
+      .api .row { padding: 11px 13px; }
       .api .ttl { font-size: 14px; }
       .api .url { font-size: 11px; color: var(--dim); }
-      .foot { margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+      .foot { margin-top: 26px; padding-top: 16px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
       .foot a { color: var(--sky); font-family: "JetBrains Mono", monospace; font-size: 14px; text-decoration: none; }
       .foot span { font-size: 11px; color: var(--label); }
-      @media (max-width: 480px) { .panel { padding: 24px 18px 20px; } .brand { font-size: 22px; } }
+      @media (max-width: 480px) { .panel { padding: 24px 18px 20px; } .brand { font-size: 22px; } .url { font-size: 11px; } }
     </style>
   </head>
   <body>
@@ -108,51 +80,96 @@
           </div>
         </div>
 
-        <p class="lead">A private, torrent-like network for bio &amp; DNA compute. Run a node → power genome analysis, protein folding &amp; drug discovery.</p>
+        <p class="lead">A private, torrent-like network for bio &amp; DNA compute. Run a node → power genome analysis, protein folding &amp; drug discovery, and earn $GENNODE.</p>
         <div class="pills">
           <span class="pill a">Early access</span>
           <span class="pill b">Built on Base</span>
           <span class="pill c">100% fair launch</span>
         </div>
 
-        <div class="label">Sites</div>
-        <div class="grid g3">
-          <a class="card" href="https://gennode.org"><span class="ic" style="color:var(--cyan)">🌐</span><span><span class="ttl">Website</span><span class="url" style="color:var(--sky)">gennode.org</span></span></a>
-          <a class="card" href="https://docs.gennode.org"><span class="ic" style="color:var(--cyan)">📚</span><span><span class="ttl">Docs</span><span class="url" style="color:var(--sky)">docs.gennode.org</span></span></a>
-          <a class="card" href="https://app.gennode.org"><span class="ic" style="color:var(--cyan)">📊</span><span><span class="ttl">Dashboard</span><span class="url" style="color:var(--sky)">app.gennode.org</span></span></a>
+        <div class="label">🌐 Sites</div>
+        <div class="stack">
+          <a class="row" href="https://gennode.org">
+            <span class="ic">🌐</span>
+            <span class="bd"><span class="top"><span class="ttl">Website</span><span class="url">gennode.org</span></span><span class="desc">Landing — run a node, downloads, roadmap and token.</span></span>
+          </a>
+          <a class="row" href="https://docs.gennode.org">
+            <span class="ic">📚</span>
+            <span class="bd"><span class="top"><span class="ttl">Docs</span><span class="url">docs.gennode.org</span></span><span class="desc">Full documentation — 16 pages.</span></span>
+          </a>
+          <a class="row" href="https://app.gennode.org">
+            <span class="ic">📊</span>
+            <span class="bd"><span class="top"><span class="ttl">Dashboard</span><span class="url">app.gennode.org</span></span><span class="desc">Connect a wallet (Privy) → see your node + the live leaderboard.</span></span>
+          </a>
         </div>
 
-        <div class="label">Run a node</div>
-        <div class="grid g2">
-          <a class="card" href="https://www.npmjs.com/package/@gennode/node"><span class="ic" style="color:var(--teal)">⌨️</span><span><span class="ttl">CLI — one line</span><span class="url" style="color:var(--teal)">npx @gennode/node</span></span></a>
-          <a class="card" href="https://github.com/Gen-Node/Gen-Node/releases"><span class="ic" style="color:var(--teal)">⬇️</span><span><span class="ttl">Desktop app</span><span class="url" style="color:var(--dim)">macOS · Windows · Linux</span></span></a>
+        <div class="label">🖥 Run a node</div>
+        <div class="stack">
+          <a class="row" href="https://www.npmjs.com/package/@gennode/node">
+            <span class="ic">⌨️</span>
+            <span class="bd"><span class="top"><span class="ttl">CLI — one line</span><span class="url" style="color:var(--teal)">npx @gennode/node</span></span><span class="desc">Run a node from any terminal or server, no GUI needed.</span></span>
+          </a>
+          <a class="row" href="https://github.com/Gen-Node/Gen-Node/releases">
+            <span class="ic">⬇️</span>
+            <span class="bd"><span class="top"><span class="ttl">Desktop app</span><span class="url">v0.1.3</span></span><span class="desc">macOS · Windows · Linux installers — download &amp; run.</span></span>
+          </a>
         </div>
 
-        <div class="label">Code &amp; community</div>
-        <div class="grid g3">
-          <a class="card" href="https://github.com/Gen-Node"><span class="ic" style="color:var(--indigo)">🐙</span><span><span class="ttl">GitHub org</span><span class="url" style="color:var(--sky)">github.com/Gen-Node</span></span></a>
-          <a class="card" href="https://github.com/Gen-Node/Gen-Node"><span class="ic" style="color:var(--indigo)">{ }</span><span><span class="ttl">Main repo</span><span class="url" style="color:var(--sky)">Gen-Node/Gen-Node</span></span></a>
-          <a class="card" href="https://x.com/gennode"><span class="ic" style="color:var(--indigo)">𝕏</span><span><span class="ttl">X</span><span class="url" style="color:var(--sky)">@gennode</span></span></a>
+        <div class="label">💻 Code &amp; packages</div>
+        <div class="stack">
+          <a class="row" href="https://github.com/Gen-Node">
+            <span class="ic">🐙</span>
+            <span class="bd"><span class="top"><span class="ttl">GitHub org</span><span class="url">github.com/Gen-Node</span></span><span class="desc">The Gennode organization.</span></span>
+          </a>
+          <a class="row" href="https://github.com/Gen-Node/Gen-Node">
+            <span class="ic">{ }</span>
+            <span class="bd"><span class="top"><span class="ttl">Main repo</span><span class="url">Gen-Node/Gen-Node</span></span><span class="desc">Open-source monorepo — apps, gateway and the node CLI.</span></span>
+          </a>
+          <a class="row" href="https://github.com/Gen-Node/Gen-Node/releases">
+            <span class="ic">📦</span>
+            <span class="bd"><span class="top"><span class="ttl">Releases</span><span class="url">desktop-v0.1.3</span></span><span class="desc">Windows .exe/.msi · macOS .dmg (Apple Silicon + Intel) · Linux .AppImage/.deb/.rpm.</span></span>
+          </a>
+          <a class="row" href="https://www.npmjs.com/package/@gennode/node">
+            <span class="ic">🟥</span>
+            <span class="bd"><span class="top"><span class="ttl">npm package</span><span class="url">@gennode/node · v0.1.1</span></span><span class="desc">Published CLI — install: npx @gennode/node.</span></span>
+          </a>
         </div>
 
-        <div class="label">Docs</div>
+        <div class="label">🐦 Social</div>
+        <div class="stack">
+          <a class="row" href="https://x.com/gennode">
+            <span class="ic">𝕏</span>
+            <span class="bd"><span class="top"><span class="ttl">X (Twitter)</span><span class="url">@gennode</span></span><span class="desc">Follow for updates, milestones and build-in-public.</span></span>
+          </a>
+        </div>
+
+        <div class="label">📄 Docs pages</div>
         <div class="docs">
-          <a class="doc" href="https://docs.gennode.org/whitepaper"><span class="arr">↗</span>Whitepaper</a>
-          <a class="doc" href="https://docs.gennode.org/run-a-node"><span class="arr">↗</span>Run a node guide</a>
-          <a class="doc" href="https://docs.gennode.org/node-network"><span class="arr">↗</span>Network architecture</a>
-          <a class="doc" href="https://docs.gennode.org/data-layer"><span class="arr">↗</span>Data layer (torrent-like)</a>
-          <a class="doc" href="https://docs.gennode.org/use-cases"><span class="arr">↗</span>Use cases — DNA, protein, drugs</a>
-          <a class="doc" href="https://docs.gennode.org/token"><span class="arr">↗</span>Token</a>
-          <a class="doc" href="https://docs.gennode.org/airdrop"><span class="arr">↗</span>Airdrop &amp; points</a>
-          <a class="doc" href="https://docs.gennode.org/roadmap"><span class="arr">↗</span>Roadmap</a>
-          <a class="doc" href="https://docs.gennode.org/faq"><span class="arr">↗</span>FAQ</a>
+          <a class="doc" href="https://docs.gennode.org/whitepaper"><span class="arr">↗</span><span><span class="dt">Whitepaper</span> · <span class="dd">the full design</span></span></a>
+          <a class="doc" href="https://docs.gennode.org/run-a-node"><span class="arr">↗</span><span><span class="dt">Run a node</span> · <span class="dd">setup guide</span></span></a>
+          <a class="doc" href="https://docs.gennode.org/node-network"><span class="arr">↗</span><span><span class="dt">Network</span> · <span class="dd">architecture</span></span></a>
+          <a class="doc" href="https://docs.gennode.org/data-layer"><span class="arr">↗</span><span><span class="dt">Data layer</span> · <span class="dd">torrent-like</span></span></a>
+          <a class="doc" href="https://docs.gennode.org/use-cases"><span class="arr">↗</span><span><span class="dt">Use cases</span> · <span class="dd">DNA, protein, drugs</span></span></a>
+          <a class="doc" href="https://docs.gennode.org/token"><span class="arr">↗</span><span><span class="dt">Token</span> · <span class="dd">$GENNODE</span></span></a>
+          <a class="doc" href="https://docs.gennode.org/airdrop"><span class="arr">↗</span><span><span class="dt">Airdrop</span> · <span class="dd">points</span></span></a>
+          <a class="doc" href="https://docs.gennode.org/roadmap"><span class="arr">↗</span><span><span class="dt">Roadmap</span> · <span class="dd">what's next</span></span></a>
+          <a class="doc" href="https://docs.gennode.org/faq"><span class="arr">↗</span><span><span class="dt">FAQ</span> · <span class="dd">common questions</span></span></a>
         </div>
 
-        <div class="label">Live network · API</div>
-        <div class="grid g3 api">
-          <a class="card" href="https://app.gennode.org/v1/network/stats"><span class="ic" style="color:var(--cyan)">📈</span><span><span class="ttl">Network stats</span><span class="url">/v1/network/stats</span></span></a>
-          <a class="card" href="https://app.gennode.org/v1/leaderboard"><span class="ic" style="color:var(--cyan)">🏆</span><span><span class="ttl">Leaderboard</span><span class="url">/v1/leaderboard</span></span></a>
-          <a class="card" href="https://app.gennode.org/health"><span class="ic" style="color:var(--cyan)">💚</span><span><span class="ttl">Health</span><span class="url">/health</span></span></a>
+        <div class="label">🔌 Live network · API</div>
+        <div class="api">
+          <a class="row" href="https://app.gennode.org/v1/network/stats">
+            <span class="ic">📈</span>
+            <span class="bd"><span class="ttl">Network stats</span><span class="url">/v1/network/stats</span></span>
+          </a>
+          <a class="row" href="https://app.gennode.org/v1/leaderboard">
+            <span class="ic">🏆</span>
+            <span class="bd"><span class="ttl">Leaderboard</span><span class="url">/v1/leaderboard</span></span>
+          </a>
+          <a class="row" href="https://app.gennode.org/health">
+            <span class="ic">💚</span>
+            <span class="bd"><span class="ttl">Health</span><span class="url">/health</span></span>
+          </a>
         </div>
 
         <div class="foot">
